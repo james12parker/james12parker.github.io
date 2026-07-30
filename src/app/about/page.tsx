@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons";
 import { PageIntro } from "@/components/ui/page-intro";
-import { launchData } from "@/config/launch-data";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -67,10 +66,6 @@ export default function AboutPage() {
               제품의 형태와 마감, 확인 가능한 정보를 더 명료한 방식으로
               소개합니다.
             </h2>
-            <p className="mt-7 max-w-2xl text-sm leading-7 text-muted">
-              {launchData.brand.manufacturerRelationship ||
-                "제조사와 사이트 운영 사업자의 관계는 사업 확인 후 공개됩니다."}
-            </p>
           </div>
         </div>
       </section>

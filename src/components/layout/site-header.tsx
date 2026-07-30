@@ -32,7 +32,7 @@ export function SiteHeader() {
           >
             <Image
               alt={siteConfig.logoAlt}
-              className="h-10 w-auto md:h-12"
+              className="h-12 w-auto md:h-14"
               height={48}
               priority
               src={siteConfig.logoPath}
