@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowRightIcon, ExternalIcon } from "@/components/icons";
-import { isPreviewRelease } from "@/config/launch-data";
 import { siteConfig } from "@/config/site";
 
 export function Hero() {
@@ -75,11 +74,6 @@ export function Hero() {
             sizes="(max-width: 1024px) 100vw, 60vw"
             src={siteConfig.heroImagePath}
           />
-          {isPreviewRelease ? (
-            <div className="absolute right-4 bottom-4 border border-white/30 bg-black/25 px-3 py-1.5 text-[9px] tracking-[0.14em] text-white uppercase backdrop-blur-sm">
-              Provisional brand image
-            </div>
-          ) : null}
         </div>
       </div>
     </section>
