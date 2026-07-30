@@ -62,7 +62,7 @@ export default function ContactPage() {
         </div>
 
         <div className="bg-stone p-7 md:p-10">
-          <p className="eyebrow mb-8">Contact information</p>
+          <p className="eyebrow-section mb-8">Contact information</p>
           <dl className="space-y-7 text-sm">
             <div>
               <dt className="text-xs text-muted">고객센터</dt>

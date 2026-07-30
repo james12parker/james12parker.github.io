@@ -8,9 +8,7 @@ export function NaverCta() {
     <section className="bg-ink py-18 text-white md:py-24">
       <div className="page-shell grid items-end gap-10 md:grid-cols-[1fr_auto]">
         <div>
-          <p className="mb-5 text-[10px] font-bold tracking-[0.18em] text-white/55 uppercase">
-            Official store
-          </p>
+          <p className="eyebrow-section mb-5 text-white/55">Official store</p>
           <h2 className="text-3xl leading-tight font-medium tracking-[-0.04em] md:text-4xl">
             선택한 제품은 네이버에서
             <br className="hidden sm:block" /> 편리하게 구매하세요.

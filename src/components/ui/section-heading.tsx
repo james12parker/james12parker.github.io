@@ -29,7 +29,7 @@ export function SectionHeading({
       }`}
     >
       <div>
-        {eyebrow ? <p className="eyebrow mb-4">{eyebrow}</p> : null}
+        {eyebrow ? <p className="eyebrow-section mb-4">{eyebrow}</p> : null}
         <h2 className="text-3xl leading-tight font-medium tracking-[-0.035em] text-balance md:text-4xl">
           {title}
         </h2>

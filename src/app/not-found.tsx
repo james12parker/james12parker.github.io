@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <section className="page-shell flex min-h-[62vh] items-center py-20">
       <div>
-        <p className="eyebrow mb-6">404 — Page not found</p>
+        <p className="eyebrow-section mb-6">404 — Page not found</p>
         <h1 className="text-4xl font-medium tracking-[-0.045em] md:text-6xl">
           페이지를 찾을 수 없습니다.
         </h1>

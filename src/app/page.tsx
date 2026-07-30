@@ -136,7 +136,7 @@ export default function HomePage() {
               ))}
             </div>
             <div>
-              <p className="eyebrow mb-5">Featured collection</p>
+              <p className="eyebrow-section mb-5">Featured collection</p>
               <h2 className="text-4xl font-medium tracking-[-0.045em] md:text-5xl">
                 콩코드
               </h2>

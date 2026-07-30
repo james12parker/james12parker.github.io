@@ -19,7 +19,7 @@ export function PageIntro({
     <div className="page-shell py-12 md:py-18">
       {breadcrumb ? <Breadcrumbs items={[{ label: breadcrumb }]} /> : null}
       <div className={breadcrumb ? "mt-12" : ""}>
-        {eyebrow ? <p className="eyebrow mb-5">{eyebrow}</p> : null}
+        {eyebrow ? <p className="eyebrow-section mb-5">{eyebrow}</p> : null}
         <h1
           className={
             titleClassName ??

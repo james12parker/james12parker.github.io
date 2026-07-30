@@ -79,6 +79,19 @@ button:disabled,
   text-transform: uppercase;
 }
 
+.eyebrow-section {
+  color: var(--color-brand);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.bg-ink .eyebrow-section {
+  color: var(--color-brand-soft);
+}
+
 .button-primary,
 .button-secondary,
 .button-naver {

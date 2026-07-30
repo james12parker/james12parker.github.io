@@ -60,7 +60,7 @@ export default function AboutPage() {
 
       <section className="border-y border-line bg-stone py-20 md:py-28">
         <div className="page-shell grid gap-12 md:grid-cols-[0.7fr_1.3fr] md:gap-20">
-          <p className="eyebrow">Our perspective</p>
+          <p className="eyebrow-section">Our perspective</p>
           <div>
             <h2 className="max-w-3xl text-3xl leading-snug font-medium tracking-[-0.04em] md:text-4xl">
               제품의 형태와 마감, 확인 가능한 정보를 더 명료한 방식으로
@@ -71,7 +71,7 @@ export default function AboutPage() {
       </section>
 
       <section className="page-shell py-20 md:py-28">
-        <p className="eyebrow mb-10">What matters</p>
+        <p className="eyebrow-section mb-10">What matters</p>
         <div className="grid border-t border-line md:grid-cols-3">
           {principles.map((principle, index) => (
             <article
