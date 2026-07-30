@@ -13,7 +13,6 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { categories, homepageCategoryIds } from "@/data/categories";
 import { collections } from "@/data/collections";
 import { products } from "@/data/products";
-import { isPreviewRelease } from "@/config/launch-data";
 
 const homepageCategoryRepresentativeProductIds: Readonly<
   Record<string, string>
@@ -146,11 +145,6 @@ export default function HomePage() {
               <p className="mt-7 max-w-lg text-[15px] leading-7 text-muted">
                 {concord.description}
               </p>
-              {isPreviewRelease ? (
-                <p className="mt-3 text-[10px] text-muted">
-                  컬렉션 소개 문구는 최종 편집 검토가 필요합니다.
-                </p>
-              ) : null}
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link
                   className="button-primary"

@@ -31,9 +31,9 @@ export function NaverCta() {
         ) : (
           <Link
             className="inline-flex min-h-12 min-w-52 items-center justify-center border border-white/25 px-5 text-sm font-semibold text-white/65"
-            href="/contact?topic=purchase"
+            href="/contact?topic=product"
           >
-            스토어 링크 준비 중
+            제품 문의
           </Link>
         )}
       </div>

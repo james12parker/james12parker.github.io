@@ -8,7 +8,7 @@ export function SpecificationTable({
   );
 
   if (entries.length === 0) {
-    return <p className="text-sm text-muted">상세 정보 준비 중</p>;
+    return null;
   }
 
   return (

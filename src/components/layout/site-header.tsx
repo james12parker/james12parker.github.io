@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { DesktopNavigation } from "@/components/layout/desktop-navigation";
 import { MobileNavigation } from "@/components/layout/mobile-navigation";
+import { HeaderLogoLink } from "@/components/layout/header-logo-link";
 import { LanguageSelector } from "@/components/layout/language-selector";
-import { siteConfig } from "@/config/site";
 
 export function SiteHeader() {
   return (
@@ -25,20 +24,7 @@ export function SiteHeader() {
       </div>
       <header className="sticky top-0 z-40 border-b border-line bg-warm-white">
         <div className="page-shell flex h-20 items-center justify-between lg:h-22">
-          <Link
-            aria-label={`${siteConfig.brandNameKo} 홈`}
-            className="flex items-center"
-            href="/"
-          >
-            <Image
-              alt={siteConfig.logoAlt}
-              className="h-12 w-auto md:h-14"
-              height={64}
-              priority
-              src={siteConfig.logoPath}
-              width={230}
-            />
-          </Link>
+          <HeaderLogoLink />
           <DesktopNavigation />
           <MobileNavigation />
         </div>

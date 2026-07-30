@@ -2,6 +2,19 @@ type IconProps = {
   className?: string;
 };
 
+export function ArrowUpIcon({ className }: IconProps) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path d="M12 19V5M7 10l5-5 5 5" stroke="currentColor" />
+    </svg>
+  );
+}
+
 export function ArrowRightIcon({ className }: IconProps) {
   return (
     <svg
