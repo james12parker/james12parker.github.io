@@ -12,15 +12,15 @@ export function Hero() {
         <div className="flex items-center">
           <div className="w-full px-5 py-18 md:px-8 lg:ml-auto lg:max-w-[44rem] lg:px-14">
             <p
-              className="mb-6 text-[10px] font-medium tracking-[0.12em] text-brand"
+              className="mb-6 text-xs font-medium tracking-[0.09em] text-brand lg:text-[13px]"
               aria-label="EssentialBathroomStorage"
             >
               <span aria-hidden="true" className="inline-flex items-baseline">
-                <strong className="text-xs font-extrabold">E</strong>
+                <strong className="text-sm font-extrabold">E</strong>
                 <span>ssential</span>
-                <strong className="text-xs font-extrabold">B</strong>
+                <strong className="text-sm font-extrabold">B</strong>
                 <span>athroom</span>
-                <strong className="text-xs font-extrabold">S</strong>
+                <strong className="text-sm font-extrabold">S</strong>
                 <span>torage</span>
               </span>
             </p>

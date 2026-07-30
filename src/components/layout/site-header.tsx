@@ -36,7 +36,7 @@ export function SiteHeader() {
               height={48}
               priority
               src={siteConfig.logoPath}
-              width={183}
+              width={230}
             />
           </Link>
           <DesktopNavigation />

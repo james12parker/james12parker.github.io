@@ -2,7 +2,12 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { chromium, type BrowserContext, type Page } from "playwright";
+import {
+  chromium,
+  type Browser,
+  type BrowserContext,
+  type Page,
+} from "playwright";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const screenshotDirectory = resolve(projectRoot, "docs/screenshots");
@@ -75,6 +80,7 @@ async function main() {
     );
     await captureHomepageSections(desktop);
     await captureCatalogUpdates(desktop);
+    await captureRequestedChecks(browser);
     await desktop.close();
     await mobile.close();
     await desktopEnglish.close();
@@ -290,6 +296,141 @@ async function captureCatalogUpdates(context: BrowserContext) {
     });
   }
   await page.close();
+}
+
+async function captureRequestedChecks(browser: Browser) {
+  for (const width of [375, 768, 1024, 1440]) {
+    const context = await browser.newContext({
+      viewport: { width, height: width === 375 ? 812 : 1000 },
+      colorScheme: "light",
+      reducedMotion: "reduce",
+      locale: "ko-KR",
+      isMobile: width === 375,
+      hasTouch: width === 375,
+    });
+    const page = await preparedPage(
+      context,
+      width === 375 ? "mobile" : "desktop",
+    );
+    await visit(page, "/");
+    const hero = page.locator("main > section").first();
+    const filename = `28-hero-${width}.png`;
+    await hero.screenshot({
+      path: resolve(screenshotDirectory, filename),
+      animations: "disabled",
+    });
+    captures.push({
+      filename,
+      path: `docs/screenshots/${filename}`,
+      viewport: width === 375 ? "mobile" : "desktop",
+      fullPage: false,
+      state: `Homepage hero and EssentialBathroomStorage at ${width}px`,
+    });
+    await page.close();
+    await context.close();
+  }
+
+  const desktop = await browser.newContext({
+    viewport: { width: 1440, height: 1000 },
+    colorScheme: "light",
+    reducedMotion: "reduce",
+    locale: "ko-KR",
+  });
+  const page = await preparedPage(desktop, "desktop");
+  await visit(page, "/");
+  const categorySection = page
+    .locator("section")
+    .filter({ hasText: "Browse by category" })
+    .first();
+  await categorySection.screenshot({
+    path: resolve(screenshotDirectory, "32-category-section-normal.png"),
+    animations: "disabled",
+  });
+  captures.push({
+    filename: "32-category-section-normal.png",
+    path: "docs/screenshots/32-category-section-normal.png",
+    viewport: "desktop",
+    fullPage: false,
+    state: "Category cards, normal state",
+  });
+  const categoryCard = categorySection.locator("a").first();
+  await categoryCard.hover();
+  await categoryCard.screenshot({
+    path: resolve(screenshotDirectory, "33-category-card-hover.png"),
+    animations: "disabled",
+  });
+  captures.push({
+    filename: "33-category-card-hover.png",
+    path: "docs/screenshots/33-category-card-hover.png",
+    viewport: "desktop",
+    fullPage: false,
+    state: "Category card, hover state",
+  });
+  await categoryCard.locator("img").screenshot({
+    path: resolve(screenshotDirectory, "34-category-image-edge.png"),
+    animations: "disabled",
+  });
+  captures.push({
+    filename: "34-category-image-edge.png",
+    path: "docs/screenshots/34-category-image-edge.png",
+    viewport: "desktop",
+    fullPage: false,
+    state: "Close category image edge",
+  });
+
+  await visit(page, "/products?category=towel-bars");
+  await screenshot(
+    page,
+    "35-towel-bar-order.png",
+    "desktop",
+    true,
+    "Requested towel-bar and towel-shelf order",
+  );
+
+  await page.addInitScript(() => localStorage.setItem("hoyang-language", "en"));
+  for (const [filename, path, state] of [
+    ["36-battuta-collections.png", "/collections", "battuta collection card"],
+    [
+      "37-battuta-detail.png",
+      "/collections/batuta",
+      "battuta collection heading",
+    ],
+    [
+      "38-battuta-products.png",
+      "/products?collection=batuta",
+      "battuta product and filter labels",
+    ],
+  ] as const) {
+    await visit(page, path);
+    await page.locator('html[lang="en"]').waitFor();
+    await screenshot(page, filename, "desktop", true, state);
+  }
+  await page.close();
+  await desktop.close();
+
+  const mobile = await browser.newContext({
+    viewport: { width: 375, height: 812 },
+    colorScheme: "light",
+    reducedMotion: "reduce",
+    locale: "en-US",
+    isMobile: true,
+    hasTouch: true,
+  });
+  await mobile.addInitScript(() =>
+    localStorage.setItem("hoyang-language", "en"),
+  );
+  const mobilePage = await preparedPage(mobile, "mobile");
+  await visit(mobilePage, "/");
+  await mobilePage.getByRole("button", { name: "Open menu" }).click();
+  await screenshot(
+    mobilePage,
+    "39-mobile-logo-navigation-battuta.png",
+    "mobile",
+    false,
+    "HOYANG25 mobile navigation and battuta label",
+  );
+  await mobilePage.close();
+  await mobile.close();
 }
 
 async function preparedPage(

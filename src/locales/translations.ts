@@ -208,7 +208,7 @@ export const english: Record<string, string> = {
   "사틴과 크롬 마감의 콩코드 제품군을 만나보세요.":
     "Explore the Concord collection in satin and chrome finishes.",
   "바투타 제품을 한 자리에서 살펴볼 수 있는 컬렉션입니다.":
-    "Explore the Batuta collection in one place.",
+    "Explore the battuta collection in one place.",
   "벨레어의 수건걸이와 휴지걸이를 마감별로 소개합니다.":
     "Explore Belair towel bars and toilet paper holders by finish.",
   "브리오 제품군의 구성과 마감 옵션을 둘러보세요.":
@@ -220,7 +220,7 @@ export const english: Record<string, string> = {
 };
 
 const productNames: Record<string, string> = {
-  바투타: "Batuta",
+  바투타: "battuta",
   벨레어: "Belair",
   브리오: "Brio",
   사코: "Saco",

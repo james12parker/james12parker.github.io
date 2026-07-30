@@ -6,7 +6,7 @@ export const collections: Collection[] = [
     id: "batuta",
     slug: "batuta",
     nameKo: "바투타",
-    nameEn: "Batuta",
+    nameEn: "battuta",
     description: "바투타 제품을 한 자리에서 살펴볼 수 있는 컬렉션입니다.",
     image: "/images/products/batuta/batuta-towel-bar-satin.jpg",
     editorialReviewRequired: true,

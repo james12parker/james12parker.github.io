@@ -149,6 +149,7 @@ export const sourceProducts: Product[] = [
     folder: "batuta",
     finishes: ["사틴"],
     relatedProductIds: ["batuta-paper-holder"],
+    catalogSortOrder: 10,
     featured: true,
   }),
   namedProduct({
@@ -170,6 +171,7 @@ export const sourceProducts: Product[] = [
     folder: "belair",
     finishes: ["사틴"],
     relatedProductIds: ["belair-paper-holder"],
+    catalogSortOrder: 20,
     featured: true,
   }),
   namedProduct({
@@ -191,7 +193,7 @@ export const sourceProducts: Product[] = [
     folder: "brio",
     finishes: ["사틴", "크롬"],
     relatedProductIds: ["brio-paper-holder"],
-    catalogSortOrder: 20,
+    catalogSortOrder: 50,
   }),
   namedProduct({
     id: "brio-paper-holder",
@@ -212,6 +214,7 @@ export const sourceProducts: Product[] = [
     folder: "saco",
     finishes: ["블랙", "크롬"],
     relatedProductIds: ["saco-paper-holder"],
+    catalogSortOrder: 30,
     featured: true,
   }),
   namedProduct({
@@ -233,7 +236,7 @@ export const sourceProducts: Product[] = [
     folder: "concord",
     finishes: ["사틴", "크롬"],
     relatedProductIds: ["concord-paper-holder"],
-    catalogSortOrder: 10,
+    catalogSortOrder: 40,
     featured: true,
   }),
   namedProduct({
@@ -361,7 +364,7 @@ export const sourceProducts: Product[] = [
     category: "towel-bars",
     finishes: ["크롬"],
     relatedProductIds: ["hg822c", "hg822s"],
-    catalogSortOrder: 50,
+    catalogSortOrder: 80,
   }),
   hgProduct({
     model: "HG822C",
@@ -370,7 +373,7 @@ export const sourceProducts: Product[] = [
     category: "towel-bars",
     finishes: ["크롬"],
     relatedProductIds: ["hg822s", "hg820"],
-    catalogSortOrder: 30,
+    catalogSortOrder: 60,
     imageBase: "hg822-double-towel-shelf",
     featured: true,
   }),
@@ -381,7 +384,7 @@ export const sourceProducts: Product[] = [
     category: "towel-bars",
     finishes: ["사틴"],
     relatedProductIds: ["hg822c", "hg820"],
-    catalogSortOrder: 40,
+    catalogSortOrder: 70,
     imageBase: "hg822-double-towel-shelf",
     featured: true,
   }),

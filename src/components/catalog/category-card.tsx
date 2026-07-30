@@ -18,7 +18,7 @@ export function CategoryCard({
 }) {
   return (
     <Link
-      className="group border-t border-line py-5 transition-colors hover:bg-stone sm:px-3"
+      className="group border-t border-line bg-warm-white py-5 transition-colors hover:bg-warm-white sm:px-3"
       href={`/products?category=${category.id}`}
     >
       <span className="mb-4 flex items-center justify-between">
@@ -28,7 +28,7 @@ export function CategoryCard({
         <ArrowRightIcon className="size-4 text-brand transition-transform group-hover:translate-x-1" />
       </span>
       {image ? (
-        <span className="relative block aspect-[4/3] w-full overflow-hidden bg-surface">
+        <span className="relative block aspect-[4/3] w-full overflow-hidden bg-warm-white">
           <Image
             alt={imageAlt ?? ""}
             className="object-contain p-1"

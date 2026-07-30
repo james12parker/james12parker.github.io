@@ -54,18 +54,23 @@ invariant(
   "HG822C and HG822S must use distinct finish images.",
 );
 
-const expectedOrder = [
+const expectedTowelBarOrder = [
+  "batuta-towel-bar",
+  "belair-towel-bar",
+  "saco-towel-bar",
   "concord-towel-bar",
   "brio-towel-bar",
   "hg822c",
   "hg822s",
   "hg820",
 ];
+const towelBarOrder = products
+  .filter((product) => product.category === "towel-bars")
+  .map((product) => product.id);
 invariant(
-  products
-    .slice(0, expectedOrder.length)
-    .every((product, index) => product.id === expectedOrder[index]),
-  "Requested catalog order is not preserved.",
+  towelBarOrder.length === expectedTowelBarOrder.length &&
+    towelBarOrder.every((id, index) => id === expectedTowelBarOrder[index]),
+  "Requested towel-bar catalog order is not preserved.",
 );
 
 for (const id of ["belair-paper-holder", "brio-paper-holder"]) {
