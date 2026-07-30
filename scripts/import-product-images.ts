@@ -112,6 +112,7 @@ async function main() {
       sourceBuffer,
       metadata,
       destinationPath,
+      mapping,
     );
     const destinationResult = await writeWithoutConflict(
       destinationPath,
@@ -188,25 +189,42 @@ async function createOutputBuffer(
   sourceBuffer: Buffer,
   metadata: Metadata,
   destinationPath: string,
+  mapping: ProductImageMapping,
 ) {
   const destinationExtension = extname(destinationPath).toLowerCase();
   const detectedExtension =
     metadata.format === "jpeg" ? ".jpg" : `.${metadata.format ?? ""}`;
   const requiresOrientation = (metadata.orientation ?? 1) !== 1;
   const requiresFormatChange = destinationExtension !== detectedExtension;
+  const removesEmbeddedLabel =
+    mapping.useInCatalog && mapping.collection === "HG 시리즈";
 
-  if (!requiresOrientation && !requiresFormatChange) {
+  if (!requiresOrientation && !requiresFormatChange && !removesEmbeddedLabel) {
     return sourceBuffer;
   }
 
   let pipeline = sharp(sourcePath).rotate();
+  if (removesEmbeddedLabel) {
+    const labelRows = await findEmbeddedLabelRows(sourcePath, metadata);
+    if (!labelRows) {
+      throw new Error(
+        `이미지 내 모델명 영역을 찾을 수 없음: ${mapping.originalFilename}`,
+      );
+    }
+    const [top, bottom] = labelRows;
+    const cleanup = Buffer.from(
+      `<svg width="${metadata.width}" height="${metadata.height}"><rect x="0" y="${top}" width="${metadata.width}" height="${bottom - top}" fill="#fff"/></svg>`,
+    );
+    pipeline = pipeline.composite([{ input: cleanup }]).withMetadata();
+  }
+
   if (destinationExtension === ".jpg" || destinationExtension === ".jpeg") {
     pipeline = pipeline.jpeg({
-      quality: 95,
+      quality: removesEmbeddedLabel ? 100 : 95,
       chromaSubsampling: "4:4:4",
     });
   } else if (destinationExtension === ".png") {
-    pipeline = pipeline.png({ compressionLevel: 6 });
+    pipeline = pipeline.png({ compressionLevel: removesEmbeddedLabel ? 9 : 6 });
   } else if (destinationExtension === ".webp") {
     pipeline = pipeline.webp({ quality: 95 });
   } else {
@@ -214,6 +232,47 @@ async function createOutputBuffer(
   }
 
   return pipeline.toBuffer();
+}
+
+async function findEmbeddedLabelRows(
+  sourcePath: string,
+  metadata: Metadata,
+): Promise<[number, number] | undefined> {
+  const { data, info } = await sharp(sourcePath)
+    .removeAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const searchStart = Math.floor(info.height * 0.85);
+  const activeRows: boolean[] = [];
+  for (let y = searchStart; y < info.height; y += 1) {
+    let darkPixels = 0;
+    for (let x = 0; x < info.width; x += 1) {
+      const offset = (y * info.width + x) * info.channels;
+      if (
+        data[offset] < 235 ||
+        data[offset + 1] < 235 ||
+        data[offset + 2] < 235
+      )
+        darkPixels += 1;
+    }
+    activeRows.push(darkPixels >= 2);
+  }
+
+  const runs: Array<[number, number]> = [];
+  let start: number | undefined;
+  for (let index = 0; index <= activeRows.length; index += 1) {
+    if (activeRows[index] && start === undefined) start = index;
+    if (!activeRows[index] && start !== undefined) {
+      if (index - start >= 2)
+        runs.push([searchStart + start, searchStart + index - 1]);
+      start = undefined;
+    }
+  }
+  if (runs.length === 0) return undefined;
+  return [
+    Math.max(0, runs[0][0] - 5),
+    Math.min(metadata.height ?? info.height, runs.at(-1)![1] + 6),
+  ];
 }
 
 async function writeWithoutConflict(

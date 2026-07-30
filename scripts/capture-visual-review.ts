@@ -338,6 +338,19 @@ async function captureRequestedChecks(browser: Browser) {
   });
   const page = await preparedPage(desktop, "desktop");
   await visit(page, "/");
+  const heroStatement = page.locator('[aria-label="EssentialBathroomStorage"]');
+  await heroStatement.screenshot({
+    path: resolve(screenshotDirectory, "40-essential-storage-closeup.png"),
+    animations: "disabled",
+  });
+  captures.push({
+    filename: "40-essential-storage-closeup.png",
+    path: "docs/screenshots/40-essential-storage-closeup.png",
+    viewport: "desktop",
+    fullPage: false,
+    state: "EssentialBathroomStorage close-up",
+  });
+
   const categorySection = page
     .locator("section")
     .filter({ hasText: "Browse by category" })
@@ -386,6 +399,55 @@ async function captureRequestedChecks(browser: Browser) {
     true,
     "Requested towel-bar and towel-shelf order",
   );
+
+  await visit(page, "/products?collection=batuta");
+  const battutaCard = page
+    .locator("article")
+    .filter({ hasText: "바투타 수건걸이" })
+    .first();
+  await battutaCard.screenshot({
+    path: resolve(screenshotDirectory, "41-battuta-towel-bar-card.png"),
+    animations: "disabled",
+  });
+  captures.push({
+    filename: "41-battuta-towel-bar-card.png",
+    path: "docs/screenshots/41-battuta-towel-bar-card.png",
+    viewport: "desktop",
+    fullPage: false,
+    state: "바투타 수건걸이 사틴 product card",
+  });
+
+  await visit(page, "/products/batuta-towel-bar");
+  await screenshot(
+    page,
+    "42-battuta-towel-bar-detail.png",
+    "desktop",
+    true,
+    "바투타 수건걸이 사틴 product detail",
+  );
+
+  await visit(page, "/products?collection=hg-series");
+  for (const [filename, productName] of [
+    ["43-hg100ms-clean-image.png", "HG100MS 코너선반"],
+    ["44-hg110-1-clean-image.png", "HG110-1 매립휴지걸이"],
+  ] as const) {
+    const card = page
+      .locator("article")
+      .filter({ hasText: productName })
+      .first();
+    await card.scrollIntoViewIfNeeded();
+    await card.screenshot({
+      path: resolve(screenshotDirectory, filename),
+      animations: "disabled",
+    });
+    captures.push({
+      filename,
+      path: `docs/screenshots/${filename}`,
+      viewport: "desktop",
+      fullPage: false,
+      state: `${productName} without embedded model label`,
+    });
+  }
 
   await page.addInitScript(() => localStorage.setItem("hoyang-language", "en"));
   for (const [filename, path, state] of [

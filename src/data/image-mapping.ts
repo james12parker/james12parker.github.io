@@ -30,8 +30,8 @@ const namedCollectionImages: ProductImageMapping[] = [
     normalizedPath: "/images/products/batuta/batuta-towel-bar-satin.jpg",
     confidence: "confirmed-from-filename",
     validationNote:
-      "단종된 벨레어 수건걸이 크롬 원본으로 감사용 보존. 활성 카탈로그에서는 제외함.",
-    useInCatalog: false,
+      "파일명과 형상이 바투타 수건걸이 사틴 제품과 일치하며 활성 카탈로그에 사용함.",
+    useInCatalog: true,
     reviewStatus: "verified",
   },
   {

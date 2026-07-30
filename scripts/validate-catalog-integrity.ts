@@ -22,6 +22,16 @@ invariant(
   "The combined HG822 slug must not remain canonical.",
 );
 
+const batutaTowel = byId.get("batuta-towel-bar");
+invariant(batutaTowel, "Batuta towel bar must exist.");
+invariant(
+  batutaTowel.variants.length === 1 &&
+    batutaTowel.variants[0].finish === "사틴" &&
+    batutaTowel.variants[0].image ===
+      "/images/products/batuta/batuta-towel-bar-satin.jpg",
+  "Batuta towel bar satin must use its real normalized source image.",
+);
+
 const belairTowel = byId.get("belair-towel-bar");
 invariant(belairTowel, "Belair towel bar must exist.");
 invariant(
