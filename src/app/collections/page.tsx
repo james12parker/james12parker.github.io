@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { CollectionCard } from "@/components/catalog/collection-card";
 import { PageIntro } from "@/components/ui/page-intro";
-import { isPreviewRelease } from "@/config/launch-data";
 import { collections } from "@/data/collections";
 
 export const metadata: Metadata = {
@@ -31,12 +30,6 @@ export default function CollectionsPage() {
             />
           ))}
         </div>
-        {isPreviewRelease ? (
-          <p className="mt-12 border-t border-line pt-5 text-[11px] leading-5 text-muted">
-            컬렉션 영문명, URL slug, 소개 문구는 임시 데이터이며 최종 편집
-            검토가 필요합니다.
-          </p>
-        ) : null}
       </section>
     </>
   );
