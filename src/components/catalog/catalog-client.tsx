@@ -8,6 +8,7 @@ import {
   useState,
   useTransition,
 } from "react";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import {
@@ -15,8 +16,9 @@ import {
   type CatalogFilterValues,
 } from "@/components/catalog/product-filters";
 import { ProductGrid } from "@/components/catalog/product-grid";
-import { CloseIcon, FilterIcon } from "@/components/icons";
+import { CloseIcon, FilterIcon, SearchIcon } from "@/components/icons";
 import { EmptyState } from "@/components/ui/empty-state";
+import { searchCatalog } from "@/lib/catalog-search";
 import type { Category, Collection, Finish, Product } from "@/types/product";
 
 type CatalogClientProps = {
@@ -52,6 +54,7 @@ export function CatalogClient({
   const [values, setOptimisticValues] = useOptimistic(urlValues);
   const [, startFilterTransition] = useTransition();
   const sort = (searchParams.get("sort") as SortKey | null) ?? "catalog";
+  const query = searchParams.get("q") ?? "";
   const activeFilterCount = Object.values(values).filter(Boolean).length;
 
   useEffect(() => {
@@ -115,8 +118,15 @@ export function CatalogClient({
     });
   };
 
+  const searchResults = useMemo(
+    () => searchCatalog(query, products, categories, collections, finishes),
+    [categories, collections, finishes, products, query],
+  );
   const filteredProducts = useMemo(() => {
-    const filtered = products.filter((product) => {
+    const searchedProducts = query
+      ? searchResults.products.map(({ product }) => product)
+      : products;
+    const filtered = searchedProducts.filter((product) => {
       const categoryMatch =
         !values.category || product.category === values.category;
       const collectionMatch =
@@ -138,11 +148,52 @@ export function CatalogClient({
       }
       return Number(b.featured) - Number(a.featured);
     });
-  }, [products, sort, values.category, values.collection, values.finish]);
-  const preferredFinish = finishes.find((finish) => finish === values.finish);
+  }, [
+    products,
+    query,
+    searchResults.products,
+    sort,
+    values.category,
+    values.collection,
+    values.finish,
+  ]);
+  const preferredFinish =
+    finishes.find((finish) => finish === values.finish) ??
+    searchResults.preferredFinish;
 
   return (
     <div className="page-shell pb-24">
+      <form
+        aria-label="제품 검색"
+        className="mb-7 flex min-h-12 items-center border border-line bg-white focus-within:border-brand"
+        onSubmit={(event) => event.preventDefault()}
+        role="search"
+      >
+        <SearchIcon className="mx-4 size-5 shrink-0 text-muted" />
+        <label className="sr-only" htmlFor="catalog-product-search">
+          제품명 또는 모델 번호 검색
+        </label>
+        <input
+          autoComplete="off"
+          className="h-12 min-w-0 flex-1 bg-transparent pr-3 text-base outline-none placeholder:text-muted md:text-sm"
+          id="catalog-product-search"
+          onChange={(event) => updateParam("q", event.target.value)}
+          placeholder="제품명 또는 모델 번호 검색"
+          type="search"
+          value={query}
+        />
+        {query ? (
+          <button
+            aria-label="검색어 지우기"
+            className="flex size-11 items-center justify-center border-l border-line hover:text-brand"
+            onClick={() => updateParam("q", "")}
+            type="button"
+          >
+            <CloseIcon className="size-4" />
+          </button>
+        ) : null}
+      </form>
+
       <div className="mb-7 flex items-center justify-between border-y border-line py-4 lg:justify-end">
         <button
           className="flex items-center gap-2 text-sm font-medium lg:hidden"
@@ -210,6 +261,28 @@ export function CatalogClient({
               preferredFinish={preferredFinish}
               products={filteredProducts}
             />
+          ) : query ? (
+            <div className="border-y border-line py-14">
+              <p className="text-lg font-semibold">검색 결과가 없습니다.</p>
+              <p className="mt-2 text-sm text-muted">
+                제품명이나 모델 번호를 다시 확인해 주세요.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <button
+                  className="button-secondary"
+                  onClick={() => updateParam("q", "")}
+                  type="button"
+                >
+                  전체 제품 보기
+                </button>
+                <Link
+                  className="button-secondary"
+                  href="/contact?topic=product"
+                >
+                  제품 문의
+                </Link>
+              </div>
+            </div>
           ) : (
             <EmptyState />
           )}

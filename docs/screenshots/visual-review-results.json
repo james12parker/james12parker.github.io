@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://localhost:3100",
-  "generatedAt": "2026-07-30T07:18:44.858Z",
+  "generatedAt": "2026-07-30T07:40:07.641Z",
   "viewportSizes": {
     "desktop": {
       "width": 1440,
@@ -419,6 +419,69 @@
       "viewport": "mobile",
       "fullPage": false,
       "state": "HOYANG25 mobile navigation and battuta label"
+    },
+    {
+      "filename": "70-search-header-closed-1440.png",
+      "path": "docs/screenshots/70-search-header-closed-1440.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Closed desktop search header at 1440px"
+    },
+    {
+      "filename": "71-search-open-desktop-1440.png",
+      "path": "docs/screenshots/71-search-open-desktop-1440.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Open desktop search at 1440px"
+    },
+    {
+      "filename": "72-search-suggestions-1440.png",
+      "path": "docs/screenshots/72-search-suggestions-1440.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Populated search suggestions at 1440px"
+    },
+    {
+      "filename": "75-search-no-results-1440.png",
+      "path": "docs/screenshots/75-search-no-results-1440.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Global search no-results state"
+    },
+    {
+      "filename": "76-search-open-desktop-1024.png",
+      "path": "docs/screenshots/76-search-open-desktop-1024.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Open desktop search at 1024px"
+    },
+    {
+      "filename": "77-search-suggestions-1024.png",
+      "path": "docs/screenshots/77-search-suggestions-1024.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Populated search suggestions at 1024px"
+    },
+    {
+      "filename": "73-search-mobile-menu-768.png",
+      "path": "docs/screenshots/73-search-mobile-menu-768.png",
+      "viewport": "mobile",
+      "fullPage": false,
+      "state": "Mobile menu search with populated suggestions at 768px"
+    },
+    {
+      "filename": "74-search-mobile-menu-375.png",
+      "path": "docs/screenshots/74-search-mobile-menu-375.png",
+      "viewport": "mobile",
+      "fullPage": false,
+      "state": "Mobile menu search with populated suggestions at 375px"
+    },
+    {
+      "filename": "78-catalog-search-active-filters-1440.png",
+      "path": "docs/screenshots/78-catalog-search-active-filters-1440.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Catalog search combined with chrome and Saco filters"
     }
   ],
   "consoleErrors": [],

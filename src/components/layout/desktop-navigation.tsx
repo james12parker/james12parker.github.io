@@ -3,7 +3,13 @@
 import { type FocusEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-import { ChevronDownIcon, ExternalIcon } from "@/components/icons";
+import {
+  ChevronDownIcon,
+  CloseIcon,
+  ExternalIcon,
+  SearchIcon,
+} from "@/components/icons";
+import { GlobalSearch } from "@/components/search/global-search";
 import { siteConfig } from "@/config/site";
 import { categories } from "@/data/categories";
 import { collections } from "@/data/collections";
@@ -16,7 +22,9 @@ type MenuKey = "products" | "collections" | "finishes";
 
 export function DesktopNavigation() {
   const [openMenu, setOpenMenu] = useState<MenuKey | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
   const navigationRef = useRef<HTMLElement>(null);
+  const searchTriggerRef = useRef<HTMLButtonElement>(null);
   const triggerRefs = useRef<Record<MenuKey, HTMLButtonElement | null>>({
     products: null,
     collections: null,
@@ -24,7 +32,7 @@ export function DesktopNavigation() {
   });
 
   useEffect(() => {
-    if (!openMenu) return;
+    if (!openMenu && !searchOpen) return;
 
     const onPointerDown = (event: PointerEvent) => {
       if (
@@ -32,16 +40,27 @@ export function DesktopNavigation() {
         !navigationRef.current?.contains(event.target)
       ) {
         setOpenMenu(null);
+        setSearchOpen(false);
       }
     };
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       event.preventDefault();
-      const activeMenu = openMenu;
-      setOpenMenu(null);
-      triggerRefs.current[activeMenu]?.focus();
+      if (searchOpen) {
+        setSearchOpen(false);
+        searchTriggerRef.current?.focus();
+        return;
+      }
+      if (openMenu) {
+        const activeMenu = openMenu;
+        setOpenMenu(null);
+        triggerRefs.current[activeMenu]?.focus();
+      }
     };
-    const onScroll = () => setOpenMenu(null);
+    const onScroll = () => {
+      setOpenMenu(null);
+      setSearchOpen(false);
+    };
 
     document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
@@ -51,10 +70,11 @@ export function DesktopNavigation() {
       document.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("scroll", onScroll);
     };
-  }, [openMenu]);
+  }, [openMenu, searchOpen]);
 
   const closeMenu = () => setOpenMenu(null);
   const toggleMenu = (menu: MenuKey) => {
+    setSearchOpen(false);
     setOpenMenu((current) => (current === menu ? null : menu));
   };
   const closeWhenFocusLeaves = (event: FocusEvent<HTMLElement>) => {
@@ -252,6 +272,52 @@ export function DesktopNavigation() {
       >
         고객지원
       </Link>
+      <button
+        aria-controls="desktop-product-search"
+        aria-expanded={searchOpen}
+        aria-label="제품 검색"
+        className="flex min-h-11 min-w-11 items-center justify-center gap-2 self-center px-2 text-sm font-medium hover:text-brand xl:px-3"
+        onClick={() => {
+          setOpenMenu(null);
+          setSearchOpen((current) => !current);
+        }}
+        ref={searchTriggerRef}
+        type="button"
+      >
+        <SearchIcon className="size-5" />
+        <span className="hidden xl:inline">검색</span>
+      </button>
+      {searchOpen ? (
+        <div
+          className="absolute inset-x-0 top-full z-50 border-y border-line bg-white"
+          id="desktop-product-search"
+        >
+          <div className="page-shell py-5">
+            <div className="mb-3 flex items-center justify-between">
+              <p className="text-sm font-semibold">제품 검색</p>
+              <button
+                aria-label="검색 닫기"
+                className="flex size-11 items-center justify-center hover:text-brand"
+                onClick={() => {
+                  setSearchOpen(false);
+                  searchTriggerRef.current?.focus();
+                }}
+                type="button"
+              >
+                <CloseIcon className="size-5" />
+              </button>
+            </div>
+            <GlobalSearch
+              autoFocus
+              onClose={() => {
+                setSearchOpen(false);
+                searchTriggerRef.current?.focus();
+              }}
+              onNavigate={() => setSearchOpen(false)}
+            />
+          </div>
+        </div>
+      ) : null}
       {siteConfig.naverSmartStoreUrl ? (
         <a
           className="ml-3 flex items-center gap-1.5 self-center border border-naver bg-naver px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:brightness-90"

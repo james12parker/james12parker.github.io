@@ -11,6 +11,7 @@ import {
 } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 import { LanguageSelector } from "@/components/layout/language-selector";
+import { GlobalSearch } from "@/components/search/global-search";
 import { categories } from "@/data/categories";
 import { collections } from "@/data/collections";
 import { finishes } from "@/data/products";
@@ -105,6 +106,13 @@ export function MobileNavigation() {
             aria-label="모바일 주 메뉴"
             className="h-[calc(100dvh-4.25rem)] overflow-y-auto px-5 pb-12"
           >
+            <div className="py-4">
+              <GlobalSearch
+                onClose={close}
+                onNavigate={close}
+                placeholder="제품명 또는 모델 번호 검색"
+              />
+            </div>
             <LanguageSelector mobile />
 
             <details className="mobile-accordion">

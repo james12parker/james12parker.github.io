@@ -83,6 +83,7 @@ async function main() {
     await captureHomepageSections(desktop);
     await captureCatalogUpdates(desktop);
     await captureRequestedChecks(browser);
+    await captureGlobalSearchReview(browser);
     await desktop.close();
     await mobile.close();
     await desktopEnglish.close();
@@ -720,6 +721,179 @@ async function captureRequestedChecks(browser: Browser) {
   );
   await mobilePage.close();
   await mobile.close();
+}
+
+async function captureGlobalSearchReview(browser: Browser) {
+  const widths = [1440, 1024, 768, 375] as const;
+
+  for (const width of widths) {
+    const mobileViewport = width < 1024;
+    const context = await browser.newContext({
+      viewport: { width, height: mobileViewport ? 844 : 900 },
+      colorScheme: "light",
+      reducedMotion: "reduce",
+      locale: "ko-KR",
+      isMobile: width === 375,
+      hasTouch: width === 375,
+    });
+    const page = await preparedPage(
+      context,
+      mobileViewport ? "mobile" : "desktop",
+    );
+    await visit(page, "/");
+
+    if (width === 1440) {
+      await screenshot(
+        page,
+        "70-search-header-closed-1440.png",
+        "desktop",
+        false,
+        "Closed desktop search header at 1440px",
+      );
+    }
+
+    if (mobileViewport) {
+      await page.getByRole("button", { name: "메뉴 열기" }).click();
+      const searchInput = page.locator('[role="dialog"] input[type="search"]');
+      await searchInput.fill("HG822C");
+      await page.getByText("HG822C 이단수건선반").first().waitFor();
+      await screenshot(
+        page,
+        width === 375
+          ? "74-search-mobile-menu-375.png"
+          : "73-search-mobile-menu-768.png",
+        "mobile",
+        false,
+        "Mobile menu search with populated suggestions at " + width + "px",
+      );
+    } else {
+      await page
+        .locator('button[aria-controls="desktop-product-search"]')
+        .click();
+      const searchInput = page.locator(
+        '#desktop-product-search input[type="search"]',
+      );
+      await searchInput.waitFor();
+      await screenshot(
+        page,
+        width === 1440
+          ? "71-search-open-desktop-1440.png"
+          : "76-search-open-desktop-1024.png",
+        "desktop",
+        false,
+        "Open desktop search at " + width + "px",
+      );
+      await searchInput.fill("HG822");
+      await page.getByText("HG822C 이단수건선반").first().waitFor();
+      await screenshot(
+        page,
+        width === 1440
+          ? "72-search-suggestions-1440.png"
+          : "77-search-suggestions-1024.png",
+        "desktop",
+        false,
+        "Populated search suggestions at " + width + "px",
+      );
+      if (width === 1440) {
+        await searchInput.fill("검색결과없음999");
+        await page.getByText("검색 결과가 없습니다.").waitFor();
+        await screenshot(
+          page,
+          "75-search-no-results-1440.png",
+          "desktop",
+          false,
+          "Global search no-results state",
+        );
+      }
+    }
+
+    await page.close();
+    await context.close();
+  }
+
+  const catalogContext = await browser.newContext({
+    viewport: { width: 1440, height: 1000 },
+    colorScheme: "light",
+    reducedMotion: "reduce",
+    locale: "ko-KR",
+  });
+  const catalogPage = await preparedPage(catalogContext, "desktop");
+  await visit(
+    catalogPage,
+    "/products?q=사코%20휴지걸이%20크롬&finish=크롬&collection=saco",
+  );
+  await catalogPage
+    .getByRole("searchbox", { name: "제품명 또는 모델 번호 검색" })
+    .waitFor();
+  await screenshot(
+    catalogPage,
+    "78-catalog-search-active-filters-1440.png",
+    "desktop",
+    false,
+    "Catalog search combined with chrome and Saco filters",
+  );
+  await catalogPage.close();
+  await catalogContext.close();
+
+  const behaviorContext = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+    colorScheme: "light",
+    reducedMotion: "reduce",
+    locale: "ko-KR",
+  });
+  const behaviorPage = await preparedPage(behaviorContext, "desktop");
+  await visit(behaviorPage, "/");
+  const trigger = behaviorPage.locator(
+    'button[aria-controls="desktop-product-search"]',
+  );
+  await trigger.click();
+  const overlayInput = behaviorPage.locator(
+    '#desktop-product-search input[type="search"]',
+  );
+  await overlayInput.fill("HG822C");
+  await overlayInput.press("ArrowDown");
+  if (!(await overlayInput.getAttribute("aria-activedescendant"))) {
+    throw new Error(
+      "Search suggestions did not expose an active keyboard option.",
+    );
+  }
+  await overlayInput.press("Escape");
+  await behaviorPage
+    .locator("#desktop-product-search")
+    .waitFor({ state: "hidden" });
+  if (
+    !(await trigger.evaluate((element) => element === document.activeElement))
+  ) {
+    throw new Error("Desktop search did not return focus to its trigger.");
+  }
+
+  await visit(behaviorPage, "/products");
+  const catalogInput = behaviorPage.locator("#catalog-product-search");
+  await catalogInput.fill("HG822C");
+  await behaviorPage.waitForURL(
+    (url) => url.searchParams.get("q") === "HG822C",
+  );
+  await behaviorPage
+    .getByRole("checkbox", { name: "크롬", exact: true })
+    .click();
+  await behaviorPage.waitForURL(
+    (url) =>
+      url.searchParams.get("q") === "HG822C" &&
+      url.searchParams.get("finish") === "크롬",
+  );
+  await visit(behaviorPage, "/products?q=HG1101");
+  await behaviorPage.goBack();
+  await behaviorPage.waitForURL(
+    (url) =>
+      url.searchParams.get("q") === "HG822C" &&
+      url.searchParams.get("finish") === "크롬",
+  );
+  await behaviorPage.goForward();
+  await behaviorPage.waitForURL(
+    (url) => url.searchParams.get("q") === "HG1101",
+  );
+  await behaviorPage.close();
+  await behaviorContext.close();
 }
 
 async function preparedPage(
