@@ -57,7 +57,6 @@ export default function AboutPage() {
             src={siteConfig.heroImagePath}
           />
         </div>
-
       </section>
 
       <section className="border-y border-line bg-stone py-20 md:py-28">
