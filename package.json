@@ -21,7 +21,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "review:visual": "tsx scripts/capture-visual-review.ts"
+    "review:visual": "tsx scripts/capture-visual-review.ts",
+    "validate:catalog": "tsx scripts/validate-catalog-integrity.ts"
   },
   "dependencies": {
     "next": "16.2.12",

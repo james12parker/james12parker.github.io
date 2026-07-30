@@ -138,18 +138,18 @@
       "notes": ""
     },
     "hg822cRelationship": {
-      "status": "unresolved",
-      "confirmedBy": "",
-      "confirmationDate": "",
-      "evidenceReference": "",
-      "notes": ""
+      "status": "confirmed",
+      "confirmedBy": "project owner",
+      "confirmationDate": "2026-07-30",
+      "evidenceReference": "Catalog update request",
+      "notes": "HG822C 크롬은 독립 제품 및 독립 canonical 경로로 운영."
     },
     "hg822sRelationship": {
-      "status": "unresolved",
-      "confirmedBy": "",
-      "confirmationDate": "",
-      "evidenceReference": "",
-      "notes": ""
+      "status": "confirmed",
+      "confirmedBy": "project owner",
+      "confirmationDate": "2026-07-30",
+      "evidenceReference": "Catalog update request",
+      "notes": "HG822S 사틴은 독립 제품 및 독립 canonical 경로로 운영."
     },
     "hg999Relationship": {
       "status": "unresolved",
@@ -229,5 +229,27 @@
       "notes": ""
     }
   },
-  "catalogCorrections": []
+  "catalogCorrections": [
+    {
+      "correctionId": "redirect-hg822-family-to-hg822c",
+      "status": "verified",
+      "productId": "hg822c",
+      "variantId": "",
+      "displayNameKo": "",
+      "collection": "",
+      "category": "",
+      "finish": "",
+      "modelNumber": "",
+      "imagePath": "",
+      "customerVisible": null,
+      "relatedProductIds": [],
+      "newSlug": "hg822c-double-towel-shelf",
+      "previousSlugs": ["hg822-double-towel-shelf"],
+      "targetProductId": "",
+      "evidenceReference": "Catalog update request",
+      "verifiedBy": "project owner",
+      "verificationDate": "2026-07-30",
+      "notes": "기존 결합 HG822 경로를 독립 HG822C 제품으로 영구 리디렉션."
+    }
+  ]
 }

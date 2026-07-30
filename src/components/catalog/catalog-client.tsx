@@ -16,7 +16,7 @@ type CatalogClientProps = {
   finishes: Finish[];
 };
 
-type SortKey = "featured" | "name" | "model";
+type SortKey = "catalog" | "featured" | "name" | "model";
 
 export function CatalogClient({
   products,
@@ -36,7 +36,7 @@ export function CatalogClient({
     collection: searchParams.get("collection") ?? "",
     finish: searchParams.get("finish") ?? "",
   };
-  const sort = (searchParams.get("sort") as SortKey | null) ?? "featured";
+  const sort = (searchParams.get("sort") as SortKey | null) ?? "catalog";
   const activeFilterCount = Object.values(values).filter(Boolean).length;
 
   useEffect(() => {
@@ -104,6 +104,8 @@ export function CatalogClient({
       return categoryMatch && collectionMatch && finishMatch;
     });
 
+    if (sort === "catalog") return filtered;
+
     return [...filtered].sort((a, b) => {
       if (sort === "name") return a.nameKo.localeCompare(b.nameKo, "ko");
       if (sort === "model") {
@@ -140,6 +142,7 @@ export function CatalogClient({
             onChange={(event) => updateParam("sort", event.target.value)}
             value={sort}
           >
+            <option value="catalog">기본순</option>
             <option value="featured">추천순</option>
             <option value="name">제품명순</option>
             <option value="model">모델명순</option>

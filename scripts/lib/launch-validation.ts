@@ -275,6 +275,7 @@ function validateReferences(data: LaunchData, errors: string[]) {
     }
     if (
       correction.newSlug &&
+      correction.newSlug !== product.slug &&
       !correction.previousSlugs.includes(product.slug)
     ) {
       errors.push(

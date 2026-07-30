@@ -211,12 +211,50 @@ button:disabled,
   font-size: 0.875rem;
 }
 
+.finish-chip {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  padding: 0.55rem 0.7rem;
+  color: var(--color-muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.finish-chip:hover {
+  border-color: var(--color-brand);
+  color: var(--color-ink);
+}
+
+.finish-chip[data-selected="true"] {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 2px var(--color-brand-soft);
+  color: var(--color-ink);
+}
+
+.finish-chip-static {
+  min-height: 2rem;
+  cursor: default;
+  background: transparent;
+}
+
+.finish-chip-static:hover {
+  border-color: var(--color-line);
+}
+
 .finish-swatch {
   display: inline-block;
-  width: 0.875rem;
-  height: 0.875rem;
+  width: 1.25rem;
+  height: 1.25rem;
   flex: none;
-  border: 1px solid #aaa;
+  border: 1px solid var(--color-steel);
   border-radius: 999px;
 }
 
@@ -225,7 +263,8 @@ button:disabled,
 }
 
 .finish-크롬 {
-  background: linear-gradient(135deg, #777, #fafafa 50%, #858585);
+  background: #d9dcdd;
+  box-shadow: inset 0.38rem 0 #f7f7f6;
 }
 
 .finish-블랙 {

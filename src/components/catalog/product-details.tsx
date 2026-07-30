@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
 import { DocumentList } from "@/components/catalog/document-list";
@@ -23,6 +23,31 @@ export function ProductDetails({ product }: { product: Product }) {
       product.variants[0],
     [product.variants, selectedVariantId],
   );
+  useEffect(() => {
+    const requestedFinish = new URLSearchParams(window.location.search).get(
+      "finish",
+    );
+    const requestedVariant = product.variants.find(
+      (variant) => variant.finish === requestedFinish,
+    );
+    if (!requestedVariant || requestedVariant.id === selectedVariantId) return;
+    const timer = window.setTimeout(
+      () => setSelectedVariantId(requestedVariant.id),
+      0,
+    );
+    return () => window.clearTimeout(timer);
+  }, [product.variants, selectedVariantId]);
+
+  const selectVariant = (variantId: string) => {
+    const nextVariant = product.variants.find(
+      (variant) => variant.id === variantId,
+    );
+    if (!nextVariant) return;
+    setSelectedVariantId(variantId);
+    const url = new URL(window.location.href);
+    url.searchParams.set("finish", nextVariant.finish);
+    window.history.replaceState(window.history.state, "", url);
+  };
   const collection = collectionName(product.collection);
   const inquiryHref = `/contact?topic=product&product=${encodeURIComponent(product.nameKo)}`;
   const listingStatusLabels = {
@@ -71,7 +96,7 @@ export function ProductDetails({ product }: { product: Product }) {
 
           <div className="my-8 border-y border-line py-7">
             <FinishSelector
-              onChange={setSelectedVariantId}
+              onChange={selectVariant}
               selectedId={selectedVariant.id}
               variants={product.variants}
             />

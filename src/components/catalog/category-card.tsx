@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { CleanImageMask } from "@/components/catalog/clean-image-mask";
 import { ArrowRightIcon } from "@/components/icons";
 import type { Category } from "@/types/product";
 
@@ -35,6 +36,7 @@ export function CategoryCard({
             sizes="(max-width: 767px) 50vw, 33vw"
             src={image}
           />
+          <CleanImageMask src={image} />
         </span>
       ) : null}
       <span className="mt-4 block">

@@ -11,7 +11,10 @@ export function Hero() {
       <div className="grid min-h-[42rem] lg:grid-cols-[0.82fr_1.18fr]">
         <div className="flex items-center">
           <div className="w-full px-5 py-18 md:px-8 lg:ml-auto lg:max-w-[44rem] lg:px-14">
-            <p className="eyebrow mb-6" aria-label="EssentialBathroomStorage">
+            <p
+              className="mb-6 text-[10px] font-medium tracking-[0.12em] text-brand"
+              aria-label="EssentialBathroomStorage"
+            >
               <span aria-hidden="true" className="inline-flex items-baseline">
                 <strong className="text-xs font-extrabold">E</strong>
                 <span>ssential</span>
@@ -34,12 +37,21 @@ export function Hero() {
                 <ArrowRightIcon className="size-4" />
               </Link>
               {siteConfig.naverSmartStoreUrl ? (
-                <a className="button-naver" href={siteConfig.naverSmartStoreUrl} rel="noopener noreferrer" target="_blank">
+                <a
+                  className="button-naver"
+                  href={siteConfig.naverSmartStoreUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   네이버 스토어
                   <ExternalIcon className="size-4" />
                 </a>
               ) : (
-                <span aria-disabled="true" className="button-secondary text-muted" title="네이버 스토어 링크 준비 중">
+                <span
+                  aria-disabled="true"
+                  className="button-secondary text-muted"
+                  title="네이버 스토어 링크 준비 중"
+                >
                   네이버 스토어
                   <ExternalIcon className="size-4" />
                 </span>
@@ -49,7 +61,14 @@ export function Hero() {
         </div>
 
         <div className="relative min-h-[25rem] overflow-hidden bg-stone lg:min-h-[42rem]">
-          <Image alt={siteConfig.heroImageAlt} className="object-cover" fill priority sizes="(max-width: 1024px) 100vw, 60vw" src={siteConfig.heroImagePath} />
+          <Image
+            alt={siteConfig.heroImageAlt}
+            className="object-cover"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 60vw"
+            src={siteConfig.heroImagePath}
+          />
           {isPreviewRelease ? (
             <div className="absolute right-4 bottom-4 border border-white/30 bg-black/25 px-3 py-1.5 text-[9px] tracking-[0.14em] text-white uppercase backdrop-blur-sm">
               Provisional brand image

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { CleanImageMask } from "@/components/catalog/clean-image-mask";
 import { ArrowRightIcon } from "@/components/icons";
 import type { Collection } from "@/types/product";
 
@@ -26,6 +27,7 @@ export function CollectionCard({
           sizes="(max-width: 768px) 80vw, 33vw"
           src={collection.image}
         />
+        <CleanImageMask src={collection.image} />
       </Link>
       <div className="flex items-start justify-between gap-5 border-b border-line py-4">
         <div>

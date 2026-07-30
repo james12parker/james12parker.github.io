@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
+import { CleanImageMask } from "@/components/catalog/clean-image-mask";
 import { isPreviewRelease } from "@/config/launch-data";
 import type { ProductVariant } from "@/types/product";
 
@@ -28,6 +29,7 @@ export function ProductGallery({ productName, variant }: ProductGalleryProps) {
           sizes="(max-width: 1024px) 100vw, 56vw"
           src={currentImage}
         />
+        <CleanImageMask src={currentImage} />
         {variant.image.endsWith(".svg") ? (
           <span className="absolute right-4 bottom-4 border border-line bg-warm-white/85 px-2.5 py-1 text-[9px] tracking-[0.12em] text-muted uppercase backdrop-blur">
             이미지 준비 중
@@ -53,6 +55,7 @@ export function ProductGallery({ productName, variant }: ProductGalleryProps) {
                 sizes="120px"
                 src={image}
               />
+              <CleanImageMask src={image} />
             </button>
           ))}
         </div>

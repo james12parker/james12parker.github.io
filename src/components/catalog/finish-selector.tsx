@@ -13,29 +13,32 @@ export function FinishSelector({
 }: FinishSelectorProps) {
   return (
     <fieldset>
-      <legend className="mb-3 text-xs font-semibold">
-        마감 선택
-        <span className="ml-2 font-normal text-muted">
-          {variants.find((variant) => variant.id === selectedId)?.finish}
-        </span>
-      </legend>
-      <div className="flex flex-wrap gap-2">
+      <legend className="mb-3 text-xs font-semibold">마감 선택</legend>
+      <div className="flex flex-wrap gap-3">
         {variants.map((variant) => {
           const selected = variant.id === selectedId;
-          return (
+          const singleFinish = variants.length === 1;
+          return singleFinish ? (
+            <span
+              aria-label={`마감: ${variant.finish}`}
+              className="finish-chip finish-chip-static"
+              key={variant.id}
+            >
+              <span className={`finish-swatch finish-${variant.finish}`} />
+              <span>{variant.finish}</span>
+            </span>
+          ) : (
             <button
+              aria-label={`마감: ${variant.finish}`}
               aria-pressed={selected}
-              className={`flex min-w-22 items-center justify-center gap-2 border px-4 py-3 text-xs font-medium transition-colors ${
-                selected
-                  ? "border-brand bg-brand-soft text-ink"
-                  : "border-line bg-surface hover:border-brand"
-              }`}
+              className="finish-chip"
+              data-selected={selected}
               key={variant.id}
               onClick={() => onChange(variant.id)}
               type="button"
             >
               <span className={`finish-swatch finish-${variant.finish}`} />
-              {variant.finish}
+              <span>{variant.finish}</span>
             </button>
           );
         })}

@@ -74,6 +74,7 @@ async function main() {
       "20-home-en-mobile.png",
     );
     await captureHomepageSections(desktop);
+    await captureCatalogUpdates(desktop);
     await desktop.close();
     await mobile.close();
     await desktopEnglish.close();
@@ -194,10 +195,13 @@ async function captureMobile(context: BrowserContext) {
   );
   await page.getByRole("button", { name: "필터 닫기" }).click();
 
-  await visit(page, "/products/belair-towel-bar");
-  await page.getByRole("button", { name: "크롬" }).click();
+  await visit(page, "/products/saco-towel-bar");
   await page
-    .locator('img[alt*="벨레어 수건걸이 크롬"]')
+    .getByRole("group", { name: "마감 선택" })
+    .getByRole("button", { name: "마감: 크롬" })
+    .click();
+  await page
+    .locator('img[alt*="사코 수건걸이 크롬"]')
     .waitFor({ state: "visible" });
   await screenshot(
     page,
@@ -217,9 +221,7 @@ async function captureLocalizedHome(
   const page = await preparedPage(context, viewport);
   await visit(page, "/");
   await page.locator('html[lang="en"]').waitFor();
-  await page
-    .getByRole("heading", { name: "Products for every space and purpose" })
-    .waitFor();
+  await page.getByRole("heading", { name: "Browse by category" }).waitFor();
   await screenshot(page, filename, viewport, true, "English homepage");
   await page.close();
 }
@@ -229,7 +231,7 @@ async function captureHomepageSections(context: BrowserContext) {
   await visit(page, "/");
   const sections = [
     ["21-coordinated-towel-bars-desktop.png", "하나의 공간으로 이어지는 구성"],
-    ["22-category-navigation-desktop.png", "공간과 용도에 맞는 제품"],
+    ["22-category-navigation-desktop.png", "Browse by category"],
   ] as const;
   for (const [filename, heading] of sections) {
     const section = page
@@ -250,6 +252,46 @@ async function captureHomepageSections(context: BrowserContext) {
   }
   await page.close();
 }
+async function captureCatalogUpdates(context: BrowserContext) {
+  const page = await preparedPage(context, "desktop");
+  await visit(page, "/");
+  const hero = page.locator("main > section").first();
+  await hero.screenshot({
+    path: resolve(screenshotDirectory, "23-hero-branding-desktop.png"),
+    animations: "disabled",
+  });
+  captures.push({
+    filename: "23-hero-branding-desktop.png",
+    path: "docs/screenshots/23-hero-branding-desktop.png",
+    viewport: "desktop",
+    fullPage: false,
+    state: "larger logo, EssentialBathroomStorage, reduced Korean heading",
+  });
+
+  await visit(page, "/products");
+  for (const [filename, text] of [
+    ["24-hg822c-card-desktop.png", "HG822C 이단수건선반"],
+    ["25-hg822s-card-desktop.png", "HG822S 이단수건선반"],
+    ["26-belair-paper-holder-chrome.png", "벨레어 휴지걸이"],
+    ["27-brio-paper-holder-chrome.png", "브리오 휴지걸이"],
+  ] as const) {
+    const card = page.locator("article").filter({ hasText: text }).first();
+    await card.scrollIntoViewIfNeeded();
+    await card.screenshot({
+      path: resolve(screenshotDirectory, filename),
+      animations: "disabled",
+    });
+    captures.push({
+      filename,
+      path: "docs/screenshots/" + filename,
+      viewport: "desktop",
+      fullPage: false,
+      state: text,
+    });
+  }
+  await page.close();
+}
+
 async function preparedPage(
   context: BrowserContext,
   viewport: "desktop" | "mobile",

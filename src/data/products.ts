@@ -52,7 +52,9 @@ type NamedProductInput = {
   category: string;
   folder: string;
   finishes: Finish[];
-  relatedProductIds: string[];`r`n  catalogSortOrder?: number;`r`n  featured?: boolean;
+  relatedProductIds: string[];
+  catalogSortOrder?: number;
+  featured?: boolean;
 };
 
 function namedProduct({
@@ -63,12 +65,16 @@ function namedProduct({
   category,
   folder,
   finishes,
-  relatedProductIds,`r`n  catalogSortOrder = Number.MAX_SAFE_INTEGER,`r`n  featured = false,
+  relatedProductIds,
+  catalogSortOrder = Number.MAX_SAFE_INTEGER,
+  featured = false,
 }: NamedProductInput): Product {
   return {
     id,
     slug,
-    nameKo: name,`r`n    catalogSortOrder,`r`n    collection,
+    nameKo: name,
+    catalogSortOrder,
+    collection,
     category,
     shortDescription: `${name}의 마감 옵션을 확인해 보세요.`,
     features: [],
@@ -89,8 +95,12 @@ type HgProductInput = {
   name: string;
   category: string;
   finishes: Finish[];
-  relatedProductIds: string[];`r`n  catalogSortOrder?: number;`r`n  featured?: boolean;
-  variantModels?: Partial<Record<Finish, string>>;`r`n  catalogSortOrder?: number;`r`n  imageBase?: string;`r`n};
+  relatedProductIds: string[];
+  catalogSortOrder?: number;
+  featured?: boolean;
+  variantModels?: Partial<Record<Finish, string>>;
+  imageBase?: string;
+};
 
 function hgProduct({
   model,
@@ -98,13 +108,19 @@ function hgProduct({
   name,
   category,
   finishes,
-  relatedProductIds,`r`n  catalogSortOrder = Number.MAX_SAFE_INTEGER,`r`n  featured = false,
-  variantModels,`r`n  catalogSortOrder = Number.MAX_SAFE_INTEGER,`r`n  imageBase,`r`n}: HgProductInput): Product {
+  relatedProductIds,
+  catalogSortOrder = Number.MAX_SAFE_INTEGER,
+  featured = false,
+  variantModels,
+  imageBase,
+}: HgProductInput): Product {
   const productName = `${model} ${name}`;
   return {
     id: model.toLowerCase().replaceAll("-", ""),
     slug,
-    nameKo: productName,`r`n    catalogSortOrder,`r`n    collection: "hg-series",
+    nameKo: productName,
+    catalogSortOrder,
+    collection: "hg-series",
     category,
     shortDescription: `${name} 제품의 등록된 마감 정보를 확인해 보세요.`,
     features: [],
@@ -152,13 +168,18 @@ export const sourceProducts: Product[] = [
     collection: "belair",
     category: "towel-bars",
     folder: "belair",
-    finishes: ["사틴"],`r`n    relatedProductIds: ["belair-paper-holder"],
+    finishes: ["사틴"],
+    relatedProductIds: ["belair-paper-holder"],
     featured: true,
   }),
   namedProduct({
     id: "belair-paper-holder",
     slug: "belair-toilet-paper-holder",
-    name: "벨레어 휴지걸이",`r`n    collection: "belair",`r`n    category: "toilet-paper-holders",`r`n    folder: "belair",`r`n    finishes: ["크롬", "사틴"],
+    name: "벨레어 휴지걸이",
+    collection: "belair",
+    category: "toilet-paper-holders",
+    folder: "belair",
+    finishes: ["크롬", "사틴"],
     relatedProductIds: ["belair-towel-bar"],
   }),
   namedProduct({
@@ -169,11 +190,17 @@ export const sourceProducts: Product[] = [
     category: "towel-bars",
     folder: "brio",
     finishes: ["사틴", "크롬"],
-    relatedProductIds: ["brio-paper-holder"],`r`n    catalogSortOrder: 20,`r`n  }),
+    relatedProductIds: ["brio-paper-holder"],
+    catalogSortOrder: 20,
+  }),
   namedProduct({
     id: "brio-paper-holder",
     slug: "brio-toilet-paper-holder",
-    name: "브리오 휴지걸이",`r`n    collection: "brio",`r`n    category: "toilet-paper-holders",`r`n    folder: "brio",`r`n    finishes: ["크롬", "사틴"],
+    name: "브리오 휴지걸이",
+    collection: "brio",
+    category: "toilet-paper-holders",
+    folder: "brio",
+    finishes: ["크롬", "사틴"],
     relatedProductIds: ["brio-towel-bar"],
   }),
   namedProduct({
@@ -205,7 +232,9 @@ export const sourceProducts: Product[] = [
     category: "towel-bars",
     folder: "concord",
     finishes: ["사틴", "크롬"],
-    relatedProductIds: ["concord-paper-holder"],`r`n    catalogSortOrder: 10,`r`n    featured: true,
+    relatedProductIds: ["concord-paper-holder"],
+    catalogSortOrder: 10,
+    featured: true,
   }),
   namedProduct({
     id: "concord-paper-holder",
@@ -331,7 +360,9 @@ export const sourceProducts: Product[] = [
     name: "이단수건선반",
     category: "towel-bars",
     finishes: ["크롬"],
-    relatedProductIds: ["hg822c", "hg822s"],`r`n    catalogSortOrder: 50,`r`n  }),
+    relatedProductIds: ["hg822c", "hg822s"],
+    catalogSortOrder: 50,
+  }),
   hgProduct({
     model: "HG822C",
     slug: "hg822c-double-towel-shelf",

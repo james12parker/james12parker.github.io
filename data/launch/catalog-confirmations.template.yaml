@@ -47,17 +47,17 @@ confirmations:
     evidenceReference: ""
     notes: "HG112S를 독립 패밀리로 유지할지 확인"
   hg822cRelationship:
-    status: unresolved
-    confirmedBy: ""
-    confirmationDate: ""
-    evidenceReference: ""
-    notes: "HG822C를 HG822 패밀리의 크롬 변형으로 유지할지 확인"
+    status: confirmed
+    confirmedBy: "project owner"
+    confirmationDate: "2026-07-30"
+    evidenceReference: "Catalog update request"
+    notes: "HG822C 크롬은 독립 제품 및 독립 canonical 경로로 운영"
   hg822sRelationship:
-    status: unresolved
-    confirmedBy: ""
-    confirmationDate: ""
-    evidenceReference: ""
-    notes: "HG822S를 HG822 패밀리의 사틴 변형으로 유지할지 확인"
+    status: confirmed
+    confirmedBy: "project owner"
+    confirmationDate: "2026-07-30"
+    evidenceReference: "Catalog update request"
+    notes: "HG822S 사틴은 독립 제품 및 독립 canonical 경로로 운영"
   hg999Relationship:
     status: unresolved
     confirmedBy: ""

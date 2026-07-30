@@ -32,7 +32,9 @@ export type Product = {
   id: string;
   slug: string;
   nameKo: string;
-  nameEn?: string;`r`n  catalogSortOrder: number;`r`n  collection?: string;
+  nameEn?: string;
+  catalogSortOrder: number;
+  collection?: string;
   category: string;
   shortDescription?: string;
   description?: string;

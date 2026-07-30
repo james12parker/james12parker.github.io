@@ -30,7 +30,6 @@ export const english: Record<string, string> = {
   "공간에 자연스럽게 어우러지는 디자인과 실용적인 구조의 욕실 액세서리를 제안합니다.":
     "Bathroom accessories designed with a quiet presence and practical purpose.",
   "제품 살펴보기": "Explore products",
-  "공간과 용도에 맞는 제품": "Products for every space and purpose",
   "하나의 공간으로 이어지는 구성": "A coordinated space",
   "제품의 형태와 마감이 자연스럽게 이어지는 수건걸이 구성을 만나보세요.":
     "Explore coordinated towel bars whose forms and finishes work naturally together.",
@@ -54,7 +53,7 @@ export const english: Record<string, string> = {
   "욕실 액세서리": "Bathroom accessories",
   "샤워 액세서리": "Shower accessories",
   청소용품: "Cleaning accessories",
-  거울: "Mirrors",
+  면도경: "Shaving Mirrors",
   크롬: "Chrome",
   사틴: "Satin",
   블랙: "Black",

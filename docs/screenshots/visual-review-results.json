@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://127.0.0.1:3100",
-  "generatedAt": "2026-07-30T08:01:54.365Z",
+  "generatedAt": "2026-07-30T08:28:38.680Z",
   "viewportSizes": {
     "desktop": {
       "width": 1440,
@@ -152,7 +152,42 @@
       "path": "docs/screenshots/22-category-navigation-desktop.png",
       "viewport": "desktop",
       "fullPage": false,
-      "state": "공간과 용도에 맞는 제품"
+      "state": "Browse by category"
+    },
+    {
+      "filename": "23-hero-branding-desktop.png",
+      "path": "docs/screenshots/23-hero-branding-desktop.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "larger logo, EssentialBathroomStorage, reduced Korean heading"
+    },
+    {
+      "filename": "24-hg822c-card-desktop.png",
+      "path": "docs/screenshots/24-hg822c-card-desktop.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "HG822C 이단수건선반"
+    },
+    {
+      "filename": "25-hg822s-card-desktop.png",
+      "path": "docs/screenshots/25-hg822s-card-desktop.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "HG822S 이단수건선반"
+    },
+    {
+      "filename": "26-belair-paper-holder-chrome.png",
+      "path": "docs/screenshots/26-belair-paper-holder-chrome.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "벨레어 휴지걸이"
+    },
+    {
+      "filename": "27-brio-paper-holder-chrome.png",
+      "path": "docs/screenshots/27-brio-paper-holder-chrome.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "브리오 휴지걸이"
     }
   ],
   "consoleErrors": [],
