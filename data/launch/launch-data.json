@@ -6,7 +6,7 @@
     "brandNameEn": "HOYANG",
     "legalCompanyNameKo": "정보 준비 중",
     "legalCompanyNameEn": "",
-    "logoPath": "/images/brand/hoyang-logo.png",
+    "logoPath": "/images/brand/hoyang-logo.svg",
     "logoAlt": "HOYANG25 로고",
     "faviconPath": "/images/brand/hoyang-favicon.svg",
     "heroImagePath": "/images/hero/bathroom-architecture-placeholder.png",
@@ -75,7 +75,7 @@
     "defaultDescription": "공간에 자연스럽게 어우러지는 욕실 액세서리를 제안합니다.",
     "openGraphImage": "/images/hero/bathroom-architecture-placeholder.png",
     "organizationName": "HOYANG",
-    "organizationLogo": "/images/brand/hoyang-logo.png",
+    "organizationLogo": "/images/brand/hoyang-logo.svg",
     "searchEngineVerification": {
       "google": "",
       "naver": "",

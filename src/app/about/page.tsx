@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { ArrowRightIcon } from "@/components/icons";
 import { PageIntro } from "@/components/ui/page-intro";
-import { isPreviewRelease, launchData } from "@/config/launch-data";
+import { launchData } from "@/config/launch-data";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -57,11 +57,7 @@ export default function AboutPage() {
             src={siteConfig.heroImagePath}
           />
         </div>
-        {isPreviewRelease ? (
-          <p className="mt-3 text-right text-[10px] text-muted">
-            임시 브랜드 이미지 · 최종 라이프스타일 사진 교체 필요
-          </p>
-        ) : null}
+
       </section>
 
       <section className="border-y border-line bg-stone py-20 md:py-28">

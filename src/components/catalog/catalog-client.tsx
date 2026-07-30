@@ -1,9 +1,19 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useOptimistic,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { ProductFilters } from "@/components/catalog/product-filters";
+import {
+  ProductFilters,
+  type CatalogFilterValues,
+} from "@/components/catalog/product-filters";
 import { ProductGrid } from "@/components/catalog/product-grid";
 import { CloseIcon, FilterIcon } from "@/components/icons";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -31,11 +41,16 @@ export function CatalogClient({
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const filterTriggerRef = useRef<HTMLButtonElement>(null);
-  const values = {
-    category: searchParams.get("category") ?? "",
-    collection: searchParams.get("collection") ?? "",
-    finish: searchParams.get("finish") ?? "",
-  };
+  const urlValues = useMemo<CatalogFilterValues>(
+    () => ({
+      category: searchParams.get("category") ?? "",
+      collection: searchParams.get("collection") ?? "",
+      finish: searchParams.get("finish") ?? "",
+    }),
+    [searchParams],
+  );
+  const [values, setOptimisticValues] = useOptimistic(urlValues);
+  const [, startFilterTransition] = useTransition();
   const sort = (searchParams.get("sort") as SortKey | null) ?? "catalog";
   const activeFilterCount = Object.values(values).filter(Boolean).length;
 
@@ -71,13 +86,16 @@ export function CatalogClient({
     };
   }, [mobileOpen]);
 
-  const updateParam = (key: string, value: string) => {
+  const updateParam = (key: keyof CatalogFilterValues, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
     if (value) params.set(key, value);
     else params.delete(key);
     const query = params.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname, {
-      scroll: false,
+    startFilterTransition(() => {
+      setOptimisticValues((current) => ({ ...current, [key]: value }));
+      router.replace(query ? `${pathname}?${query}` : pathname, {
+        scroll: false,
+      });
     });
   };
 
@@ -87,8 +105,11 @@ export function CatalogClient({
     params.delete("collection");
     params.delete("finish");
     const query = params.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname, {
-      scroll: false,
+    startFilterTransition(() => {
+      setOptimisticValues({ category: "", collection: "", finish: "" });
+      router.replace(query ? `${pathname}?${query}` : pathname, {
+        scroll: false,
+      });
     });
   };
 

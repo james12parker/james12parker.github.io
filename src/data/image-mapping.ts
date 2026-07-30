@@ -477,7 +477,7 @@ const hgImages: ProductImageMapping[] = [
     confidence: "ambiguous",
     validationNote:
       "사틴 파일과 동일 제품의 다른 표면으로 보이나 마감명, 별도 변형 여부를 파일명만으로 확정할 수 없음.",
-    useInCatalog: false,
+    useInCatalog: true,
     reviewStatus: "needs-confirmation",
   },
   {
