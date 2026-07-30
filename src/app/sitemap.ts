@@ -4,6 +4,8 @@ import { isProductionRelease } from "@/config/launch-data";
 import { siteConfig } from "@/config/site";
 import { getIndexablePublicPaths } from "@/lib/public-routes";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!isProductionRelease) return [];
 

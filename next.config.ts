@@ -6,6 +6,7 @@ const configuredReleaseMode =
   process.env.NEXT_PUBLIC_SITE_RELEASE_MODE ??
   launchData.deployment.releaseMode;
 const isProductionRelease = configuredReleaseMode === "production";
+const isGitHubPagesBuild = process.env.GITHUB_PAGES === "true";
 const catalogCorrections = launchData.catalogCorrections as Array<{
   status: string;
   newSlug: string;
@@ -67,19 +68,31 @@ const securityHeaders = [
     : []),
 ];
 
+const deploymentConfig: NextConfig = isGitHubPagesBuild
+  ? {
+      images: {
+        unoptimized: true,
+      },
+      output: "export",
+      trailingSlash: true,
+    }
+  : {
+      async headers() {
+        return [
+          {
+            source: "/(.*)",
+            headers: securityHeaders,
+          },
+        ];
+      },
+      async redirects() {
+        return catalogRedirects;
+      },
+    };
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
-  },
-  async redirects() {
-    return catalogRedirects;
-  },
+  ...deploymentConfig,
 };
 
 export default nextConfig;

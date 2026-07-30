@@ -23,6 +23,19 @@ npx tsc --noEmit
 npm run build
 ```
 
+## GitHub Pages 배포
+
+`main` 브랜치에 푸시하면 `.github/workflows/deploy-pages.yml`이 Next.js
+정적 사이트를 빌드해 GitHub Pages에 배포합니다. 저장소의
+**Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로
+한 번 설정해야 합니다.
+
+현재 공개 데이터가 운영 검증을 통과하지 않았으므로 이 워크플로는 사이트를
+`preview` 모드로 배포합니다. 이에 따라 검색 엔진 색인은 차단되며, 검증되지
+않은 네이버 링크는 활성화되지 않습니다. 운영 데이터와 권리 확인을 완료한
+뒤에만 워크플로의 `NEXT_PUBLIC_SITE_RELEASE_MODE`를 `production`으로
+변경하세요.
+
 ## 사업자 및 브랜드 설정
 
 사이트의 릴리스 모드는 개발, 프리뷰, 프로덕션으로 명시적으로 관리되며

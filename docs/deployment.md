@@ -124,6 +124,23 @@ npm run audit:quality
 The application is not bound to one provider. A target must preserve Next.js
 headers, redirects, static assets, server behavior, and environment variables.
 
+## GitHub Pages preview deployment
+
+The workflow at `.github/workflows/deploy-pages.yml` builds a static export on
+pushes to `main` and on manual dispatch. In the repository settings, select
+**Settings → Pages → Build and deployment → Source → GitHub Actions** once
+before the first deployment.
+
+The workflow deliberately sets `NEXT_PUBLIC_SITE_RELEASE_MODE=preview` while
+the launch data remains unverified. `actions/configure-pages` supplies the
+deployed base URL for canonical metadata, and `GITHUB_PAGES=true` enables the
+static-export configuration in `next.config.ts`.
+
+GitHub Pages serves static files and cannot apply the custom response headers
+or Next.js redirects configured for a Node.js deployment. The Pages workflow
+therefore omits those server-only settings. Use the generic production path on
+a compatible host when those controls are required.
+
 ### Optional Vercel notes
 
 - Pin a supported Node.js 20 runtime.
