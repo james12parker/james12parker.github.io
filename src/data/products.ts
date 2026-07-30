@@ -1,0 +1,400 @@
+import type { Finish, Product, ProductVariant } from "@/types/product";
+import { applyCatalogOverrides } from "@/data/catalog-overrides";
+import { getProductImageMapping } from "@/data/image-mapping";
+
+const finishFileNames: Record<Finish, string> = {
+  사틴: "satin",
+  크롬: "chrome",
+  블랙: "black",
+  무광: "matte",
+  미확인: "finish-pending",
+};
+
+type VariantInput = {
+  finish: Finish;
+  modelNumber?: string;
+  imageBase: string;
+};
+
+function variant({
+  finish,
+  modelNumber = "",
+  imageBase,
+}: VariantInput): ProductVariant {
+  const suffix = finishFileNames[finish];
+  const variantId = `${imageBase}-${suffix}`;
+  const placeholderImage = `/images/products/${variantId}.svg`;
+  const imageMapping = getProductImageMapping(variantId);
+  const image =
+    imageMapping?.useInCatalog === true
+      ? imageMapping.normalizedPath
+      : placeholderImage;
+
+  return {
+    id: variantId,
+    modelNumber,
+    finish,
+    image,
+    gallery: [image],
+    naverListingStatus: "unverified",
+    available: false,
+    customerVisible: true,
+    launchVerificationStatus: "unverified",
+    catalogReviewStatus: imageMapping?.reviewStatus ?? "needs-confirmation",
+  };
+}
+
+type NamedProductInput = {
+  id: string;
+  slug: string;
+  name: string;
+  collection: string;
+  category: string;
+  folder: string;
+  finishes: Finish[];
+  relatedProductIds: string[];
+  featured?: boolean;
+};
+
+function namedProduct({
+  id,
+  slug,
+  name,
+  collection,
+  category,
+  folder,
+  finishes,
+  relatedProductIds,
+  featured = false,
+}: NamedProductInput): Product {
+  return {
+    id,
+    slug,
+    nameKo: name,
+    collection,
+    category,
+    shortDescription: `${name}의 마감 옵션을 확인해 보세요.`,
+    features: [],
+    variants: finishes.map((finish) =>
+      variant({ finish, imageBase: `${folder}/${slug}` }),
+    ),
+    specifications: {},
+    relatedProductIds,
+    featured,
+    customerVisible: true,
+    launchVerificationStatus: "unverified",
+  };
+}
+
+type HgProductInput = {
+  model: string;
+  slug: string;
+  name: string;
+  category: string;
+  finishes: Finish[];
+  relatedProductIds: string[];
+  featured?: boolean;
+  variantModels?: Partial<Record<Finish, string>>;
+};
+
+function hgProduct({
+  model,
+  slug,
+  name,
+  category,
+  finishes,
+  relatedProductIds,
+  featured = false,
+  variantModels,
+}: HgProductInput): Product {
+  const productName = `${model} ${name}`;
+  return {
+    id: model.toLowerCase().replaceAll("-", ""),
+    slug,
+    nameKo: productName,
+    collection: "hg-series",
+    category,
+    shortDescription: `${name} 제품의 등록된 마감 정보를 확인해 보세요.`,
+    features: [],
+    variants: finishes.map((finish) =>
+      variant({
+        finish,
+        modelNumber: variantModels?.[finish] ?? model,
+        imageBase: `hg/${slug}`,
+      }),
+    ),
+    specifications: {},
+    relatedProductIds,
+    featured,
+    customerVisible: true,
+    launchVerificationStatus: "unverified",
+  };
+}
+
+export const sourceProducts: Product[] = [
+  namedProduct({
+    id: "batuta-towel-bar",
+    slug: "batuta-towel-bar",
+    name: "바투타 수건걸이",
+    collection: "batuta",
+    category: "towel-bars",
+    folder: "batuta",
+    finishes: ["사틴"],
+    relatedProductIds: ["batuta-paper-holder"],
+    featured: true,
+  }),
+  namedProduct({
+    id: "batuta-paper-holder",
+    slug: "batuta-toilet-paper-holder",
+    name: "바투타 휴지걸이",
+    collection: "batuta",
+    category: "toilet-paper-holders",
+    folder: "batuta",
+    finishes: ["사틴"],
+    relatedProductIds: ["batuta-towel-bar"],
+  }),
+  namedProduct({
+    id: "belair-towel-bar",
+    slug: "belair-towel-bar",
+    name: "벨레어 수건걸이",
+    collection: "belair",
+    category: "towel-bars",
+    folder: "belair",
+    finishes: ["사틴", "크롬"],
+    relatedProductIds: ["belair-paper-holder"],
+    featured: true,
+  }),
+  namedProduct({
+    id: "belair-paper-holder",
+    slug: "belair-toilet-paper-holder",
+    name: "벨레어 휴지걸이",
+    collection: "belair",
+    category: "toilet-paper-holders",
+    folder: "belair",
+    finishes: ["사틴", "크롬"],
+    relatedProductIds: ["belair-towel-bar"],
+  }),
+  namedProduct({
+    id: "brio-towel-bar",
+    slug: "brio-towel-bar",
+    name: "브리오 수건걸이",
+    collection: "brio",
+    category: "towel-bars",
+    folder: "brio",
+    finishes: ["사틴", "크롬"],
+    relatedProductIds: ["brio-paper-holder"],
+  }),
+  namedProduct({
+    id: "brio-paper-holder",
+    slug: "brio-toilet-paper-holder",
+    name: "브리오 휴지걸이",
+    collection: "brio",
+    category: "toilet-paper-holders",
+    folder: "brio",
+    finishes: ["사틴", "크롬"],
+    relatedProductIds: ["brio-towel-bar"],
+  }),
+  namedProduct({
+    id: "shako-towel-bar",
+    slug: "shako-towel-bar",
+    name: "샤코 수건걸이",
+    collection: "shako",
+    category: "towel-bars",
+    folder: "shako",
+    finishes: ["블랙", "크롬"],
+    relatedProductIds: ["shako-paper-holder"],
+    featured: true,
+  }),
+  namedProduct({
+    id: "shako-paper-holder",
+    slug: "shako-toilet-paper-holder",
+    name: "샤코 휴지걸이",
+    collection: "shako",
+    category: "toilet-paper-holders",
+    folder: "shako",
+    finishes: ["블랙", "크롬"],
+    relatedProductIds: ["shako-towel-bar"],
+  }),
+  namedProduct({
+    id: "concord-towel-bar",
+    slug: "concord-towel-bar",
+    name: "콩코드 수건걸이",
+    collection: "concord",
+    category: "towel-bars",
+    folder: "concord",
+    finishes: ["사틴", "크롬"],
+    relatedProductIds: ["concord-paper-holder"],
+    featured: true,
+  }),
+  namedProduct({
+    id: "concord-paper-holder",
+    slug: "concord-toilet-paper-holder",
+    name: "콩코드 휴지걸이",
+    collection: "concord",
+    category: "toilet-paper-holders",
+    folder: "concord",
+    finishes: ["사틴", "크롬"],
+    relatedProductIds: ["concord-towel-bar"],
+    featured: true,
+  }),
+  hgProduct({
+    model: "HG01MS",
+    slug: "hg01ms-slide-bar",
+    name: "슬라이드바",
+    category: "shower-accessories",
+    finishes: ["무광"],
+    relatedProductIds: ["hg100ms", "hg392ms"],
+    featured: true,
+  }),
+  hgProduct({
+    model: "HG05",
+    slug: "hg05-robe-hook",
+    name: "옷걸이",
+    category: "bath-accessories",
+    finishes: ["사틴"],
+    relatedProductIds: ["hg55s"],
+  }),
+  hgProduct({
+    model: "HG55S",
+    slug: "hg55s-slipper-rack",
+    name: "슬리퍼걸이",
+    category: "bath-accessories",
+    finishes: ["사틴"],
+    relatedProductIds: ["hg05"],
+  }),
+  hgProduct({
+    model: "HG100MS",
+    slug: "hg100ms-corner-shelf",
+    name: "코너선반",
+    category: "shelves-storage",
+    finishes: ["무광"],
+    relatedProductIds: ["hg392ms", "hg01ms"],
+    featured: true,
+  }),
+  hgProduct({
+    model: "HG110-1",
+    slug: "hg110-1-recessed-holder",
+    name: "매립휴지걸이",
+    category: "recessed-holders",
+    finishes: ["크롬"],
+    relatedProductIds: ["hg110c", "hg110s"],
+  }),
+  hgProduct({
+    model: "HG110C",
+    slug: "hg110c-recessed-holder",
+    name: "매립휴지걸이",
+    category: "recessed-holders",
+    finishes: ["크롬"],
+    relatedProductIds: ["hg1101", "hg110s"],
+  }),
+  hgProduct({
+    model: "HG110S",
+    slug: "hg110s-recessed-holder",
+    name: "매립휴지걸이",
+    category: "recessed-holders",
+    finishes: ["사틴"],
+    relatedProductIds: ["hg1101", "hg110c"],
+  }),
+  hgProduct({
+    model: "HG112C",
+    slug: "hg112c-tray-recessed-holder",
+    name: "트레이 겸용 매립휴지걸이",
+    category: "recessed-holders",
+    finishes: ["크롬"],
+    relatedProductIds: ["hg112s", "hg240"],
+  }),
+  hgProduct({
+    model: "HG112S",
+    slug: "hg112s-tray-recessed-holder",
+    name: "트레이 겸용 매립휴지걸이",
+    category: "recessed-holders",
+    finishes: ["사틴"],
+    relatedProductIds: ["hg112c", "hg240"],
+  }),
+  hgProduct({
+    model: "HG120",
+    slug: "hg120-single-paper-holder",
+    name: "일단휴지걸이",
+    category: "toilet-paper-holders",
+    finishes: ["미확인"],
+    relatedProductIds: ["hg240"],
+  }),
+  hgProduct({
+    model: "HG240",
+    slug: "hg240-phone-tray-recessed-holder",
+    name: "폰트레이 매립휴지걸이",
+    category: "recessed-holders",
+    finishes: ["미확인"],
+    relatedProductIds: ["hg112c", "hg112s"],
+    featured: true,
+  }),
+  hgProduct({
+    model: "HG392MS",
+    slug: "hg392ms-premium-shelf",
+    name: "고급형선반",
+    category: "shelves-storage",
+    finishes: ["무광"],
+    relatedProductIds: ["hg100ms"],
+  }),
+  hgProduct({
+    model: "HG513",
+    slug: "hg513-cleaning-brush",
+    name: "청소솔",
+    category: "cleaning",
+    finishes: ["미확인", "사틴"],
+    relatedProductIds: [],
+  }),
+  hgProduct({
+    model: "HG820",
+    slug: "hg820-double-towel-shelf",
+    name: "이단수건선반",
+    category: "towel-bars",
+    finishes: ["크롬"],
+    relatedProductIds: ["hg822"],
+  }),
+  hgProduct({
+    model: "HG822",
+    slug: "hg822-double-towel-shelf",
+    name: "이단수건선반",
+    category: "towel-bars",
+    finishes: ["크롬", "사틴"],
+    relatedProductIds: ["hg820"],
+    featured: true,
+    variantModels: {
+      크롬: "HG822C",
+      사틴: "HG822S",
+    },
+  }),
+  hgProduct({
+    model: "HG999",
+    slug: "hg999-shaving-mirror",
+    name: "면도경",
+    category: "mirrors",
+    finishes: ["미확인"],
+    relatedProductIds: ["hg9992"],
+  }),
+  hgProduct({
+    model: "HG999-2",
+    slug: "hg999-2-shaving-mirror",
+    name: "면도경",
+    category: "mirrors",
+    finishes: ["사틴"],
+    relatedProductIds: ["hg999"],
+  }),
+];
+
+export const products = applyCatalogOverrides(sourceProducts).filter(
+  (product) => product.customerVisible,
+);
+
+export const finishes: Finish[] = ["사틴", "크롬", "블랙", "무광"];
+
+export function getProductBySlug(slug: string) {
+  return products.find((product) => product.slug === slug);
+}
+
+export function getProductsByIds(ids: string[]) {
+  return ids
+    .map((id) => products.find((product) => product.id === id))
+    .filter((product): product is Product => product !== undefined);
+}

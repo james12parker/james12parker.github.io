@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "sourceHash": "unconfigured-preview-data",
+  "brand": {
+    "brandNameKo": "HOYANG",
+    "brandNameEn": "HOYANG",
+    "legalCompanyNameKo": "정보 준비 중",
+    "legalCompanyNameEn": "",
+    "logoPath": "/images/brand/hoyang-logo.svg",
+    "logoAlt": "HOYANG 로고",
+    "faviconPath": "/images/brand/hoyang-favicon.svg",
+    "heroImagePath": "/images/hero/bathroom-architecture-placeholder.png",
+    "heroImageAlt": "따뜻한 석재와 스테인리스 디테일이 있는 욕실 공간",
+    "primaryBrandDescription": "공간에 자연스럽게 어우러지는 욕실 액세서리를 제안합니다.",
+    "shortBrandDescription": "욕실 액세서리 카탈로그",
+    "establishedYear": null,
+    "manufacturerRelationship": "",
+    "hoyangRelationshipStatement": "",
+    "imageRightsConfirmed": false,
+    "trademarkRightsConfirmed": false,
+    "productImageOwner": "",
+    "productImageLicenseStatus": "unverified",
+    "embeddedBrandName": "HOYANG",
+    "embeddedBrandRelationship": "",
+    "permittedPublicUse": false,
+    "permittedModification": false,
+    "attributionRequired": false,
+    "confirmationDocumentReference": ""
+  },
+  "company": {
+    "representativeName": "정보 준비 중",
+    "businessRegistrationNumber": "정보 준비 중",
+    "mailOrderRegistrationRequired": true,
+    "mailOrderRegistrationNumber": "정보 준비 중",
+    "businessAddress": "정보 준비 중",
+    "customerServicePhone": "정보 준비 중",
+    "customerServiceEmail": "정보 준비 중",
+    "operatingHours": "정보 준비 중",
+    "privacyOfficer": "정보 준비 중",
+    "wholesaleInquiryEmail": "",
+    "wholesaleInquiryPhone": ""
+  },
+  "online": {
+    "productionDomain": "",
+    "canonicalBaseUrl": "https://example.com",
+    "naverStoreHomepageUrl": "",
+    "instagramUrl": "",
+    "naverBlogUrl": "",
+    "kakaoChannelUrl": "",
+    "approvedNaverStoreHosts": ["smartstore.naver.com", "brand.naver.com"]
+  },
+  "customerPolicy": {
+    "warrantySummary": "정보 준비 중",
+    "asPolicySummary": "정보 준비 중",
+    "returnExchangeSummary": "정보 준비 중",
+    "installationResponsibilityStatement": "정보 준비 중",
+    "productCareSummary": "정보 준비 중",
+    "deliveryInformationSummary": "정보 준비 중",
+    "customerSupportInstructions": "정보 준비 중"
+  },
+  "legal": {
+    "privacyPolicyStatus": "draft",
+    "termsStatus": "draft",
+    "legalReviewCompleted": false,
+    "legalReviewDate": "",
+    "legalReviewer": "",
+    "privacyPolicyEffectiveDate": "",
+    "termsEffectiveDate": "",
+    "privacyPolicySections": [],
+    "termsSections": []
+  },
+  "seo": {
+    "defaultTitle": "HOYANG | 욕실 액세서리",
+    "titleTemplate": "%s | HOYANG",
+    "defaultDescription": "공간에 자연스럽게 어우러지는 욕실 액세서리를 제안합니다.",
+    "openGraphImage": "/images/hero/bathroom-architecture-placeholder.png",
+    "organizationName": "HOYANG",
+    "organizationLogo": "/images/brand/hoyang-logo.svg",
+    "searchEngineVerification": {
+      "google": "",
+      "naver": "",
+      "other": {}
+    }
+  },
+  "deployment": {
+    "releaseMode": "development"
+  },
+  "products": [],
+  "naverLinks": [],
+  "catalogConfirmations": {
+    "shakoSpelling": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg513ImageRelationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg1101Relationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg110cRelationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg110sRelationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg112cRelationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg112sRelationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg822cRelationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg822sRelationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg999Relationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hg9992Relationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "matteFinishMeaning": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "duplicateBatutaBelairSatin": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "duplicateBrioConcordSatin": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "duplicateBrioConcordChrome": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hoyangBrandRelationship": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "hoyangImageUsageRights": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "productImageOwnership": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "collectionOwnershipAndNamingRights": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    },
+    "trademarkUsageRights": {
+      "status": "unresolved",
+      "confirmedBy": "",
+      "confirmationDate": "",
+      "evidenceReference": "",
+      "notes": ""
+    }
+  },
+  "catalogCorrections": []
+}

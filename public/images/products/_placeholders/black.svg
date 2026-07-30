@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
+  <rect width="900" height="900" fill="#f4f2ed"/>
+  <rect x="120" y="120" width="660" height="660" fill="#faf9f6" stroke="#dedbd3"/>
+  <path d="M260 452h380" stroke="#272825" stroke-width="22" stroke-linecap="round"/>
+  <path d="M270 420v64M630 420v64" stroke="#323330" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="450" cy="285" r="4" fill="#a6a69f"/>
+  <text x="450" y="636" fill="#777873" font-size="22" font-family="Arial, sans-serif" text-anchor="middle" letter-spacing="3">PRODUCT IMAGE</text>
+  <text x="450" y="672" fill="#a09f99" font-size="16" font-family="Arial, sans-serif" text-anchor="middle">BLACK · PHOTO PENDING</text>
+</svg>

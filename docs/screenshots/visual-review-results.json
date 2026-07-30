@@ -1,0 +1,132 @@
+{
+  "baseUrl": "http://127.0.0.1:3100",
+  "generatedAt": "2026-07-29T16:40:26.176Z",
+  "viewportSizes": {
+    "desktop": {
+      "width": 1440,
+      "height": 1000
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "captures": [
+    {
+      "filename": "01-home-desktop.png",
+      "path": "docs/screenshots/01-home-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "02-products-desktop.png",
+      "path": "docs/screenshots/02-products-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "03-collection-concord-desktop.png",
+      "path": "docs/screenshots/03-collection-concord-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "04-hg-products-desktop.png",
+      "path": "docs/screenshots/04-hg-products-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "05-towel-bar-desktop.png",
+      "path": "docs/screenshots/05-towel-bar-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "06-paper-holder-desktop.png",
+      "path": "docs/screenshots/06-paper-holder-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "07-recessed-holder-desktop.png",
+      "path": "docs/screenshots/07-recessed-holder-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "08-about-desktop.png",
+      "path": "docs/screenshots/08-about-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "09-support-desktop.png",
+      "path": "docs/screenshots/09-support-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "10-contact-desktop.png",
+      "path": "docs/screenshots/10-contact-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true
+    },
+    {
+      "filename": "11-mega-menu-desktop.png",
+      "path": "docs/screenshots/11-mega-menu-desktop.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "제품 메가 메뉴 열림"
+    },
+    {
+      "filename": "12-empty-filter-desktop.png",
+      "path": "docs/screenshots/12-empty-filter-desktop.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "공유 가능한 빈 필터 결과"
+    },
+    {
+      "filename": "13-404-desktop.png",
+      "path": "docs/screenshots/13-404-desktop.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "custom 404"
+    },
+    {
+      "filename": "14-home-mobile.png",
+      "path": "docs/screenshots/14-home-mobile.png",
+      "viewport": "mobile",
+      "fullPage": true
+    },
+    {
+      "filename": "15-products-mobile.png",
+      "path": "docs/screenshots/15-products-mobile.png",
+      "viewport": "mobile",
+      "fullPage": true
+    },
+    {
+      "filename": "16-mobile-navigation.png",
+      "path": "docs/screenshots/16-mobile-navigation.png",
+      "viewport": "mobile",
+      "fullPage": false,
+      "state": "모바일 메뉴 열림"
+    },
+    {
+      "filename": "17-filter-drawer-mobile.png",
+      "path": "docs/screenshots/17-filter-drawer-mobile.png",
+      "viewport": "mobile",
+      "fullPage": false,
+      "state": "모바일 필터 드로어 열림"
+    },
+    {
+      "filename": "18-finish-selector-mobile.png",
+      "path": "docs/screenshots/18-finish-selector-mobile.png",
+      "viewport": "mobile",
+      "fullPage": false,
+      "state": "크롬 마감 선택"
+    }
+  ],
+  "consoleErrors": [],
+  "failedRequests": []
+}
