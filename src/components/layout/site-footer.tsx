@@ -26,10 +26,10 @@ export function SiteFooter() {
           >
             <Image
               alt={siteConfig.logoAlt}
-              className="h-8 w-auto brightness-0 invert"
-              height={32}
-              src={siteConfig.logoPath}
-              width={122}
+              className="h-9 w-auto"
+              height={64}
+              src="/images/brand/hoyang25-logo.svg"
+              width={230}
             />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-6 text-white/65">
