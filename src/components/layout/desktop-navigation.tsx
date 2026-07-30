@@ -1,28 +1,115 @@
+"use client";
+
+import { type FocusEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 import { ChevronDownIcon, ExternalIcon } from "@/components/icons";
+import { siteConfig } from "@/config/site";
 import { categories } from "@/data/categories";
 import { collections } from "@/data/collections";
 import { finishes } from "@/data/products";
-import { siteConfig } from "@/config/site";
 
-const dropdownSummaryClass =
-  "flex cursor-pointer list-none items-center gap-1.5 px-3 py-7 text-sm font-medium tracking-[-0.01em] transition-colors marker:content-none hover:text-muted [&::-webkit-details-marker]:hidden";
+const dropdownTriggerClass =
+  "nav-trigger flex items-center gap-1.5 px-3 py-7 text-sm font-medium tracking-[-0.01em] transition-colors hover:text-muted";
+
+type MenuKey = "products" | "collections" | "finishes";
 
 export function DesktopNavigation() {
+  const [openMenu, setOpenMenu] = useState<MenuKey | null>(null);
+  const navigationRef = useRef<HTMLElement>(null);
+  const triggerRefs = useRef<Record<MenuKey, HTMLButtonElement | null>>({
+    products: null,
+    collections: null,
+    finishes: null,
+  });
+
+  useEffect(() => {
+    if (!openMenu) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (
+        event.target instanceof Node &&
+        !navigationRef.current?.contains(event.target)
+      ) {
+        setOpenMenu(null);
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      const activeMenu = openMenu;
+      setOpenMenu(null);
+      triggerRefs.current[activeMenu]?.focus();
+    };
+    const onScroll = () => setOpenMenu(null);
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [openMenu]);
+
+  const closeMenu = () => setOpenMenu(null);
+  const toggleMenu = (menu: MenuKey) => {
+    setOpenMenu((current) => (current === menu ? null : menu));
+  };
+  const closeWhenFocusLeaves = (event: FocusEvent<HTMLElement>) => {
+    if (
+      event.relatedTarget instanceof Node &&
+      event.currentTarget.contains(event.relatedTarget)
+    ) {
+      return;
+    }
+    closeMenu();
+  };
+
   return (
-    <nav aria-label="주 메뉴" className="hidden h-full items-stretch lg:flex">
-      <details className="nav-details group relative">
-        <summary className={dropdownSummaryClass}>
+    <nav
+      aria-label="주 메뉴"
+      className="hidden h-full items-stretch lg:flex"
+      onBlur={closeWhenFocusLeaves}
+      onMouseLeave={closeMenu}
+      ref={navigationRef}
+    >
+      <div>
+        <button
+          aria-controls="desktop-products-menu"
+          aria-expanded={openMenu === "products"}
+          className={dropdownTriggerClass}
+          data-open={openMenu === "products"}
+          onClick={() => toggleMenu("products")}
+          ref={(node) => {
+            triggerRefs.current.products = node;
+          }}
+          type="button"
+        >
           제품
-          <ChevronDownIcon className="size-3.5 transition-transform group-open:rotate-180" />
-        </summary>
-        <div className="mega-panel fixed inset-x-0 z-40 border-y border-line bg-warm-white">
+          <ChevronDownIcon
+            className={`size-3.5 transition-transform ${
+              openMenu === "products" ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+        <div
+          aria-hidden={openMenu !== "products"}
+          aria-label="제품 메뉴"
+          className="mega-panel absolute inset-x-0 top-full z-40 border-y border-line bg-warm-white"
+          data-open={openMenu === "products"}
+          id="desktop-products-menu"
+        >
           <div className="page-shell grid grid-cols-[1.5fr_0.7fr] gap-16 py-10">
             <div>
               <p className="eyebrow mb-5">제품 카테고리</p>
               <div className="grid grid-cols-2 gap-x-12">
-                <Link className="mega-link font-medium" href="/products">
+                <Link
+                  className="mega-link font-medium"
+                  href="/products"
+                  onClick={closeMenu}
+                >
                   전체 제품
                 </Link>
                 {categories.map((category) => (
@@ -30,6 +117,7 @@ export function DesktopNavigation() {
                     className="mega-link"
                     href={`/products?category=${category.id}`}
                     key={category.id}
+                    onClick={closeMenu}
                   >
                     {category.name}
                   </Link>
@@ -42,24 +130,52 @@ export function DesktopNavigation() {
                 카테고리, 컬렉션, 마감 조건으로 필요한 제품을 간편하게
                 찾아보세요.
               </p>
-              <Link className="text-link mt-6" href="/products">
+              <Link
+                className="text-link mt-6"
+                href="/products"
+                onClick={closeMenu}
+              >
                 제품 카탈로그
               </Link>
             </div>
           </div>
         </div>
-      </details>
+      </div>
 
-      <details className="nav-details group relative">
-        <summary className={dropdownSummaryClass}>
+      <div>
+        <button
+          aria-controls="desktop-collections-menu"
+          aria-expanded={openMenu === "collections"}
+          className={dropdownTriggerClass}
+          data-open={openMenu === "collections"}
+          onClick={() => toggleMenu("collections")}
+          ref={(node) => {
+            triggerRefs.current.collections = node;
+          }}
+          type="button"
+        >
           컬렉션
-          <ChevronDownIcon className="size-3.5 transition-transform group-open:rotate-180" />
-        </summary>
-        <div className="mega-panel fixed inset-x-0 z-40 border-y border-line bg-warm-white">
+          <ChevronDownIcon
+            className={`size-3.5 transition-transform ${
+              openMenu === "collections" ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+        <div
+          aria-hidden={openMenu !== "collections"}
+          aria-label="컬렉션 메뉴"
+          className="mega-panel absolute inset-x-0 top-full z-40 border-y border-line bg-warm-white"
+          data-open={openMenu === "collections"}
+          id="desktop-collections-menu"
+        >
           <div className="page-shell py-10">
             <div className="mb-5 flex items-center justify-between">
               <p className="eyebrow">컬렉션</p>
-              <Link className="text-link text-xs" href="/collections">
+              <Link
+                className="text-link text-xs"
+                href="/collections"
+                onClick={closeMenu}
+              >
                 전체 컬렉션
               </Link>
             </div>
@@ -69,6 +185,7 @@ export function DesktopNavigation() {
                   className="group/item px-5 py-7 transition-colors hover:bg-stone"
                   href={`/collections/${collection.slug}`}
                   key={collection.id}
+                  onClick={closeMenu}
                 >
                   <span className="block text-base font-medium">
                     {collection.nameKo}
@@ -81,26 +198,47 @@ export function DesktopNavigation() {
             </div>
           </div>
         </div>
-      </details>
+      </div>
 
-      <details className="nav-details group relative">
-        <summary className={dropdownSummaryClass}>
+      <div className="relative">
+        <button
+          aria-controls="desktop-finishes-menu"
+          aria-expanded={openMenu === "finishes"}
+          className={dropdownTriggerClass}
+          data-open={openMenu === "finishes"}
+          onClick={() => toggleMenu("finishes")}
+          ref={(node) => {
+            triggerRefs.current.finishes = node;
+          }}
+          type="button"
+        >
           마감
-          <ChevronDownIcon className="size-3.5 transition-transform group-open:rotate-180" />
-        </summary>
-        <div className="mega-panel absolute left-1/2 z-40 w-72 -translate-x-1/2 border border-line bg-warm-white p-3 shadow-[0_18px_40px_rgba(25,25,20,0.08)]">
+          <ChevronDownIcon
+            className={`size-3.5 transition-transform ${
+              openMenu === "finishes" ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+        <div
+          aria-hidden={openMenu !== "finishes"}
+          aria-label="마감 메뉴"
+          className="mega-panel absolute left-1/2 z-40 w-72 -translate-x-1/2 border border-line bg-warm-white p-3 shadow-[0_18px_40px_rgba(25,25,20,0.08)]"
+          data-open={openMenu === "finishes"}
+          id="desktop-finishes-menu"
+        >
           {finishes.map((finish) => (
             <Link
               className="flex items-center gap-3 px-4 py-3 text-sm transition-colors hover:bg-stone"
               href={`/products?finish=${finish}`}
               key={finish}
+              onClick={closeMenu}
             >
               <span className={`finish-swatch finish-${finish}`} />
               {finish}
             </Link>
           ))}
         </div>
-      </details>
+      </div>
 
       <Link
         className="px-3 py-7 text-sm font-medium hover:text-muted"

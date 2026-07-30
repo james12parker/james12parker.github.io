@@ -143,13 +143,13 @@ button:disabled,
     visibility 160ms;
 }
 
-.nav-details[open] > .mega-panel {
+.mega-panel[data-open="true"] {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
 }
 
-.nav-details[open] > summary {
+.nav-trigger[data-open="true"] {
   color: var(--color-muted);
 }
 
