@@ -7,13 +7,39 @@ import Link from "next/link";
 import { CleanImageMask } from "@/components/catalog/clean-image-mask";
 import { ArrowRightIcon } from "@/components/icons";
 import { collectionName } from "@/lib/catalog";
-import type { Product } from "@/types/product";
+import { resolveProductVariant } from "@/lib/product-variant";
+import type { Finish, Product } from "@/types/product";
 
-export function ProductCard({ product }: { product: Product }) {
-  const [selectedId, setSelectedId] = useState(product.variants[0].id);
+type ProductCardProps = {
+  product: Product;
+  preferredFinish?: Finish;
+};
+
+export function ProductCard({ product, preferredFinish }: ProductCardProps) {
+  const preferredVariant = resolveProductVariant(
+    product.variants,
+    preferredFinish,
+  );
+  const preferredId = preferredVariant?.id ?? "";
+  const [selection, setSelection] = useState(() => ({
+    preferredFinish,
+    selectedId: preferredId,
+  }));
+  const synchronizedSelection =
+    selection.preferredFinish === preferredFinish
+      ? selection
+      : { preferredFinish, selectedId: preferredId };
+
+  if (synchronizedSelection !== selection) {
+    setSelection(synchronizedSelection);
+  }
+
   const selected =
-    product.variants.find((variant) => variant.id === selectedId) ??
-    product.variants[0];
+    product.variants.find(
+      (variant) => variant.id === synchronizedSelection.selectedId,
+    ) ?? preferredVariant;
+
+  if (!selected) return null;
   const detailHref = `/products/${product.slug}?finish=${encodeURIComponent(selected.finish)}`;
   const hasMultipleFinishes = product.variants.length > 1;
 
@@ -66,7 +92,12 @@ export function ProductCard({ product }: { product: Product }) {
                 className="finish-chip"
                 data-selected={variant.id === selected.id}
                 key={variant.id}
-                onClick={() => setSelectedId(variant.id)}
+                onClick={() =>
+                  setSelection({
+                    preferredFinish,
+                    selectedId: variant.id,
+                  })
+                }
                 type="button"
               >
                 <span className={`finish-swatch finish-${variant.finish}`} />

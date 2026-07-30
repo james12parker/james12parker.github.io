@@ -139,6 +139,7 @@ export function CatalogClient({
       return Number(b.featured) - Number(a.featured);
     });
   }, [products, sort, values.category, values.collection, values.finish]);
+  const preferredFinish = finishes.find((finish) => finish === values.finish);
 
   return (
     <div className="page-shell pb-24">
@@ -206,6 +207,7 @@ export function CatalogClient({
           {filteredProducts.length > 0 ? (
             <ProductGrid
               className="lg:grid-cols-3"
+              preferredFinish={preferredFinish}
               products={filteredProducts}
             />
           ) : (

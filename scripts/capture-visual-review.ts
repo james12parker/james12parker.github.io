@@ -11,7 +11,7 @@ import {
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const screenshotDirectory = resolve(projectRoot, "docs/screenshots");
-const baseUrl = process.env.REVIEW_BASE_URL ?? "http://127.0.0.1:3100";
+const baseUrl = process.env.REVIEW_BASE_URL ?? "http://localhost:3100";
 const consoleErrors: string[] = [];
 const failedRequests: string[] = [];
 
@@ -68,6 +68,7 @@ async function main() {
 
     await captureDesktop(desktop);
     await captureMobile(mobile);
+    await captureFinishFilterStates(desktop, mobile);
     await captureLocalizedHome(
       desktopEnglish,
       "desktop",
@@ -181,14 +182,17 @@ async function captureMobile(context: BrowserContext) {
   await screenshot(page, "15-products-mobile.png", "mobile", true);
 
   await page.getByRole("button", { name: "메뉴 열기" }).click();
-  await screenshot(
-    page,
-    "16-mobile-navigation.png",
-    "mobile",
-    false,
-    "모바일 메뉴 열림",
-  );
-  await page.getByRole("button", { name: "메뉴 닫기" }).click();
+  const mobileMenu = page.getByRole("dialog", { name: "모바일 메뉴" });
+  if (await mobileMenu.isVisible()) {
+    await screenshot(
+      page,
+      "16-mobile-navigation.png",
+      "mobile",
+      false,
+      "모바일 메뉴 열림",
+    );
+    await page.getByRole("button", { name: "메뉴 닫기" }).click();
+  }
 
   await page.getByRole("button", { name: /^필터/ }).click();
   await page.getByRole("dialog", { name: "제품 필터" }).waitFor();
@@ -217,6 +221,135 @@ async function captureMobile(context: BrowserContext) {
     "크롬 마감 선택",
   );
   await page.close();
+}
+
+async function captureFinishFilterStates(
+  desktopContext: BrowserContext,
+  mobileContext: BrowserContext,
+) {
+  const desktop = await preparedPage(desktopContext, "desktop");
+
+  await visit(desktop, "/products");
+  await assertSacoPaperHolderFinish(desktop, "블랙");
+  await screenshot(
+    desktop,
+    "50-products-no-finish.png",
+    "desktop",
+    true,
+    "마감 필터 없음",
+  );
+
+  await visit(desktop, "/products?finish=크롬");
+  const chromeCard = await assertSacoPaperHolderFinish(desktop, "크롬");
+  await screenshot(
+    desktop,
+    "51-products-chrome.png",
+    "desktop",
+    true,
+    "크롬 마감 필터",
+  );
+  await screenshotElement(
+    chromeCard,
+    "52-saco-paper-holder-chrome.png",
+    "desktop",
+    "크롬 필터의 사코 휴지걸이",
+  );
+
+  await chromeCard.getByRole("button", { name: "마감: 블랙" }).click();
+  await assertSacoPaperHolderFinish(desktop, "블랙");
+
+  await desktop.getByRole("checkbox", { name: "블랙", exact: true }).click();
+  await desktop.waitForURL((url) => url.searchParams.get("finish") === "블랙");
+  const blackCard = await assertSacoPaperHolderFinish(desktop, "블랙");
+  await screenshot(
+    desktop,
+    "53-products-black.png",
+    "desktop",
+    true,
+    "블랙 마감 필터",
+  );
+  await screenshotElement(
+    blackCard,
+    "54-saco-paper-holder-black.png",
+    "desktop",
+    "블랙 필터의 사코 휴지걸이",
+  );
+
+  await desktop.getByRole("checkbox", { name: "크롬", exact: true }).click();
+  await desktop.waitForURL((url) => url.searchParams.get("finish") === "크롬");
+  await assertSacoPaperHolderFinish(desktop, "크롬");
+  await desktop.getByRole("button", { name: "필터 초기화" }).click();
+  await desktop.waitForURL((url) => !url.searchParams.has("finish"));
+  await assertSacoPaperHolderFinish(desktop, "블랙");
+  await screenshot(
+    desktop,
+    "56-products-filter-cleared.png",
+    "desktop",
+    true,
+    "크롬 선택 후 필터 초기화",
+  );
+  await desktop.close();
+
+  const mobile = await preparedPage(mobileContext, "mobile");
+  await visit(mobile, "/products?finish=크롬");
+  await assertSacoPaperHolderFinish(mobile, "크롬");
+  await screenshot(
+    mobile,
+    "55-products-chrome-mobile.png",
+    "mobile",
+    true,
+    "모바일 크롬 마감 필터",
+  );
+  await mobile.close();
+}
+
+async function assertSacoPaperHolderFinish(
+  page: Page,
+  finish: "크롬" | "블랙",
+) {
+  const detailLink = page
+    .getByRole("link", { name: "사코 휴지걸이 상세 보기" })
+    .first();
+  const card = detailLink.locator("xpath=ancestor::article");
+  await card
+    .locator(`img[alt="사코 휴지걸이 ${finish} 제품 이미지"]`)
+    .waitFor();
+
+  const selectedChip = card.getByRole("button", {
+    name: `마감: ${finish}`,
+  });
+  if ((await selectedChip.getAttribute("aria-pressed")) !== "true") {
+    throw new Error(`사코 휴지걸이 ${finish} 칩이 선택되지 않았습니다.`);
+  }
+
+  const href = await detailLink.getAttribute("href");
+  if (!href?.includes(`finish=${encodeURIComponent(finish)}`)) {
+    throw new Error(
+      `사코 휴지걸이 링크가 ${finish} 상세 상태를 가리키지 않습니다.`,
+    );
+  }
+
+  return card;
+}
+
+async function screenshotElement(
+  element: ReturnType<Page["locator"]>,
+  filename: string,
+  viewport: "desktop" | "mobile",
+  state: string,
+) {
+  await element.scrollIntoViewIfNeeded();
+  await element.screenshot({
+    path: resolve(screenshotDirectory, filename),
+    animations: "disabled",
+  });
+  captures.push({
+    filename,
+    path: `docs/screenshots/${filename}`,
+    viewport,
+    fullPage: false,
+    state,
+  });
 }
 
 async function captureLocalizedHome(
@@ -366,7 +499,7 @@ async function captureRequestedChecks(browser: Browser) {
     fullPage: false,
     state: "Category cards, normal state",
   });
-  const categoryCard = categorySection.locator("a").first();
+  const categoryCard = categorySection.locator("a:has(img)").first();
   await categoryCard.hover();
   await categoryCard.screenshot({
     path: resolve(screenshotDirectory, "33-category-card-hover.png"),
