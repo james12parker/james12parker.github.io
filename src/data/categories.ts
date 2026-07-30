@@ -53,9 +53,7 @@ export const categories: Category[] = [
   {
     id: "mirrors",
     slug: "mirrors",
-    name: "거울",
-    shortName: "거울",
-    description: "등록된 욕실 거울 제품을 확인할 수 있습니다.",
+    name: "면도경",`r`n    shortName: "면도경",`r`n    description: "등록된 면도경 제품을 확인할 수 있습니다.",
   },
 ];
 

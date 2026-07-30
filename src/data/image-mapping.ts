@@ -176,8 +176,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     variantId: "saco/saco-towel-bar-black",
     normalizedPath: "/images/products/saco/saco-towel-bar-black.jpg",
     confidence: "probable",
-    validationNote:
-      "제품과 마감이 일치하며 공식 표기 '사코'를 적용함.",
+    validationNote: "제품과 마감이 일치하며 공식 표기 '사코'를 적용함.",
     useInCatalog: true,
     reviewStatus: "verified",
   },
@@ -189,11 +188,9 @@ const namedCollectionImages: ProductImageMapping[] = [
     inferredFinish: "블랙",
     productId: "saco-paper-holder",
     variantId: "saco/saco-toilet-paper-holder-black",
-    normalizedPath:
-      "/images/products/saco/saco-toilet-paper-holder-black.jpg",
+    normalizedPath: "/images/products/saco/saco-toilet-paper-holder-black.jpg",
     confidence: "probable",
-    validationNote:
-      "제품과 마감이 일치하며 공식 표기 '사코'를 적용함.",
+    validationNote: "제품과 마감이 일치하며 공식 표기 '사코'를 적용함.",
     useInCatalog: true,
     reviewStatus: "verified",
   },
@@ -207,8 +204,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     variantId: "saco/saco-towel-bar-chrome",
     normalizedPath: "/images/products/saco/saco-towel-bar-chrome.jpg",
     confidence: "probable",
-    validationNote:
-      "제품과 마감이 일치하며 공식 표기 '사코'를 적용함.",
+    validationNote: "제품과 마감이 일치하며 공식 표기 '사코'를 적용함.",
     useInCatalog: true,
     reviewStatus: "verified",
   },
@@ -220,11 +216,9 @@ const namedCollectionImages: ProductImageMapping[] = [
     inferredFinish: "크롬",
     productId: "saco-paper-holder",
     variantId: "saco/saco-toilet-paper-holder-chrome",
-    normalizedPath:
-      "/images/products/saco/saco-toilet-paper-holder-chrome.jpg",
+    normalizedPath: "/images/products/saco/saco-toilet-paper-holder-chrome.jpg",
     confidence: "probable",
-    validationNote:
-      "제품과 마감이 일치하며 공식 표기 '사코'를 적용함.",
+    validationNote: "제품과 마감이 일치하며 공식 표기 '사코'를 적용함.",
     useInCatalog: true,
     reviewStatus: "verified",
   },

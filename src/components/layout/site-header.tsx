@@ -24,7 +24,7 @@ export function SiteHeader() {
         </div>
       </div>
       <header className="sticky top-0 z-40 border-b border-line bg-warm-white">
-        <div className="page-shell flex h-17 items-center justify-between lg:h-[73px]">
+        <div className="page-shell flex h-20 items-center justify-between lg:h-22">
           <Link
             aria-label={`${siteConfig.brandNameKo} 홈`}
             className="flex items-center"
@@ -32,11 +32,11 @@ export function SiteHeader() {
           >
             <Image
               alt={siteConfig.logoAlt}
-              className="h-8 w-auto"
-              height={32}
+              className="h-10 w-auto md:h-12"
+              height={48}
               priority
               src={siteConfig.logoPath}
-              width={122}
+              width={183}
             />
           </Link>
           <DesktopNavigation />

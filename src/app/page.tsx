@@ -19,13 +19,23 @@ export default function HomePage() {
   const homepageCategories = homepageCategoryIds
     .map((id) => categories.find((category) => category.id === id))
     .filter((category) => category !== undefined);
-  const coordinatedProducts = ["belair-towel-bar", "saco-towel-bar"]
-    .map((id) => products.find((product) => product.id === id))
-    .filter((product) => product !== undefined)
-    .map((product) => ({
-      ...product,
-      variants: product.variants.filter((variant) => variant.finish === "크롬"),
-    }));
+  const coordinatedFinishes = {
+    "belair-towel-bar": "사틴",
+    "saco-towel-bar": "크롬",
+  } as const;
+  const coordinatedProducts = Object.entries(coordinatedFinishes)
+    .map(([id, finish]) => {
+      const product = products.find((item) => item.id === id);
+      return product
+        ? {
+            ...product,
+            variants: product.variants.filter(
+              (variant) => variant.finish === finish,
+            ),
+          }
+        : undefined;
+    })
+    .filter((product) => product !== undefined);
   const concord = collections.find((collection) => collection.id === "concord");
   const concordProducts = products.filter(
     (product) => product.collection === "concord",
@@ -41,22 +51,28 @@ export default function HomePage() {
       <section className="page-shell py-20 md:py-28">
         <SectionHeading
           action={{ label: "전체 제품", href: "/products" }}
-          eyebrow="Browse by category"
-          title="공간과 용도에 맞는 제품"
+          title="Browse by category"
         />
         <div className="grid grid-cols-2 gap-x-4 md:grid-cols-3">
           {homepageCategories.map((category, index) => {
-            const representativeProduct = products.find(
-              (product) => product.category === category.id,
-            );
+            const representativeProduct =
+              category.id === "towel-bars"
+                ? products.find((product) => product.id === "belair-towel-bar")
+                : products.find((product) => product.category === category.id);
+            const representativeVariant =
+              category.id === "towel-bars"
+                ? representativeProduct?.variants.find(
+                    (variant) => variant.finish === "사틴",
+                  )
+                : representativeProduct?.variants[0];
 
             return (
               <CategoryCard
                 category={category}
-                image={representativeProduct?.variants[0].image}
+                image={representativeVariant?.image}
                 imageAlt={
                   representativeProduct
-                    ? `${representativeProduct.nameKo} ${representativeProduct.variants[0].finish} 제품 이미지`
+                    ? `${representativeProduct.nameKo} ${representativeVariant?.finish} 제품 이미지`
                     : undefined
                 }
                 index={index}

@@ -31,10 +31,10 @@
 | 8.브리오휴지걸이(사틴).jpg          | 5304×5304 | .jpg / jpeg |  4.6 MB | confirmed-from-filename | /images/products/brio/brio-toilet-paper-holder-satin.jpg        |
 | 9.브리오수건걸이(크롬).jpg          | 6000×4000 | .jpg / jpeg |  2.2 MB | confirmed-from-filename | /images/products/brio/brio-towel-bar-chrome.jpg                 |
 | 10.브리오휴지걸이(크롬).jpg         | 5304×5304 | .jpg / jpeg |  4.8 MB | confirmed-from-filename | /images/products/brio/brio-toilet-paper-holder-chrome.jpg       |
-| 11.사코수건걸이(블랙).jpg           | 6000×4000 | .jpg / jpeg |  2.0 MB | probable                | /images/products/saco/saco-towel-bar-black.jpg                |
-| 12.사코휴지걸이(블랙).jpg           | 3134×3194 | .jpg / jpeg |  1.3 MB | probable                | /images/products/saco/saco-toilet-paper-holder-black.jpg      |
-| 13.사코수건걸이(크롬).jpg           | 6000×4000 | .jpg / jpeg |  1.9 MB | probable                | /images/products/saco/saco-towel-bar-chrome.jpg               |
-| 14.사코휴지걸이(크롬).jpg           | 5304×5304 | .jpg / jpeg |  4.9 MB | probable                | /images/products/saco/saco-toilet-paper-holder-chrome.jpg     |
+| 11.사코수건걸이(블랙).jpg           | 6000×4000 | .jpg / jpeg |  2.0 MB | probable                | /images/products/saco/saco-towel-bar-black.jpg                  |
+| 12.사코휴지걸이(블랙).jpg           | 3134×3194 | .jpg / jpeg |  1.3 MB | probable                | /images/products/saco/saco-toilet-paper-holder-black.jpg        |
+| 13.사코수건걸이(크롬).jpg           | 6000×4000 | .jpg / jpeg |  1.9 MB | probable                | /images/products/saco/saco-towel-bar-chrome.jpg                 |
+| 14.사코휴지걸이(크롬).jpg           | 5304×5304 | .jpg / jpeg |  4.9 MB | probable                | /images/products/saco/saco-toilet-paper-holder-chrome.jpg       |
 | 15.콩코드수건걸이(사틴).jpg         | 5791×3786 | .jpg / jpeg |  2.3 MB | confirmed-from-filename | /images/products/concord/concord-towel-bar-satin.jpg            |
 | 16.콩코드휴지걸이(사틴).jpg         | 5304×5304 | .jpg / jpeg |  4.6 MB | confirmed-from-filename | /images/products/concord/concord-toilet-paper-holder-satin.jpg  |
 | 17.콩코드수건걸이(크롬).jpg         | 6000×4000 | .jpg / jpeg |  2.4 MB | confirmed-from-filename | /images/products/concord/concord-towel-bar-chrome.jpg           |
