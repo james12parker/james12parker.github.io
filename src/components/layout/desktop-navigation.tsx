@@ -97,7 +97,7 @@ export function DesktopNavigation() {
         <div
           aria-hidden={openMenu !== "products"}
           aria-label="제품 메뉴"
-          className="mega-panel absolute inset-x-0 top-full z-40 border-y border-line bg-warm-white"
+          className="mega-panel absolute inset-x-0 top-full z-40 border-y border-line bg-stone"
           data-open={openMenu === "products"}
           id="desktop-products-menu"
         >
@@ -164,7 +164,7 @@ export function DesktopNavigation() {
         <div
           aria-hidden={openMenu !== "collections"}
           aria-label="컬렉션 메뉴"
-          className="mega-panel absolute inset-x-0 top-full z-40 border-y border-line bg-warm-white"
+          className="mega-panel absolute inset-x-0 top-full z-40 border-y border-line bg-stone"
           data-open={openMenu === "collections"}
           id="desktop-collections-menu"
         >
@@ -222,7 +222,7 @@ export function DesktopNavigation() {
         <div
           aria-hidden={openMenu !== "finishes"}
           aria-label="마감 메뉴"
-          className="mega-panel absolute left-1/2 z-40 w-72 -translate-x-1/2 border border-line bg-warm-white p-3 shadow-[0_18px_40px_rgba(25,25,20,0.08)]"
+          className="mega-panel absolute left-1/2 z-40 w-72 -translate-x-1/2 border border-line bg-stone p-3"
           data-open={openMenu === "finishes"}
           id="desktop-finishes-menu"
         >
@@ -254,7 +254,7 @@ export function DesktopNavigation() {
       </Link>
       {siteConfig.naverSmartStoreUrl ? (
         <a
-          className="ml-3 flex items-center gap-1.5 self-center border border-ink px-4 py-2.5 text-xs font-semibold transition-colors hover:bg-ink hover:text-white"
+          className="ml-3 flex items-center gap-1.5 self-center border border-naver bg-naver px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:brightness-90"
           href={siteConfig.naverSmartStoreUrl}
           rel="noopener noreferrer"
           target="_blank"

@@ -64,7 +64,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       </div>
       <section className="page-shell pb-18 md:pb-28">
         <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-0">
-          <div className="flex flex-col justify-center bg-[#ece9e3] p-8 md:p-14 lg:p-18">
+          <div className="flex flex-col justify-center bg-surface p-8 md:p-14 lg:p-18">
             <p className="eyebrow mb-6">{collection.nameEn}</p>
             <h1 className="text-5xl font-medium tracking-[-0.055em] md:text-7xl">
               {collection.nameKo}

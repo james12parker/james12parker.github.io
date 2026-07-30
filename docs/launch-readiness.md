@@ -75,7 +75,6 @@ preview data.
 
 The controlled confirmation file requires explicit evidence for:
 
-- 사코 versus 샤코
 - HG513 image relationship
 - HG110-1, HG110C, HG110S
 - HG112C, HG112S

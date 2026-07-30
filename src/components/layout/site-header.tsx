@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { DesktopNavigation } from "@/components/layout/desktop-navigation";
 import { MobileNavigation } from "@/components/layout/mobile-navigation";
+import { LanguageSelector } from "@/components/layout/language-selector";
 import { siteConfig } from "@/config/site";
 
 export function SiteHeader() {
@@ -19,6 +20,7 @@ export function SiteHeader() {
           <Link className="hover:text-ink" href="/support">
             고객지원
           </Link>
+          <LanguageSelector />
         </div>
       </div>
       <header className="sticky top-0 z-40 border-b border-line bg-warm-white">

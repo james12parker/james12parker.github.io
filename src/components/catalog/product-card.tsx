@@ -44,7 +44,7 @@ export function ProductCard({ product }: { product: Product }) {
           href={`/products/${product.slug}`}
         >
           <span>{product.nameKo}</span>
-          <ArrowRightIcon className="mt-0.5 hidden size-4 shrink-0 opacity-0 transition-opacity group-hover:opacity-100 sm:block" />
+          <ArrowRightIcon className="mt-0.5 hidden size-4 shrink-0 text-brand opacity-0 transition-opacity group-hover:opacity-100 sm:block" />
         </Link>
         {modelNumbers.length > 0 ? (
           <p className="mt-1 text-[11px] text-muted">

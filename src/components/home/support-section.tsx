@@ -34,7 +34,7 @@ export function SupportSection() {
           href={item.href}
           key={item.number}
         >
-          <span className="text-[10px] tracking-[0.14em] text-muted">
+          <span className="text-[10px] tracking-[0.14em] text-brand">
             {item.number}
           </span>
           <span>
@@ -42,7 +42,7 @@ export function SupportSection() {
             <span className="mt-3 block max-w-xs text-sm leading-6 text-muted">
               {item.description}
             </span>
-            <ArrowRightIcon className="mt-6 size-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRightIcon className="mt-6 size-4 text-brand transition-transform group-hover:translate-x-1" />
           </span>
         </Link>
       ))}

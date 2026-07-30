@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import "@/app/globals.css";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { LanguageProvider } from "@/locales/language-provider";
 import { isPreviewRelease } from "@/config/launch-data";
 import { siteConfig } from "@/config/site";
 import { buildOrganizationStructuredData } from "@/lib/structured-data";
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f7f5f0",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -75,26 +76,28 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        {organizationStructuredData ? (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(organizationStructuredData).replace(
-                /</g,
-                "\\u003c",
-              ),
-            }}
-            type="application/ld+json"
-          />
-        ) : null}
-        <a
-          className="fixed top-3 left-3 z-[100] -translate-y-20 bg-ink px-4 py-3 text-sm text-white transition-transform focus:translate-y-0"
-          href="#main-content"
-        >
-          본문 바로가기
-        </a>
-        <SiteHeader />
-        <main id="main-content">{children}</main>
-        <SiteFooter />
+        <LanguageProvider>
+          {organizationStructuredData ? (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(organizationStructuredData).replace(
+                  /</g,
+                  "\\u003c",
+                ),
+              }}
+              type="application/ld+json"
+            />
+          ) : null}
+          <a
+            className="fixed top-3 left-3 z-[100] -translate-y-20 bg-ink px-4 py-3 text-sm text-white transition-transform focus:translate-y-0"
+            href="#main-content"
+          >
+            본문 바로가기
+          </a>
+          <SiteHeader />
+          <main id="main-content">{children}</main>
+          <SiteFooter />
+        </LanguageProvider>
       </body>
     </html>
   );

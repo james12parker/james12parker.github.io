@@ -28,7 +28,7 @@ export function ProductFilters({
       <div className="mb-7 flex items-center justify-between">
         <p className="text-sm font-semibold">필터</p>
         <button
-          className="border-b border-ink pb-0.5 text-[11px] font-medium"
+          className="border-b border-brand pb-0.5 text-[11px] font-medium"
           onClick={onClear}
           type="button"
         >
@@ -91,12 +91,14 @@ function FilterGroup({
             >
               <input
                 checked={active}
-                className="size-4 accent-[#252623]"
+                className="size-4 accent-brand"
                 name={`filter-${label}`}
                 onChange={() => onChange(active ? "" : option.value)}
                 type="checkbox"
               />
-              <span className={active ? "font-medium" : "text-muted"}>
+              <span
+                className={active ? "font-medium text-brand" : "text-muted"}
+              >
                 {option.label}
               </span>
             </label>

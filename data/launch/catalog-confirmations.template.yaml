@@ -4,12 +4,12 @@
 # production에서는 unresolved가 허용되지 않으며 확인자, 날짜, 증거 참조가 필요합니다.
 
 confirmations:
-  shakoSpelling:
-    status: unresolved
-    confirmedBy: ""
-    confirmationDate: ""
-    evidenceReference: ""
-    notes: "원본의 사코와 현재 표시 샤코 중 공식 표기 확인"
+  sacoSpelling:
+    status: confirmed
+    confirmedBy: "project owner"
+    confirmationDate: "2026-07-30"
+    evidenceReference: "Project owner correction"
+    notes: "공식 표기는 사코 (saco)"
   hg513ImageRelationship:
     status: unresolved
     confirmedBy: ""

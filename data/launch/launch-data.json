@@ -88,12 +88,12 @@
   "products": [],
   "naverLinks": [],
   "catalogConfirmations": {
-    "shakoSpelling": {
-      "status": "unresolved",
-      "confirmedBy": "",
-      "confirmationDate": "",
-      "evidenceReference": "",
-      "notes": ""
+    "sacoSpelling": {
+      "status": "confirmed",
+      "confirmedBy": "project owner",
+      "confirmationDate": "2026-07-30",
+      "evidenceReference": "Project owner correction",
+      "notes": "공식 표기는 사코 (saco)"
     },
     "hg513ImageRelationship": {
       "status": "unresolved",

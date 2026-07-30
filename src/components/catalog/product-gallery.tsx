@@ -59,13 +59,13 @@ export function ProductGallery({ productName, variant }: ProductGalleryProps) {
       ) : null}
       {isPreviewRelease ? (
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
-          <div className="flex aspect-[4/3] items-center justify-center border border-dashed border-line bg-[#f2f0eb] p-6 text-center">
+          <div className="flex aspect-[4/3] items-center justify-center border border-dashed border-line bg-stone p-6 text-center">
             <div>
               <p className="text-xs font-semibold">설치 공간 이미지</p>
               <p className="mt-2 text-[11px] text-muted">사진 준비 중</p>
             </div>
           </div>
-          <div className="flex aspect-[4/3] items-center justify-center border border-dashed border-line bg-[#f2f0eb] p-6 text-center">
+          <div className="flex aspect-[4/3] items-center justify-center border border-dashed border-line bg-stone p-6 text-center">
             <div>
               <p className="text-xs font-semibold">치수 및 도면</p>
               <p className="mt-2 text-[11px] text-muted">도면 준비 중</p>

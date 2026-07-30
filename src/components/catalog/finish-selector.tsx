@@ -27,8 +27,8 @@ export function FinishSelector({
               aria-pressed={selected}
               className={`flex min-w-22 items-center justify-center gap-2 border px-4 py-3 text-xs font-medium transition-colors ${
                 selected
-                  ? "border-ink bg-ink text-white"
-                  : "border-line bg-warm-white hover:border-steel"
+                  ? "border-brand bg-brand-soft text-ink"
+                  : "border-line bg-surface hover:border-brand"
               }`}
               key={variant.id}
               onClick={() => onChange(variant.id)}

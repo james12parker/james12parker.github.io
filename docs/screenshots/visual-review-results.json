@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://127.0.0.1:3100",
-  "generatedAt": "2026-07-29T16:40:26.176Z",
+  "generatedAt": "2026-07-30T08:01:54.365Z",
   "viewportSizes": {
     "desktop": {
       "width": 1440,
@@ -125,6 +125,34 @@
       "viewport": "mobile",
       "fullPage": false,
       "state": "크롬 마감 선택"
+    },
+    {
+      "filename": "19-home-en-desktop.png",
+      "path": "docs/screenshots/19-home-en-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "English homepage"
+    },
+    {
+      "filename": "20-home-en-mobile.png",
+      "path": "docs/screenshots/20-home-en-mobile.png",
+      "viewport": "mobile",
+      "fullPage": true,
+      "state": "English homepage"
+    },
+    {
+      "filename": "21-coordinated-towel-bars-desktop.png",
+      "path": "docs/screenshots/21-coordinated-towel-bars-desktop.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "하나의 공간으로 이어지는 구성"
+    },
+    {
+      "filename": "22-category-navigation-desktop.png",
+      "path": "docs/screenshots/22-category-navigation-desktop.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "공간과 용도에 맞는 제품"
     }
   ],
   "consoleErrors": [],

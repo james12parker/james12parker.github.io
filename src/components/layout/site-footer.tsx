@@ -16,7 +16,7 @@ export function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-[#e9e7e1]">
+    <footer className="border-t border-ink bg-ink text-white">
       <div className="page-shell grid gap-12 py-14 md:grid-cols-[1.2fr_0.7fr_1fr] md:py-18">
         <div>
           <Link
@@ -26,13 +26,13 @@ export function SiteFooter() {
           >
             <Image
               alt={siteConfig.logoAlt}
-              className="h-8 w-auto"
+              className="h-8 w-auto brightness-0 invert"
               height={32}
               src={siteConfig.logoPath}
               width={122}
             />
           </Link>
-          <p className="mt-5 max-w-sm text-sm leading-6 text-muted">
+          <p className="mt-5 max-w-sm text-sm leading-6 text-white/65">
             {siteConfig.companyDescription}
           </p>
           <div className="mt-8 flex gap-4 text-xs">
@@ -60,11 +60,11 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p className="eyebrow mb-5">바로가기</p>
+          <p className="eyebrow mb-5 text-brand-soft">바로가기</p>
           <ul className="space-y-3 text-sm">
             {footerLinks.map((link) => (
               <li key={link.href}>
-                <Link className="hover:text-muted" href={link.href}>
+                <Link className="hover:text-brand-soft" href={link.href}>
                   {link.label}
                 </Link>
               </li>
@@ -73,8 +73,8 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p className="eyebrow mb-5">회사 정보</p>
-          <dl className="space-y-2 text-xs leading-5 text-muted">
+          <p className="eyebrow mb-5 text-brand-soft">회사 정보</p>
+          <dl className="space-y-2 text-xs leading-5 text-white/65">
             <div className="flex gap-2">
               <dt>회사명</dt>
               <dd>{siteConfig.business.companyName}</dd>
@@ -108,16 +108,16 @@ export function SiteFooter() {
           </dl>
         </div>
       </div>
-      <div className="border-t border-[#d8d5ce]">
-        <div className="page-shell flex flex-col gap-4 py-5 text-[11px] text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-white/20">
+        <div className="page-shell flex flex-col gap-4 py-5 text-[11px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {currentYear} {siteConfig.brandNameKo}. All rights reserved.
           </p>
           <div className="flex gap-5">
-            <Link className="hover:text-ink" href="/privacy">
+            <Link className="hover:text-white" href="/privacy">
               개인정보처리방침
             </Link>
-            <Link className="hover:text-ink" href="/terms">
+            <Link className="hover:text-white" href="/terms">
               이용약관
             </Link>
           </div>

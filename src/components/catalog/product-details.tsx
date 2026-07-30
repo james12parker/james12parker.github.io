@@ -110,7 +110,7 @@ export function ProductDetails({ product }: { product: Product }) {
       </section>
 
       {product.features.length > 0 || isPreviewRelease ? (
-        <div className="border-t border-line bg-[#f1efe9]">
+        <div className="border-t border-line bg-stone">
           <div className="page-shell grid md:grid-cols-[15rem_1fr]">
             <h2 className="py-7 text-lg font-medium md:border-r md:border-line md:py-10">
               제품 특징

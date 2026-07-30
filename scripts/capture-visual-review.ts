@@ -40,10 +40,44 @@ async function main() {
       hasTouch: true,
     });
 
+    const desktopEnglish = await browser.newContext({
+      viewport: { width: 1440, height: 1000 },
+      colorScheme: "light",
+      reducedMotion: "reduce",
+      locale: "en-US",
+    });
+    const mobileEnglish = await browser.newContext({
+      viewport: { width: 390, height: 844 },
+      colorScheme: "light",
+      reducedMotion: "reduce",
+      locale: "en-US",
+      isMobile: true,
+      hasTouch: true,
+    });
+    await desktopEnglish.addInitScript(() =>
+      localStorage.setItem("hoyang-language", "en"),
+    );
+    await mobileEnglish.addInitScript(() =>
+      localStorage.setItem("hoyang-language", "en"),
+    );
+
     await captureDesktop(desktop);
     await captureMobile(mobile);
+    await captureLocalizedHome(
+      desktopEnglish,
+      "desktop",
+      "19-home-en-desktop.png",
+    );
+    await captureLocalizedHome(
+      mobileEnglish,
+      "mobile",
+      "20-home-en-mobile.png",
+    );
+    await captureHomepageSections(desktop);
     await desktop.close();
     await mobile.close();
+    await desktopEnglish.close();
+    await mobileEnglish.close();
   } finally {
     await browser.close();
   }
@@ -96,12 +130,13 @@ async function captureDesktop(context: BrowserContext) {
   ] as const;
 
   for (const [filename, path, fullPage] of routes) {
+    console.log(`capture: ${path}`);
     await visit(page, path);
     await screenshot(page, filename, "desktop", fullPage);
   }
 
   await visit(page, "/");
-  await page.locator("summary").filter({ hasText: "제품" }).first().click();
+  await page.getByRole("button", { name: /^제품/ }).first().click();
   await screenshot(
     page,
     "11-mega-menu-desktop.png",
@@ -174,6 +209,47 @@ async function captureMobile(context: BrowserContext) {
   await page.close();
 }
 
+async function captureLocalizedHome(
+  context: BrowserContext,
+  viewport: "desktop" | "mobile",
+  filename: string,
+) {
+  const page = await preparedPage(context, viewport);
+  await visit(page, "/");
+  await page.locator('html[lang="en"]').waitFor();
+  await page
+    .getByRole("heading", { name: "Products for every space and purpose" })
+    .waitFor();
+  await screenshot(page, filename, viewport, true, "English homepage");
+  await page.close();
+}
+
+async function captureHomepageSections(context: BrowserContext) {
+  const page = await preparedPage(context, "desktop");
+  await visit(page, "/");
+  const sections = [
+    ["21-coordinated-towel-bars-desktop.png", "하나의 공간으로 이어지는 구성"],
+    ["22-category-navigation-desktop.png", "공간과 용도에 맞는 제품"],
+  ] as const;
+  for (const [filename, heading] of sections) {
+    const section = page
+      .locator("section")
+      .filter({ hasText: heading })
+      .first();
+    await section.screenshot({
+      path: resolve(screenshotDirectory, filename),
+      animations: "disabled",
+    });
+    captures.push({
+      filename,
+      path: `docs/screenshots/${filename}`,
+      viewport: "desktop",
+      fullPage: false,
+      state: heading,
+    });
+  }
+  await page.close();
+}
 async function preparedPage(
   context: BrowserContext,
   viewport: "desktop" | "mobile",
@@ -211,7 +287,7 @@ async function visit(page: Page, path: string) {
   const response = await page.goto(`${baseUrl}${path}`, {
     waitUntil: "networkidle",
   });
-  await page.locator("main").waitFor();
+  await page.locator("main").waitFor({ state: "attached" });
   return response;
 }
 

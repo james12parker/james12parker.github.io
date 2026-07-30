@@ -129,12 +129,12 @@
             "overDeliveryRatio": 1.0246336805573149
           },
           {
-            "alt": "샤코 컬렉션 제품 이미지",
+            "alt": "사코 컬렉션 제품 이미지",
             "naturalWidth": 475,
             "naturalHeight": 484,
             "renderedWidth": 443,
             "renderedHeight": 332,
-            "source": "http://127.0.0.1:44497/_next/image?url=%2Fimages%2Fproducts%2Fshako%2Fshako-toilet-paper-holder-black.jpg&w=640&q=75",
+            "source": "http://127.0.0.1:44497/_next/image?url=%2Fimages%2Fproducts%2Fsaco%2Fsaco-toilet-paper-holder-black.jpg&w=640&q=75",
             "isVector": false,
             "overDeliveryRatio": 1.5644249255196858
           },
@@ -189,12 +189,12 @@
             "overDeliveryRatio": 0.8173392013412589
           },
           {
-            "alt": "샤코 수건걸이 블랙 제품 이미지",
+            "alt": "사코 수건걸이 블랙 제품 이미지",
             "naturalWidth": 359,
             "naturalHeight": 239,
             "renderedWidth": 324,
             "renderedHeight": 324,
-            "source": "http://127.0.0.1:44497/_next/image?url=%2Fimages%2Fproducts%2Fshako%2Fshako-towel-bar-black.jpg&w=384&q=75",
+            "source": "http://127.0.0.1:44497/_next/image?url=%2Fimages%2Fproducts%2Fsaco%2Fsaco-towel-bar-black.jpg&w=384&q=75",
             "isVector": false,
             "overDeliveryRatio": 0.8173392013412589
           },
@@ -304,12 +304,12 @@
             "overDeliveryRatio": 1.3511117409926934
           },
           {
-            "alt": "샤코 수건걸이 블랙 제품 이미지",
+            "alt": "사코 수건걸이 블랙 제품 이미지",
             "naturalWidth": 359,
             "naturalHeight": 239,
             "renderedWidth": 252,
             "renderedHeight": 252,
-            "source": "http://127.0.0.1:44497/_next/image?url=%2Fimages%2Fproducts%2Fshako%2Fshako-towel-bar-black.jpg&w=384&q=75",
+            "source": "http://127.0.0.1:44497/_next/image?url=%2Fimages%2Fproducts%2Fsaco%2Fsaco-towel-bar-black.jpg&w=384&q=75",
             "isVector": false,
             "overDeliveryRatio": 1.3511117409926934
           },
@@ -414,12 +414,12 @@
             "overDeliveryRatio": 2.0294942050894433
           },
           {
-            "alt": "샤코 휴지걸이 블랙 제품 이미지",
+            "alt": "사코 휴지걸이 블랙 제품 이미지",
             "naturalWidth": 359,
             "naturalHeight": 366,
             "renderedWidth": 252,
             "renderedHeight": 252,
-            "source": "http://127.0.0.1:44497/_next/image?url=%2Fimages%2Fproducts%2Fshako%2Fshako-toilet-paper-holder-black.jpg&w=384&q=75",
+            "source": "http://127.0.0.1:44497/_next/image?url=%2Fimages%2Fproducts%2Fsaco%2Fsaco-toilet-paper-holder-black.jpg&w=384&q=75",
             "isVector": false,
             "overDeliveryRatio": 2.069066515495087
           },

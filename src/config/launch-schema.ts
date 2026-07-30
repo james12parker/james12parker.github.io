@@ -44,7 +44,7 @@ export const rightsStatusSchema = z.enum([
 export type RightsStatus = z.infer<typeof rightsStatusSchema>;
 
 export const catalogConfirmationKeys = [
-  "shakoSpelling",
+  "sacoSpelling",
   "hg513ImageRelationship",
   "hg1101Relationship",
   "hg110cRelationship",

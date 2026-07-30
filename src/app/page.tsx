@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CategoryCard } from "@/components/catalog/category-card";
-import { CollectionCard } from "@/components/catalog/collection-card";
+import { ProductCard } from "@/components/catalog/product-card";
 import { ProductGrid } from "@/components/catalog/product-grid";
 import { ArrowRightIcon } from "@/components/icons";
 import { FinishGuide } from "@/components/home/finish-guide";
@@ -19,7 +19,13 @@ export default function HomePage() {
   const homepageCategories = homepageCategoryIds
     .map((id) => categories.find((category) => category.id === id))
     .filter((category) => category !== undefined);
-  const homepageCollections = collections.slice(0, 5);
+  const coordinatedProducts = ["belair-towel-bar", "saco-towel-bar"]
+    .map((id) => products.find((product) => product.id === id))
+    .filter((product) => product !== undefined)
+    .map((product) => ({
+      ...product,
+      variants: product.variants.filter((variant) => variant.finish === "크롬"),
+    }));
   const concord = collections.find((collection) => collection.id === "concord");
   const concordProducts = products.filter(
     (product) => product.collection === "concord",
@@ -65,17 +71,13 @@ export default function HomePage() {
         <div className="page-shell">
           <SectionHeading
             action={{ label: "전체 컬렉션", href: "/collections" }}
-            description="제품의 형태와 마감이 자연스럽게 이어지는 컬렉션을 만나보세요."
-            eyebrow="Collections"
+            description="제품의 형태와 마감이 자연스럽게 이어지는 수건걸이 구성을 만나보세요."
+            eyebrow="Coordinated towel bars"
             title="하나의 공간으로 이어지는 구성"
           />
-          <div className="grid gap-6 md:grid-cols-3">
-            {homepageCollections.map((collection, index) => (
-              <CollectionCard
-                collection={collection}
-                key={collection.id}
-                priority={index < 3}
-              />
+          <div className="grid gap-6 md:grid-cols-2">
+            {coordinatedProducts.map((product) => (
+              <ProductCard product={product} key={product.id} />
             ))}
           </div>
         </div>

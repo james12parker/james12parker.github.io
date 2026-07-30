@@ -33,7 +33,7 @@ export function CollectionProductBrowser({
           <button
             aria-pressed={!finish}
             className={`border px-3 py-2 text-xs ${
-              !finish ? "border-ink bg-ink text-white" : "border-line"
+              !finish ? "border-brand bg-brand-soft text-ink" : "border-line"
             }`}
             onClick={() => setFinish("")}
             type="button"
@@ -44,7 +44,9 @@ export function CollectionProductBrowser({
             <button
               aria-pressed={finish === item}
               className={`flex items-center gap-2 border px-3 py-2 text-xs ${
-                finish === item ? "border-ink bg-ink text-white" : "border-line"
+                finish === item
+                  ? "border-brand bg-brand-soft text-ink"
+                  : "border-line"
               }`}
               key={item}
               onClick={() => setFinish(item)}

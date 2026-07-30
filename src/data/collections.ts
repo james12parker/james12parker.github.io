@@ -30,12 +30,12 @@ export const collections: Collection[] = [
     editorialReviewRequired: true,
   },
   {
-    id: "shako",
-    slug: "shako",
-    nameKo: "샤코",
-    nameEn: "Shako",
-    description: "블랙과 크롬 마감으로 구성된 샤코 제품을 소개합니다.",
-    image: "/images/products/shako/shako-toilet-paper-holder-black.jpg",
+    id: "saco",
+    slug: "saco",
+    nameKo: "사코",
+    nameEn: "Saco",
+    description: "블랙과 크롬 마감으로 구성된 사코 제품을 소개합니다.",
+    image: "/images/products/saco/saco-toilet-paper-holder-black.jpg",
     editorialReviewRequired: true,
   },
   {

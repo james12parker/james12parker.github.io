@@ -127,7 +127,7 @@ export function CatalogClient({
           <FilterIcon className="size-4" />
           필터
           {activeFilterCount > 0 ? (
-            <span className="flex size-5 items-center justify-center rounded-full bg-ink text-[10px] text-white">
+            <span className="flex size-5 items-center justify-center rounded-full bg-brand text-[10px] text-white">
               {activeFilterCount}
             </span>
           ) : null}
@@ -169,7 +169,7 @@ export function CatalogClient({
             <p>총 {filteredProducts.length}개 제품</p>
             {activeFilterCount > 0 ? (
               <button
-                className="border-b border-muted"
+                className="border-b border-brand"
                 onClick={clearFilters}
                 type="button"
               >
@@ -192,7 +192,7 @@ export function CatalogClient({
         <div
           aria-label="제품 필터"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-warm-white lg:hidden"
+          className="fixed inset-0 z-50 bg-stone lg:hidden"
           ref={dialogRef}
           role="dialog"
         >
@@ -218,7 +218,7 @@ export function CatalogClient({
               values={values}
             />
           </div>
-          <div className="absolute inset-x-0 bottom-0 border-t border-line bg-warm-white p-4">
+          <div className="absolute inset-x-0 bottom-0 border-t border-line bg-white p-4">
             <button
               className="button-primary w-full"
               onClick={() => setMobileOpen(false)}

@@ -17,35 +17,33 @@ export function CategoryCard({
 }) {
   return (
     <Link
-      className="group flex min-h-40 flex-col justify-between border-t border-line py-5 transition-colors hover:bg-stone sm:min-h-52 sm:px-5 sm:hover:px-6"
+      className="group border-t border-line py-5 transition-colors hover:bg-stone sm:px-3"
       href={`/products?category=${category.id}`}
     >
-      <span className="flex items-start justify-between gap-4">
-        <span className="text-[10px] tracking-[0.16em] text-muted">
+      <span className="mb-4 flex items-center justify-between">
+        <span className="text-[10px] tracking-[0.16em] text-brand">
           {String(index + 1).padStart(2, "0")}
         </span>
-        {image ? (
-          <span className="relative hidden h-18 w-28 bg-white sm:block">
-            <Image
-              alt={imageAlt ?? ""}
-              className="object-contain"
-              fill
-              sizes="112px"
-              src={image}
-            />
-          </span>
-        ) : null}
+        <ArrowRightIcon className="size-4 text-brand transition-transform group-hover:translate-x-1" />
       </span>
-      <span className="flex items-end justify-between gap-3">
-        <span>
-          <strong className="block text-lg font-medium tracking-[-0.025em]">
-            {category.shortName}
-          </strong>
-          <span className="mt-2 hidden max-w-48 text-xs leading-5 text-muted sm:block">
-            {category.description}
-          </span>
+      {image ? (
+        <span className="relative block aspect-[4/3] w-full overflow-hidden bg-surface">
+          <Image
+            alt={imageAlt ?? ""}
+            className="object-contain p-1"
+            fill
+            sizes="(max-width: 767px) 50vw, 33vw"
+            src={image}
+          />
         </span>
-        <ArrowRightIcon className="mb-1 size-4 shrink-0 transition-transform group-hover:translate-x-1" />
+      ) : null}
+      <span className="mt-4 block">
+        <strong className="block text-base font-medium tracking-[-0.025em] sm:text-lg">
+          {category.shortName}
+        </strong>
+        <span className="mt-2 hidden text-xs leading-5 text-muted sm:block">
+          {category.description}
+        </span>
       </span>
     </Link>
   );

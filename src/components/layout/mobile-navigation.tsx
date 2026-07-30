@@ -10,6 +10,7 @@ import {
   MenuIcon,
 } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { LanguageSelector } from "@/components/layout/language-selector";
 import { categories } from "@/data/categories";
 import { collections } from "@/data/collections";
 import { finishes } from "@/data/products";
@@ -76,7 +77,7 @@ export function MobileNavigation() {
         <div
           aria-label="모바일 메뉴"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-warm-white"
+          className="fixed inset-0 z-50 bg-stone"
           id={menuId}
           ref={dialogRef}
           role="dialog"
@@ -104,6 +105,8 @@ export function MobileNavigation() {
             aria-label="모바일 주 메뉴"
             className="h-[calc(100dvh-4.25rem)] overflow-y-auto px-5 pb-12"
           >
+            <LanguageSelector mobile />
+
             <details className="mobile-accordion">
               <summary>
                 제품
@@ -125,6 +128,8 @@ export function MobileNavigation() {
               </div>
             </details>
 
+            <LanguageSelector mobile />
+
             <details className="mobile-accordion">
               <summary>
                 컬렉션
@@ -145,6 +150,8 @@ export function MobileNavigation() {
                 ))}
               </div>
             </details>
+
+            <LanguageSelector mobile />
 
             <details className="mobile-accordion">
               <summary>
