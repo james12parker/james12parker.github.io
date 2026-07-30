@@ -80,28 +80,6 @@ export function SiteFooter() {
               <dd>{siteConfig.business.companyName}</dd>
             </div>
             <div className="flex gap-2">
-              <dt>대표자</dt>
-              <dd>{siteConfig.business.representative}</dd>
-            </div>
-            <div className="flex gap-2">
-              <dt>사업자등록번호</dt>
-              <dd>{siteConfig.business.registrationNumber}</dd>
-            </div>
-            {siteConfig.business.mailOrderRegistrationRequired ? (
-              <div className="flex gap-2">
-                <dt>통신판매업 신고번호</dt>
-                <dd>{siteConfig.business.mailOrderRegistrationNumber}</dd>
-              </div>
-            ) : null}
-            <div className="flex gap-2">
-              <dt>사업장 주소</dt>
-              <dd>{siteConfig.address}</dd>
-            </div>
-            <div className="flex gap-2">
-              <dt>고객센터</dt>
-              <dd>{siteConfig.telephone}</dd>
-            </div>
-            <div className="flex gap-2">
               <dt>이메일</dt>
               <dd>{siteConfig.email}</dd>
             </div>

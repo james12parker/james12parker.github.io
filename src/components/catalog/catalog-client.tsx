@@ -86,13 +86,15 @@ export function CatalogClient({
     };
   }, [mobileOpen]);
 
-  const updateParam = (key: keyof CatalogFilterValues, value: string) => {
+  const updateParam = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
     if (value) params.set(key, value);
     else params.delete(key);
     const query = params.toString();
     startFilterTransition(() => {
-      setOptimisticValues((current) => ({ ...current, [key]: value }));
+      if (key === "category" || key === "collection" || key === "finish") {
+        setOptimisticValues((current) => ({ ...current, [key]: value }));
+      }
       router.replace(query ? `${pathname}?${query}` : pathname, {
         scroll: false,
       });
