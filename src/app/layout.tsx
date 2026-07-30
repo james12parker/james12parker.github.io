@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import "@/app/globals.css";
+import { BackToTopButton } from "@/components/layout/back-to-top-button";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { LanguageProvider } from "@/locales/language-provider";
@@ -97,6 +98,7 @@ export default function RootLayout({
           <SiteHeader />
           <main id="main-content">{children}</main>
           <SiteFooter />
+          <BackToTopButton />
         </LanguageProvider>
       </body>
     </html>

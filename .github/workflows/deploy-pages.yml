@@ -13,7 +13,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -44,11 +44,19 @@ jobs:
       - name: Type-check
         run: npm run typecheck
 
+      - name: Generate build provenance
+        env:
+          BUILD_SHA: ${{ github.sha }}
+        run: |
+          printf '{"sha":"%s","builtAt":"%s","releaseMode":"production"}\n' "$BUILD_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > public/build-info.json
+
       - name: Build static site
         env:
           GITHUB_PAGES: "true"
-          NEXT_PUBLIC_SITE_RELEASE_MODE: preview
+          NEXT_PUBLIC_SITE_RELEASE_MODE: production
           NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_PUBLIC_BUILD_SHA: ${{ github.sha }}
+          NEXT_PUBLIC_INQUIRY_ENDPOINT: ${{ vars.NEXT_PUBLIC_INQUIRY_ENDPOINT }}
         run: npm run build
 
       - name: Upload GitHub Pages artifact
@@ -66,3 +74,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      - name: Verify deployed site
+        env:
+          DEPLOYED_URL: ${{ steps.deployment.outputs.page_url }}
+          EXPECTED_SHA: ${{ github.sha }}
+        run: npm run verify:deployed

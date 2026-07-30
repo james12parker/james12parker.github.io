@@ -201,9 +201,13 @@ export function MobileNavigation() {
                 <ExternalIcon className="size-4" />
               </a>
             ) : (
-              <p className="mt-8 border border-line px-5 py-4 text-center text-sm text-muted">
-                네이버 스토어 링크 준비 중
-              </p>
+              <Link
+                className="mt-8 flex items-center justify-center border border-line px-5 py-4 text-sm font-semibold"
+                href="/contact?topic=product"
+                onClick={close}
+              >
+                제품 문의
+              </Link>
             )}
           </nav>
         </div>

@@ -329,14 +329,12 @@ export function DesktopNavigation() {
           <ExternalIcon className="size-3.5" />
         </a>
       ) : (
-        <span
-          aria-disabled="true"
-          className="ml-3 flex cursor-not-allowed items-center gap-1.5 self-center border border-line px-4 py-2.5 text-xs font-semibold text-muted"
-          title="네이버 스토어 링크 준비 중"
+        <Link
+          className="ml-3 flex items-center gap-1.5 self-center border border-line px-4 py-2.5 text-xs font-semibold"
+          href="/contact?topic=product"
         >
-          네이버 스토어
-          <ExternalIcon className="size-3.5" />
-        </span>
+          제품 문의
+        </Link>
       )}
     </nav>
   );

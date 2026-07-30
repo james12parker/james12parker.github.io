@@ -27,17 +27,28 @@ const catalogRedirects = catalogCorrections.flatMap((correction) => {
   }));
 });
 
+const inquiryOrigin = (() => {
+  try {
+    const endpoint = process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT;
+    return endpoint && new URL(endpoint).protocol === "https:"
+      ? new URL(endpoint).origin
+      : undefined;
+  } catch {
+    return undefined;
+  }
+})();
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
   "frame-ancestors 'none'",
-  "form-action 'self'",
+  `form-action 'self'${inquiryOrigin ? ` ${inquiryOrigin}` : ""}`,
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
   `script-src 'self' 'unsafe-inline'${isProductionRelease ? "" : " 'unsafe-eval'"}`,
-  `connect-src 'self'${isProductionRelease ? "" : " ws: wss:"}`,
+  `connect-src 'self'${inquiryOrigin ? ` ${inquiryOrigin}` : ""}${isProductionRelease ? "" : " ws: wss:"}`,
   ...(isProductionRelease ? ["upgrade-insecure-requests"] : []),
 ].join("; ");
 

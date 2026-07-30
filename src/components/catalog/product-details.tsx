@@ -149,9 +149,7 @@ export function ProductDetails({ product }: { product: Product }) {
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <p className="text-sm text-muted">상세 정보 준비 중</p>
-              )}
+              ) : null}
             </div>
           </div>
         </div>

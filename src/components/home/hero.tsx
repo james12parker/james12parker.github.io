@@ -52,14 +52,13 @@ export function Hero() {
                   <ExternalIcon className="size-4" />
                 </a>
               ) : (
-                <span
-                  aria-disabled="true"
-                  className="button-secondary text-muted"
-                  title="네이버 스토어 링크 준비 중"
+                <Link
+                  className="button-secondary"
+                  href="/contact?topic=product"
                 >
-                  네이버 스토어
-                  <ExternalIcon className="size-4" />
-                </span>
+                  제품 문의
+                  <ArrowRightIcon className="size-4" />
+                </Link>
               )}
             </div>
           </div>

@@ -219,3 +219,12 @@ wildcard.
 
 Headers reduce common browser risks but do not replace dependency maintenance,
 access control, legal review, or deployment hardening.
+
+## Inquiry form provider setup
+
+1. Create one inquiry form in the provider dashboard and configure the company recipient email there.
+2. Enable the provider's spam protection.
+3. Copy the generated HTTPS form endpoint; never add an SMTP password or recipient address to the repository.
+4. Add it as the GitHub repository/environment variable `NEXT_PUBLIC_INQUIRY_ENDPOINT`.
+5. Add the same public endpoint to `.env.local` for local testing.
+6. Finalize the inquiry-submission privacy policy before enabling the production form.
