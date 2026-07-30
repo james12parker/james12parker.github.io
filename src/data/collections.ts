@@ -17,7 +17,7 @@ export const collections: Collection[] = [
     nameKo: "벨레어",
     nameEn: "Belair",
     description: "벨레어의 수건걸이와 휴지걸이를 마감별로 소개합니다.",
-    image: "/images/products/belair/belair-toilet-paper-holder-chrome.jpg",
+    image: "/images/products/belair/belair-towel-bar-satin.jpg",
     editorialReviewRequired: true,
   },
   {
@@ -35,7 +35,7 @@ export const collections: Collection[] = [
     nameKo: "사코",
     nameEn: "Saco",
     description: "블랙과 크롬 마감으로 구성된 사코 제품을 소개합니다.",
-    image: "/images/products/saco/saco-toilet-paper-holder-black.jpg",
+    image: "/images/products/saco/saco-towel-bar-black.jpg",
     editorialReviewRequired: true,
   },
   {

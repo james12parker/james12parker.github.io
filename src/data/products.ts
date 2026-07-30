@@ -181,7 +181,7 @@ export const sourceProducts: Product[] = [
     collection: "belair",
     category: "toilet-paper-holders",
     folder: "belair",
-    finishes: ["크롬", "사틴"],
+    finishes: ["사틴"],
     relatedProductIds: ["belair-towel-bar"],
   }),
   namedProduct({

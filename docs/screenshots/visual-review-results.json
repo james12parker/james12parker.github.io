@@ -1,6 +1,6 @@
 {
-  "baseUrl": "http://127.0.0.1:3100",
-  "generatedAt": "2026-07-30T08:28:38.680Z",
+  "baseUrl": "http://localhost:3100",
+  "generatedAt": "2026-07-30T07:03:27.587Z",
   "viewportSizes": {
     "desktop": {
       "width": 1440,
@@ -127,6 +127,118 @@
       "state": "크롬 마감 선택"
     },
     {
+      "filename": "60-home-category-representatives.png",
+      "path": "docs/screenshots/60-home-category-representatives.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "HG112S recessed holder and HG999-2 shaving mirror category covers"
+    },
+    {
+      "filename": "61-home-coordinated-satin-towel-bars.png",
+      "path": "docs/screenshots/61-home-coordinated-satin-towel-bars.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Belair, Brio, and Concord satin towel bars"
+    },
+    {
+      "filename": "62-collections-desktop.png",
+      "path": "docs/screenshots/62-collections-desktop.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "Collections desktop"
+    },
+    {
+      "filename": "64-collection-belair-towel-bar.png",
+      "path": "docs/screenshots/64-collection-belair-towel-bar.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Belair satin towel-bar collection cover"
+    },
+    {
+      "filename": "65-collection-saco-towel-bar.png",
+      "path": "docs/screenshots/65-collection-saco-towel-bar.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Saco towel-bar collection cover"
+    },
+    {
+      "filename": "66-collection-image-canvas-closeup.png",
+      "path": "docs/screenshots/66-collection-image-canvas-closeup.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Unified white collection image canvas"
+    },
+    {
+      "filename": "67-belair-paper-holder-satin-only-card.png",
+      "path": "docs/screenshots/67-belair-paper-holder-satin-only-card.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Belair paper holder satin-only product card"
+    },
+    {
+      "filename": "68-belair-paper-holder-stale-chrome-fallback.png",
+      "path": "docs/screenshots/68-belair-paper-holder-stale-chrome-fallback.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "Stale chrome URL safely falls back to satin"
+    },
+    {
+      "filename": "63-collections-mobile.png",
+      "path": "docs/screenshots/63-collections-mobile.png",
+      "viewport": "mobile",
+      "fullPage": true,
+      "state": "Collections mobile"
+    },
+    {
+      "filename": "50-products-no-finish.png",
+      "path": "docs/screenshots/50-products-no-finish.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "마감 필터 없음"
+    },
+    {
+      "filename": "51-products-chrome.png",
+      "path": "docs/screenshots/51-products-chrome.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "크롬 마감 필터"
+    },
+    {
+      "filename": "52-saco-paper-holder-chrome.png",
+      "path": "docs/screenshots/52-saco-paper-holder-chrome.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "크롬 필터의 사코 휴지걸이"
+    },
+    {
+      "filename": "53-products-black.png",
+      "path": "docs/screenshots/53-products-black.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "블랙 마감 필터"
+    },
+    {
+      "filename": "54-saco-paper-holder-black.png",
+      "path": "docs/screenshots/54-saco-paper-holder-black.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "블랙 필터의 사코 휴지걸이"
+    },
+    {
+      "filename": "56-products-filter-cleared.png",
+      "path": "docs/screenshots/56-products-filter-cleared.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "크롬 선택 후 필터 초기화"
+    },
+    {
+      "filename": "55-products-chrome-mobile.png",
+      "path": "docs/screenshots/55-products-chrome-mobile.png",
+      "viewport": "mobile",
+      "fullPage": true,
+      "state": "모바일 크롬 마감 필터"
+    },
+    {
       "filename": "19-home-en-desktop.png",
       "path": "docs/screenshots/19-home-en-desktop.png",
       "viewport": "desktop",
@@ -176,8 +288,8 @@
       "state": "HG822S 이단수건선반"
     },
     {
-      "filename": "26-belair-paper-holder-chrome.png",
-      "path": "docs/screenshots/26-belair-paper-holder-chrome.png",
+      "filename": "26-belair-paper-holder-satin-only.png",
+      "path": "docs/screenshots/26-belair-paper-holder-satin-only.png",
       "viewport": "desktop",
       "fullPage": false,
       "state": "벨레어 휴지걸이"
@@ -188,6 +300,125 @@
       "viewport": "desktop",
       "fullPage": false,
       "state": "브리오 휴지걸이"
+    },
+    {
+      "filename": "28-hero-375.png",
+      "path": "docs/screenshots/28-hero-375.png",
+      "viewport": "mobile",
+      "fullPage": false,
+      "state": "Homepage hero and EssentialBathroomStorage at 375px"
+    },
+    {
+      "filename": "28-hero-768.png",
+      "path": "docs/screenshots/28-hero-768.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Homepage hero and EssentialBathroomStorage at 768px"
+    },
+    {
+      "filename": "28-hero-1024.png",
+      "path": "docs/screenshots/28-hero-1024.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Homepage hero and EssentialBathroomStorage at 1024px"
+    },
+    {
+      "filename": "28-hero-1440.png",
+      "path": "docs/screenshots/28-hero-1440.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Homepage hero and EssentialBathroomStorage at 1440px"
+    },
+    {
+      "filename": "40-essential-storage-closeup.png",
+      "path": "docs/screenshots/40-essential-storage-closeup.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "EssentialBathroomStorage close-up"
+    },
+    {
+      "filename": "32-category-section-normal.png",
+      "path": "docs/screenshots/32-category-section-normal.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Category cards, normal state"
+    },
+    {
+      "filename": "33-category-card-hover.png",
+      "path": "docs/screenshots/33-category-card-hover.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Category card, hover state"
+    },
+    {
+      "filename": "34-category-image-edge.png",
+      "path": "docs/screenshots/34-category-image-edge.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "Close category image edge"
+    },
+    {
+      "filename": "35-towel-bar-order.png",
+      "path": "docs/screenshots/35-towel-bar-order.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "Requested towel-bar and towel-shelf order"
+    },
+    {
+      "filename": "41-battuta-towel-bar-card.png",
+      "path": "docs/screenshots/41-battuta-towel-bar-card.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "바투타 수건걸이 사틴 product card"
+    },
+    {
+      "filename": "42-battuta-towel-bar-detail.png",
+      "path": "docs/screenshots/42-battuta-towel-bar-detail.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "바투타 수건걸이 사틴 product detail"
+    },
+    {
+      "filename": "43-hg100ms-clean-image.png",
+      "path": "docs/screenshots/43-hg100ms-clean-image.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "HG100MS 코너선반 without embedded model label"
+    },
+    {
+      "filename": "44-hg110-1-clean-image.png",
+      "path": "docs/screenshots/44-hg110-1-clean-image.png",
+      "viewport": "desktop",
+      "fullPage": false,
+      "state": "HG110-1 매립휴지걸이 without embedded model label"
+    },
+    {
+      "filename": "36-battuta-collections.png",
+      "path": "docs/screenshots/36-battuta-collections.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "battuta collection card"
+    },
+    {
+      "filename": "37-battuta-detail.png",
+      "path": "docs/screenshots/37-battuta-detail.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "battuta collection heading"
+    },
+    {
+      "filename": "38-battuta-products.png",
+      "path": "docs/screenshots/38-battuta-products.png",
+      "viewport": "desktop",
+      "fullPage": true,
+      "state": "battuta product and filter labels"
+    },
+    {
+      "filename": "39-mobile-logo-navigation-battuta.png",
+      "path": "docs/screenshots/39-mobile-logo-navigation-battuta.png",
+      "viewport": "mobile",
+      "fullPage": false,
+      "state": "HOYANG25 mobile navigation and battuta label"
     }
   ],
   "consoleErrors": [],

@@ -40,7 +40,6 @@ test("사코 휴지걸이 follows chrome, black, and cleared finish states", () 
 
 test("multi-finish collection products resolve every supported preferred finish", () => {
   const slugs = [
-    "belair-toilet-paper-holder",
     "brio-toilet-paper-holder",
     "concord-towel-bar",
     "concord-toilet-paper-holder",
@@ -58,6 +57,14 @@ test("multi-finish collection products resolve every supported preferred finish"
       );
     }
   }
+});
+
+test("벨레어 휴지걸이 exposes only satin and stale chrome falls back safely", () => {
+  const product = productBySlug("belair-toilet-paper-holder");
+
+  assert.equal(product.variants.length, 1);
+  assert.equal(product.variants[0].finish, "사틴");
+  assert.equal(resolveProductVariant(product.variants, "크롬")?.finish, "사틴");
 });
 
 test("single-finish and inconsistent data safely fall back to the first visible variant", () => {

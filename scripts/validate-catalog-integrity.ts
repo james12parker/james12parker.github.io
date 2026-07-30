@@ -1,4 +1,5 @@
 import { categories } from "../src/data/categories";
+import { collections } from "../src/data/collections";
 import { products } from "../src/data/products";
 
 function invariant(condition: unknown, message: string): asserts condition {
@@ -83,19 +84,32 @@ invariant(
   "Requested towel-bar catalog order is not preserved.",
 );
 
-for (const id of ["belair-paper-holder", "brio-paper-holder"]) {
-  const product = byId.get(id);
-  invariant(product, "Missing product: " + id);
+const belairPaperHolder = byId.get("belair-paper-holder");
+invariant(belairPaperHolder, "Belair paper holder must exist.");
+invariant(
+  belairPaperHolder.variants.length === 1 &&
+    belairPaperHolder.variants[0].finish === "사틴",
+  "Belair paper holder must only expose satin.",
+);
+
+const brioPaperHolder = byId.get("brio-paper-holder");
+invariant(brioPaperHolder, "Brio paper holder must exist.");
+invariant(
+  brioPaperHolder.variants[0].finish === "크롬",
+  "Brio paper holder must display chrome by default.",
+);
+
+const expectedCollectionImages = new Map([
+  ["belair", "/images/products/belair/belair-towel-bar-satin.jpg"],
+  ["saco", "/images/products/saco/saco-towel-bar-black.jpg"],
+]);
+for (const [collectionId, expectedImage] of expectedCollectionImages) {
   invariant(
-    product.variants[0].finish === "크롬",
-    id + " must display chrome by default.",
+    collections.find((collection) => collection.id === collectionId)?.image ===
+      expectedImage,
+    `${collectionId} must use its towel-bar collection cover.`,
   );
 }
-invariant(
-  byId.get("belair-paper-holder")?.variants[0].image !==
-    byId.get("brio-paper-holder")?.variants[0].image,
-  "Paper-holder chrome images must remain product-specific.",
-);
 
 const shavingMirrors = categories.find((category) => category.id === "mirrors");
 invariant(

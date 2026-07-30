@@ -68,6 +68,7 @@ async function main() {
 
     await captureDesktop(desktop);
     await captureMobile(mobile);
+    await captureRequestedCatalogRefresh(desktop, mobile);
     await captureFinishFilterStates(desktop, mobile);
     await captureLocalizedHome(
       desktopEnglish,
@@ -223,6 +224,102 @@ async function captureMobile(context: BrowserContext) {
   await page.close();
 }
 
+async function captureRequestedCatalogRefresh(
+  desktopContext: BrowserContext,
+  mobileContext: BrowserContext,
+) {
+  const desktop = await preparedPage(desktopContext, "desktop");
+  await visit(desktop, "/");
+
+  const categorySection = desktop.locator("section").filter({
+    has: desktop.getByRole("heading", { name: "Browse by category" }),
+  });
+  await screenshotElement(
+    categorySection,
+    "60-home-category-representatives.png",
+    "desktop",
+    "HG112S recessed holder and HG999-2 shaving mirror category covers",
+  );
+
+  const coordinatedSection = desktop.locator("section").filter({
+    has: desktop.getByRole("heading", {
+      name: "하나의 공간으로 이어지는 구성",
+    }),
+  });
+  await screenshotElement(
+    coordinatedSection,
+    "61-home-coordinated-satin-towel-bars.png",
+    "desktop",
+    "Belair, Brio, and Concord satin towel bars",
+  );
+
+  await visit(desktop, "/collections");
+  await screenshot(
+    desktop,
+    "62-collections-desktop.png",
+    "desktop",
+    true,
+    "Collections desktop",
+  );
+  const belairCard = desktop
+    .getByRole("link", { name: "벨레어 컬렉션 보기" })
+    .locator("xpath=ancestor::article");
+  const sacoCard = desktop
+    .getByRole("link", { name: "사코 컬렉션 보기" })
+    .locator("xpath=ancestor::article");
+  await screenshotElement(
+    belairCard,
+    "64-collection-belair-towel-bar.png",
+    "desktop",
+    "Belair satin towel-bar collection cover",
+  );
+  await screenshotElement(
+    sacoCard,
+    "65-collection-saco-towel-bar.png",
+    "desktop",
+    "Saco towel-bar collection cover",
+  );
+  await screenshotElement(
+    belairCard.locator("a").first(),
+    "66-collection-image-canvas-closeup.png",
+    "desktop",
+    "Unified white collection image canvas",
+  );
+
+  await visit(desktop, "/products?collection=belair");
+  const belairPaperCard = desktop
+    .getByRole("link", { name: "벨레어 휴지걸이 상세 보기" })
+    .first()
+    .locator("xpath=ancestor::article");
+  await screenshotElement(
+    belairPaperCard,
+    "67-belair-paper-holder-satin-only-card.png",
+    "desktop",
+    "Belair paper holder satin-only product card",
+  );
+
+  await visit(desktop, "/products/belair-toilet-paper-holder?finish=크롬");
+  await screenshot(
+    desktop,
+    "68-belair-paper-holder-stale-chrome-fallback.png",
+    "desktop",
+    true,
+    "Stale chrome URL safely falls back to satin",
+  );
+  await desktop.close();
+
+  const mobile = await preparedPage(mobileContext, "mobile");
+  await visit(mobile, "/collections");
+  await screenshot(
+    mobile,
+    "63-collections-mobile.png",
+    "mobile",
+    true,
+    "Collections mobile",
+  );
+  await mobile.close();
+}
+
 async function captureFinishFilterStates(
   desktopContext: BrowserContext,
   mobileContext: BrowserContext,
@@ -258,8 +355,7 @@ async function captureFinishFilterStates(
   await chromeCard.getByRole("button", { name: "마감: 블랙" }).click();
   await assertSacoPaperHolderFinish(desktop, "블랙");
 
-  await desktop.getByRole("checkbox", { name: "블랙", exact: true }).click();
-  await desktop.waitForURL((url) => url.searchParams.get("finish") === "블랙");
+  await visit(desktop, "/products?finish=블랙");
   const blackCard = await assertSacoPaperHolderFinish(desktop, "블랙");
   await screenshot(
     desktop,
@@ -275,11 +371,9 @@ async function captureFinishFilterStates(
     "블랙 필터의 사코 휴지걸이",
   );
 
-  await desktop.getByRole("checkbox", { name: "크롬", exact: true }).click();
-  await desktop.waitForURL((url) => url.searchParams.get("finish") === "크롬");
+  await visit(desktop, "/products?finish=크롬");
   await assertSacoPaperHolderFinish(desktop, "크롬");
-  await desktop.getByRole("button", { name: "필터 초기화" }).click();
-  await desktop.waitForURL((url) => !url.searchParams.has("finish"));
+  await visit(desktop, "/products");
   await assertSacoPaperHolderFinish(desktop, "블랙");
   await screenshot(
     desktop,
@@ -411,7 +505,7 @@ async function captureCatalogUpdates(context: BrowserContext) {
   for (const [filename, text] of [
     ["24-hg822c-card-desktop.png", "HG822C 이단수건선반"],
     ["25-hg822s-card-desktop.png", "HG822S 이단수건선반"],
-    ["26-belair-paper-holder-chrome.png", "벨레어 휴지걸이"],
+    ["26-belair-paper-holder-satin-only.png", "벨레어 휴지걸이"],
     ["27-brio-paper-holder-chrome.png", "브리오 휴지걸이"],
   ] as const) {
     const card = page.locator("article").filter({ hasText: text }).first();

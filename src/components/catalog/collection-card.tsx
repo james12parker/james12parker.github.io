@@ -13,15 +13,15 @@ export function CollectionCard({
   priority?: boolean;
 }) {
   return (
-    <article className="group">
+    <article className="group bg-white">
       <Link
         aria-label={`${collection.nameKo} 컬렉션 보기`}
-        className="relative block aspect-[4/3] overflow-hidden bg-stone"
+        className="relative block aspect-[4/3] overflow-hidden border border-line bg-white"
         href={`/collections/${collection.slug}`}
       >
         <Image
           alt={`${collection.nameKo} 컬렉션 제품 이미지`}
-          className="object-contain p-2 transition-transform duration-700 ease-out group-hover:scale-[1.018]"
+          className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-[1.018] md:p-5"
           fill
           priority={priority}
           sizes="(max-width: 768px) 80vw, 33vw"

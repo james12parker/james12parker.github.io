@@ -15,25 +15,42 @@ import { collections } from "@/data/collections";
 import { products } from "@/data/products";
 import { isPreviewRelease } from "@/config/launch-data";
 
+const homepageCategoryRepresentativeProductIds: Readonly<
+  Record<string, string>
+> = {
+  "towel-bars": "belair-towel-bar",
+  "recessed-holders": "hg112s",
+  mirrors: "hg9992",
+};
+
+const homepageCategoryRepresentativeFinishes: Readonly<Record<string, string>> =
+  {
+    "towel-bars": "사틴",
+    "recessed-holders": "사틴",
+    mirrors: "사틴",
+  };
+
+const coordinatedTowelBars = [
+  { id: "belair-towel-bar", finish: "사틴" },
+  { id: "brio-towel-bar", finish: "사틴" },
+  { id: "concord-towel-bar", finish: "사틴" },
+] as const;
+
 export default function HomePage() {
   const homepageCategories = homepageCategoryIds
     .map((id) => categories.find((category) => category.id === id))
     .filter((category) => category !== undefined);
-  const coordinatedFinishes = {
-    "belair-towel-bar": "사틴",
-    "saco-towel-bar": "크롬",
-  } as const;
-  const coordinatedProducts = Object.entries(coordinatedFinishes)
-    .map(([id, finish]) => {
+  const coordinatedProducts = coordinatedTowelBars
+    .map(({ id, finish }) => {
       const product = products.find((item) => item.id === id);
-      return product
-        ? {
-            ...product,
-            variants: product.variants.filter(
-              (variant) => variant.finish === finish,
-            ),
-          }
-        : undefined;
+      if (!product) return undefined;
+
+      const preferredVariant = product.variants.find(
+        (variant) => variant.finish === finish,
+      );
+      if (!preferredVariant) return undefined;
+
+      return { ...product, variants: [preferredVariant] };
     })
     .filter((product) => product !== undefined);
   const concord = collections.find((collection) => collection.id === "concord");
@@ -55,16 +72,19 @@ export default function HomePage() {
         />
         <div className="grid grid-cols-2 gap-x-4 md:grid-cols-3">
           {homepageCategories.map((category, index) => {
-            const representativeProduct =
-              category.id === "towel-bars"
-                ? products.find((product) => product.id === "belair-towel-bar")
-                : products.find((product) => product.category === category.id);
+            const representativeProductId =
+              homepageCategoryRepresentativeProductIds[category.id];
+            const representativeProduct = representativeProductId
+              ? products.find(
+                  (product) => product.id === representativeProductId,
+                )
+              : products.find((product) => product.category === category.id);
+            const preferredFinish =
+              homepageCategoryRepresentativeFinishes[category.id];
             const representativeVariant =
-              category.id === "towel-bars"
-                ? representativeProduct?.variants.find(
-                    (variant) => variant.finish === "사틴",
-                  )
-                : representativeProduct?.variants[0];
+              representativeProduct?.variants.find(
+                (variant) => variant.finish === preferredFinish,
+              ) ?? representativeProduct?.variants[0];
 
             return (
               <CategoryCard
@@ -91,7 +111,7 @@ export default function HomePage() {
             eyebrow="Coordinated towel bars"
             title="하나의 공간으로 이어지는 구성"
           />
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
             {coordinatedProducts.map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}

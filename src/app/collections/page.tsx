@@ -17,10 +17,9 @@ export default function CollectionsPage() {
   return (
     <>
       <PageIntro
-        breadcrumb="컬렉션"
         description="제품군별 형태와 마감 옵션을 한눈에 살펴볼 수 있습니다."
-        eyebrow="Collections"
-        title="컬렉션"
+        title="Collections"
+        titleClassName="text-[2.75rem] leading-tight font-medium tracking-[-0.05em] md:text-[4.25rem]"
       />
       <section className="page-shell pb-24 md:pb-32">
         <div className="grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
