@@ -21,6 +21,7 @@ export default function ContactPage() {
         description="문의 내용을 남겨주시면 확인 후 이메일로 답변드립니다."
         eyebrow="Contact"
         title="제품과 납품에 대해 문의하세요."
+        titleClassName="text-2xl leading-tight font-medium tracking-[-0.04em] text-balance md:text-4xl"
       />
       <section className="page-shell grid gap-12 pb-24 md:pb-32 lg:grid-cols-[1.35fr_0.65fr] lg:gap-20">
         <Suspense fallback={<div className="min-h-96" />}>

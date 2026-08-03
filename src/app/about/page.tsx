@@ -43,6 +43,7 @@ export default function AboutPage() {
         description={siteConfig.companyDescription}
         eyebrow="About us"
         title="제품과 공간 사이의 균형"
+        titleClassName="text-2xl leading-tight font-medium tracking-[-0.04em] text-balance md:text-4xl"
       />
 
       <section className="page-shell pb-20 md:pb-32">

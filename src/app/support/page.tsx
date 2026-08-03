@@ -74,6 +74,7 @@ export default function SupportPage() {
         description="제품을 고르고 설치하고 관리하는 데 필요한 정보를 한곳에서 확인하세요."
         eyebrow="Product support"
         title="무엇을 도와드릴까요?"
+        titleClassName="text-2xl leading-tight font-medium tracking-[-0.04em] text-balance md:text-4xl"
       />
 
       <section className="page-shell pb-24 md:pb-32">
