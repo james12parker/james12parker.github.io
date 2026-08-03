@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowRightIcon, ExternalIcon } from "@/components/icons";
+import { isPlaceholderValue } from "@/config/launch-data";
 import { siteConfig } from "@/config/site";
 
 const footerLinks = [
@@ -15,6 +16,12 @@ const footerLinks = [
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
+  const companyDetails = [
+    { label: "회사명", value: siteConfig.business.companyName },
+    { label: "대표명", value: siteConfig.business.representative },
+    { label: "사업장 주소", value: siteConfig.address },
+    { label: "이메일", value: siteConfig.email },
+  ].filter(({ value }) => !isPlaceholderValue(value));
 
   return (
     <footer className="border-t border-ink bg-ink text-white">
@@ -81,23 +88,21 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div className="w-full md:max-w-[24rem] md:justify-self-end">
-          <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand-soft">
-            회사 정보
-          </p>
-          <dl className="grid grid-cols-[4.5rem_1fr] gap-x-3 gap-y-2 text-xs leading-5">
-            <dt className="text-white/55">회사명</dt>
-            <dd className="text-white/80">{siteConfig.business.companyName}</dd>
-            <dt className="text-white/55">대표명</dt>
-            <dd className="text-white/80">
-              {siteConfig.business.representative}
-            </dd>
-            <dt className="text-white/55">사업장 주소</dt>
-            <dd className="text-white/80">{siteConfig.address}</dd>
-            <dt className="text-white/55">이메일</dt>
-            <dd className="text-white/80">{siteConfig.email}</dd>
-          </dl>
-        </div>
+        {companyDetails.length ? (
+          <div className="w-full md:max-w-[24rem] md:justify-self-end">
+            <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand-soft">
+              회사 정보
+            </p>
+            <dl className="grid grid-cols-[4.5rem_1fr] gap-x-3 gap-y-2 text-xs leading-5">
+              {companyDetails.map(({ label, value }) => (
+                <div className="contents" key={label}>
+                  <dt className="text-white/55">{label}</dt>
+                  <dd className="text-white/80">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ) : null}
       </div>
       <div className="border-t border-white/20">
         <div className="page-shell flex flex-col gap-3 py-4 text-[11px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
