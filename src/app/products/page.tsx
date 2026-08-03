@@ -21,8 +21,8 @@ export default function ProductsPage() {
       <PageIntro
         breadcrumb="제품"
         description="카테고리, 컬렉션, 마감을 선택해 공간에 필요한 욕실 액세서리를 찾아보세요."
-        eyebrow="Product catalog"
-        title="전체 제품"
+        title="Product catalog"
+        titleClassName="text-base leading-[1.25] font-bold tracking-[0.15em] text-[#b3262e] uppercase lg:text-lg"
       />
       <Suspense fallback={<CatalogLoading />}>
         <CatalogClient
