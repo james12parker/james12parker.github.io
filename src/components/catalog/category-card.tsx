@@ -10,12 +10,14 @@ export function CategoryCard({
   index,
   image,
   imageAlt,
+  imageClassName,
   displayName,
 }: {
   category: Category;
   index: number;
   image?: string;
   imageAlt?: string;
+  imageClassName?: string;
   displayName?: string;
 }) {
   return (
@@ -33,7 +35,9 @@ export function CategoryCard({
         <span className="relative block aspect-[4/3] w-full overflow-hidden bg-warm-white">
           <Image
             alt={imageAlt ?? ""}
-            className="object-contain p-1"
+            className={["object-contain p-1", imageClassName]
+              .filter(Boolean)
+              .join(" ")}
             fill
             sizes="(max-width: 767px) 50vw, 33vw"
             src={image}

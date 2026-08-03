@@ -25,11 +25,11 @@ export function Hero() {
             </p>
             <h1 className="max-w-lg text-2xl leading-[1.2] font-medium tracking-[-0.045em] text-balance sm:text-2xl lg:text-3xl">
               {/* 욕실을 완성하는 정제된 디테일 */}
-              컬렉션과 마감으로 완성하는 욕실 액세서리
+              컬렉션과 마감으로 완성하는 욕실
             </h1>
             <p className="mt-7 max-w-xl text-[15px] leading-7 text-muted md:text-base">
-              공간에 자연스럽게 어우러지는 디자인과 실용적인 구조의 욕실
-              액세서리를 제안합니다.
+              공간에 자연스럽게 어우러지는 디자인과 실용적인 구조의 욕실을
+              제안합니다.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link className="button-primary" href="/products">

@@ -8,6 +8,7 @@ async function main() {
   const expectedHome = [
     "EssentialBathroomStorage",
     "Browse by category",
+    "공간과 용도에 맞는 제품",
     "Coordinated towel bars",
     "battuta",
     "Saco",
@@ -16,7 +17,6 @@ async function main() {
   const forbidden = [
     "Bathroom details, considered",
     "Provisional brand image",
-    "공간과 용도에 맞는 제품",
     "Batuta",
     "Shako",
     "거울",

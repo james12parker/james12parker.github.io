@@ -111,6 +111,11 @@ export default function HomePage() {
                     ? `${representativeProduct.nameKo} ${representativeVariant?.finish} 제품 이미지`
                     : undefined
                 }
+                imageClassName={
+                  category.id === "toilet-paper-holders"
+                    ? "scale-[0.82]"
+                    : undefined
+                }
                 index={index}
                 key={category.id}
               />
