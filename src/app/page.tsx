@@ -80,7 +80,9 @@ export default function HomePage() {
       <section className="page-shell py-20 md:py-28">
         <SectionHeading
           action={{ label: "전체 제품", href: "/products" }}
-          title="Browse by category"
+          eyebrow="Browse by category"
+          eyebrowClassName="homepage-eyebrow"
+          title="공간과 용도에 맞는 제품"
         />
         <div className="grid grid-cols-2 gap-x-4 md:grid-cols-3">
           {homepageCategories.map((category, index) => {
