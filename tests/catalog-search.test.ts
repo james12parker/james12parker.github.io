@@ -3,6 +3,7 @@ import test from "node:test";
 
 import { categories } from "@/data/categories";
 import { collections } from "@/data/collections";
+import { homepageFeaturedProductConfigs } from "@/data/homepage-products";
 import { finishes, getProductBySlug, products } from "@/data/products";
 import {
   productBelongsToCollection,
@@ -141,4 +142,45 @@ test("corrected public models, categories, finishes, and Brio image are searchab
     brio.variants.find((variant) => variant.finish === "크롬")?.image,
     "/images/products/brio/brio-toilet-paper-holder-chrome.png",
   );
+});
+test("HG513 displays satin before chrome", () => {
+  const hg513 = products.find((product) => product.id === "hg513");
+
+  assert.ok(hg513);
+  assert.deepEqual(
+    hg513.variants.map((variant) => variant.finish),
+    ["사틴", "크롬"],
+  );
+  assert.match(hg513.variants[0].image, /satin/);
+});
+
+test("homepage featured configuration has the approved unique order", () => {
+  const configuredIds = homepageFeaturedProductConfigs.map(({ id }) => id);
+  assert.deepEqual(configuredIds, [
+    "belair-towel-bar",
+    "batuta-paper-holder",
+    "concord-towel-bar",
+    "concord-paper-holder",
+    "hg110s",
+    "hg112s",
+    "hg9992",
+    "hg55s",
+    "hg392ms",
+    "hg100ms",
+    "hg822s",
+    "hg01ms",
+    "hg513",
+    "hg05",
+  ]);
+  assert.equal(new Set(configuredIds).size, 14);
+});
+
+test("only homepage featured products have Featured badges", () => {
+  const configuredIds = new Set(
+    homepageFeaturedProductConfigs.map(({ id }) => id),
+  );
+
+  for (const product of products) {
+    assert.equal(product.featured, configuredIds.has(product.id));
+  }
 });

@@ -1,6 +1,11 @@
 import type { Finish, Product, ProductVariant } from "@/types/product";
 import { applyCatalogOverrides } from "@/data/catalog-overrides";
+import { homepageFeaturedProductConfigs } from "@/data/homepage-products";
 import { getProductImageMapping } from "@/data/image-mapping";
+
+const featuredProductIdSet = new Set(
+  homepageFeaturedProductConfigs.map(({ id }) => id),
+);
 
 const finishFileNames: Record<Finish, string> = {
   사틴: "satin",
@@ -56,7 +61,6 @@ type NamedProductInput = {
   finishes: Finish[];
   relatedProductIds: string[];
   catalogSortOrder?: number;
-  featured?: boolean;
 };
 
 function namedProduct({
@@ -71,7 +75,6 @@ function namedProduct({
   finishes,
   relatedProductIds,
   catalogSortOrder = Number.MAX_SAFE_INTEGER,
-  featured = false,
 }: NamedProductInput): Product {
   return {
     id,
@@ -89,7 +92,7 @@ function namedProduct({
     ),
     specifications: {},
     relatedProductIds,
-    featured,
+    featured: featuredProductIdSet.has(id),
     customerVisible: true,
     launchVerificationStatus: "unverified",
   };
@@ -104,7 +107,6 @@ type HgProductInput = {
   finishes: Finish[];
   relatedProductIds: string[];
   catalogSortOrder?: number;
-  featured?: boolean;
   variantModels?: Partial<Record<Finish, string>>;
   imageBase?: string;
 };
@@ -118,14 +120,14 @@ function hgProduct({
   finishes,
   relatedProductIds,
   catalogSortOrder = Number.MAX_SAFE_INTEGER,
-  featured = false,
   variantModels,
   imageBase,
 }: HgProductInput): Product {
   const publicModel = displayModel ?? model;
   const productName = `${publicModel} ${name}`;
+  const id = model.toLowerCase().replaceAll("-", "");
   return {
-    id: model.toLowerCase().replaceAll("-", ""),
+    id,
     slug,
     nameKo: productName,
     catalogSortOrder,
@@ -142,7 +144,7 @@ function hgProduct({
     ),
     specifications: {},
     relatedProductIds,
-    featured,
+    featured: featuredProductIdSet.has(id),
     customerVisible: true,
     launchVerificationStatus: "unverified",
   };
@@ -159,7 +161,6 @@ export const sourceProducts: Product[] = [
     finishes: ["사틴"],
     relatedProductIds: ["batuta-paper-holder"],
     catalogSortOrder: 10,
-    featured: true,
   }),
   namedProduct({
     id: "batuta-paper-holder",
@@ -183,7 +184,6 @@ export const sourceProducts: Product[] = [
     finishes: ["사틴"],
     relatedProductIds: ["batuta-paper-holder"],
     catalogSortOrder: 20,
-    featured: true,
   }),
   namedProduct({
     id: "brio-towel-bar",
@@ -216,7 +216,6 @@ export const sourceProducts: Product[] = [
     finishes: ["블랙", "크롬"],
     relatedProductIds: ["saco-paper-holder"],
     catalogSortOrder: 30,
-    featured: true,
   }),
   namedProduct({
     id: "saco-paper-holder",
@@ -238,7 +237,6 @@ export const sourceProducts: Product[] = [
     finishes: ["사틴", "크롬"],
     relatedProductIds: ["concord-paper-holder"],
     catalogSortOrder: 40,
-    featured: true,
   }),
   namedProduct({
     id: "concord-paper-holder",
@@ -249,7 +247,6 @@ export const sourceProducts: Product[] = [
     folder: "concord",
     finishes: ["사틴", "크롬"],
     relatedProductIds: ["concord-towel-bar"],
-    featured: true,
   }),
   hgProduct({
     model: "HG01MS",
@@ -258,7 +255,6 @@ export const sourceProducts: Product[] = [
     category: "shower-accessories",
     finishes: ["무광"],
     relatedProductIds: ["hg100ms", "hg392ms"],
-    featured: true,
   }),
   hgProduct({
     model: "HG05",
@@ -284,7 +280,6 @@ export const sourceProducts: Product[] = [
     category: "shelves-storage",
     finishes: ["무광"],
     relatedProductIds: ["hg392ms", "hg01ms"],
-    featured: true,
   }),
   hgProduct({
     model: "HG110-1",
@@ -309,7 +304,6 @@ export const sourceProducts: Product[] = [
     category: "recessed-holders",
     finishes: ["사틴"],
     relatedProductIds: ["hg1101", "hg110c"],
-    featured: true,
   }),
   hgProduct({
     model: "HG112C",
@@ -326,7 +320,6 @@ export const sourceProducts: Product[] = [
     category: "recessed-holders",
     finishes: ["사틴"],
     relatedProductIds: ["hg112c", "hg240"],
-    featured: true,
   }),
   hgProduct({
     model: "HG120",
@@ -357,7 +350,7 @@ export const sourceProducts: Product[] = [
     slug: "hg513-cleaning-brush",
     name: "청소솔",
     category: "cleaning",
-    finishes: ["크롬", "사틴"],
+    finishes: ["사틴", "크롬"],
     relatedProductIds: [],
   }),
   hgProduct({

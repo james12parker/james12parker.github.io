@@ -232,7 +232,7 @@ export const english: Record<string, string> = {
   "제품별 구매 버튼을 통해 해당 마감의 네이버 스마트스토어 판매 페이지로 이동할 수 있습니다.":
     "Use each product purchase button to open the matching finish on Naver Smart Store.",
   "스토어 링크 준비 중": "Store link coming soon",
-  "공간에 자연스럽게 어우러지는 욕실 액세서리를 제안합니다.":
+  "공간에 자연스럽게 어우러지는 욕실을 제안합니다.":
     "Bathroom accessories designed to sit naturally within the space.",
   "정보 준비 중": "Information pending",
   모델: "Model",

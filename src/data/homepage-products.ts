@@ -6,17 +6,17 @@ export type HomepageFeaturedProductConfig = {
 export const homepageFeaturedProductConfigs: readonly HomepageFeaturedProductConfig[] =
   [
     {
+      id: "belair-towel-bar",
+    },
+    {
       id: "batuta-paper-holder",
       displayName: "벨레어 휴지걸이",
     },
     {
-      id: "hg05",
+      id: "concord-towel-bar",
     },
     {
-      id: "hg55s",
-    },
-    {
-      id: "hg100ms",
+      id: "concord-paper-holder",
     },
     {
       id: "hg110s",
@@ -25,15 +25,27 @@ export const homepageFeaturedProductConfigs: readonly HomepageFeaturedProductCon
       id: "hg112s",
     },
     {
+      id: "hg9992",
+    },
+    {
+      id: "hg55s",
+    },
+    {
       id: "hg392ms",
     },
     {
-      id: "hg513",
+      id: "hg100ms",
     },
     {
       id: "hg822s",
     },
     {
-      id: "hg9992",
+      id: "hg01ms",
+    },
+    {
+      id: "hg513",
+    },
+    {
+      id: "hg05",
     },
   ] as const;

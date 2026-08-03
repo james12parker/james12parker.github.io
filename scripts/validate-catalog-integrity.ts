@@ -132,7 +132,7 @@ for (const [categoryId, expectedName] of expectedCategoryNames) {
 const expectedProductFinishes = new Map([
   ["hg120", ["크롬"]],
   ["hg240", ["크롬"]],
-  ["hg513", ["크롬", "사틴"]],
+  ["hg513", ["사틴", "크롬"]],
   ["hg999", ["크롬"]],
 ]);
 for (const [productId, expectedFinishes] of expectedProductFinishes) {
@@ -161,30 +161,21 @@ invariant(
   "HG05 public model must be HG05S.",
 );
 
-const expectedFeatured = new Map([
-  ["hg110s", true],
-  ["hg112s", true],
-  ["hg240", false],
-  ["hg822c", false],
-  ["hg822s", false],
-]);
-for (const [productId, expected] of expectedFeatured) {
-  invariant(
-    Boolean(byId.get(productId)?.featured) === expected,
-    `${productId} featured state mismatch.`,
-  );
-}
 const expectedHomepageFeaturedIds = [
+  "belair-towel-bar",
   "batuta-paper-holder",
-  "hg05",
-  "hg55s",
-  "hg100ms",
+  "concord-towel-bar",
+  "concord-paper-holder",
   "hg110s",
   "hg112s",
-  "hg392ms",
-  "hg513",
-  "hg822s",
   "hg9992",
+  "hg55s",
+  "hg392ms",
+  "hg100ms",
+  "hg822s",
+  "hg01ms",
+  "hg513",
+  "hg05",
 ];
 const actualHomepageFeaturedIds = homepageFeaturedProductConfigs.map(
   (config) => config.id,
@@ -198,8 +189,27 @@ invariant(
   new Set(actualHomepageFeaturedIds).size === actualHomepageFeaturedIds.length,
   "Homepage featured products must not contain duplicates.",
 );
+const actualFeaturedIds = products
+  .filter((product) => product.featured)
+  .map((product) => product.id);
+invariant(
+  actualFeaturedIds.length === expectedHomepageFeaturedIds.length &&
+    expectedHomepageFeaturedIds.every((id) => actualFeaturedIds.includes(id)),
+  "Product Featured badges must exactly match the homepage Featured configuration.",
+);
 for (const id of expectedHomepageFeaturedIds) {
-  invariant(byId.has(id), `Homepage featured product does not exist: ${id}`);
+  const product = byId.get(id);
+  invariant(product, `Homepage featured product does not exist: ${id}`);
+  invariant(
+    product.featured,
+    `Homepage featured product is missing its Featured badge: ${id}`,
+  );
+}
+for (const product of products) {
+  invariant(
+    product.featured === expectedHomepageFeaturedIds.includes(product.id),
+    `Unexpected Featured state for product: ${product.id}`,
+  );
 }
 
 const excludedHomepageFeaturedIds = [
@@ -218,6 +228,12 @@ invariant(
     (config) => config.id === "batuta-paper-holder",
   )?.displayName === "벨레어 휴지걸이",
   "Homepage shared holder must use its approved homepage-only display name.",
+);
+const hg513 = byId.get("hg513");
+invariant(
+  JSON.stringify(hg513?.variants.map((variant) => variant.finish)) ===
+    JSON.stringify(["사틴", "크롬"]),
+  "HG513 must display satin before chrome.",
 );
 const expectedCollectionImages = new Map([
   ["belair", "/images/products/belair/belair-towel-bar-satin.jpg"],
