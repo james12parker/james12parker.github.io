@@ -28,12 +28,13 @@
     "confirmationDocumentReference": ""
   },
   "company": {
-    "representativeName": "정보 준비 중",
+    "representativeName": "Lee Kyung-eun",
     "businessRegistrationNumber": "정보 준비 중",
     "mailOrderRegistrationRequired": true,
     "mailOrderRegistrationNumber": "정보 준비 중",
-    "businessAddress": "정보 준비 중",
-    "customerServicePhone": "정보 준비 중",
+    "businessAddress": "경기 남양주시 불암산로 39번길 35",
+    "customerServicePhone": "031-529-8761",
+    "faxNumber": "031-529-8763",
     "customerServiceEmail": "정보 준비 중",
     "operatingHours": "정보 준비 중",
     "privacyOfficer": "정보 준비 중",

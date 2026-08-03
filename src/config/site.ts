@@ -12,6 +12,7 @@ export const siteConfig = {
   companyDescription: launchData.brand.primaryBrandDescription,
   shortBrandDescription: launchData.brand.shortBrandDescription,
   telephone: launchData.company.customerServicePhone,
+  fax: launchData.company.faxNumber,
   email: launchData.company.customerServiceEmail,
   address: launchData.company.businessAddress,
   operatingHours: launchData.company.operatingHours,

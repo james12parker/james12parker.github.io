@@ -114,6 +114,7 @@ export const companyInformationSchema = z
     mailOrderRegistrationNumber: requiredText,
     businessAddress: requiredText,
     customerServicePhone: requiredText,
+    faxNumber: requiredText,
     customerServiceEmail: requiredText,
     operatingHours: requiredText,
     privacyOfficer: requiredText,

@@ -66,6 +66,8 @@ company:
   businessAddress: ""
   # 실제 연결되는 고객센터 전화번호 | production 필수 | 국제번호 또는 국내번호
   customerServicePhone: ""
+  # 팩스 번호 | production 필수
+  faxNumber: ""
   # 실제 수신 가능한 고객센터 이메일 | production 필수
   customerServiceEmail: ""
   # 운영 시간과 휴무 안내 | production 필수

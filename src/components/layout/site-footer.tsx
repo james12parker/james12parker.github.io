@@ -52,6 +52,10 @@ export function SiteFooter() {
       href: `tel:${siteConfig.telephone.replace(/[^\d+]/g, "")}`,
     },
     {
+      label: "팩스",
+      value: siteConfig.fax,
+    },
+    {
       label: "이메일",
       value: siteConfig.email,
       href: `mailto:${siteConfig.email}`,

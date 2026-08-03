@@ -473,6 +473,7 @@ function validateProduction(data: LaunchData, errors: string[]) {
     ],
     ["company.businessAddress", data.company.businessAddress],
     ["company.customerServicePhone", data.company.customerServicePhone],
+    ["company.faxNumber", data.company.faxNumber],
     ["company.customerServiceEmail", data.company.customerServiceEmail],
     ["company.operatingHours", data.company.operatingHours],
     ["company.privacyOfficer", data.company.privacyOfficer],
@@ -534,6 +535,11 @@ function validateProduction(data: LaunchData, errors: string[]) {
   if (!isPhone(data.company.customerServicePhone)) {
     errors.push(
       "data/launch/launch-data.json:company.customerServicePhone: valid customer-service telephone is required",
+    );
+  }
+  if (!isPhone(data.company.faxNumber)) {
+    errors.push(
+      "data/launch/launch-data.json:company.faxNumber: valid fax number is required",
     );
   }
   if (
