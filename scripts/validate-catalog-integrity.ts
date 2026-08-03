@@ -1,5 +1,6 @@
 import { categories } from "../src/data/categories";
 import { collections } from "../src/data/collections";
+import { homepageFeaturedProductConfigs } from "../src/data/homepage-products";
 import { products } from "../src/data/products";
 import { productBelongsToCollection } from "../src/lib/catalog";
 
@@ -173,6 +174,51 @@ for (const [productId, expected] of expectedFeatured) {
     `${productId} featured state mismatch.`,
   );
 }
+const expectedHomepageFeaturedIds = [
+  "batuta-paper-holder",
+  "hg05",
+  "hg55s",
+  "hg100ms",
+  "hg110s",
+  "hg112s",
+  "hg392ms",
+  "hg513",
+  "hg822s",
+  "hg9992",
+];
+const actualHomepageFeaturedIds = homepageFeaturedProductConfigs.map(
+  (config) => config.id,
+);
+invariant(
+  JSON.stringify(actualHomepageFeaturedIds) ===
+    JSON.stringify(expectedHomepageFeaturedIds),
+  "Homepage featured product order does not match the approved configuration.",
+);
+invariant(
+  new Set(actualHomepageFeaturedIds).size === actualHomepageFeaturedIds.length,
+  "Homepage featured products must not contain duplicates.",
+);
+for (const id of expectedHomepageFeaturedIds) {
+  invariant(byId.has(id), `Homepage featured product does not exist: ${id}`);
+}
+
+const excludedHomepageFeaturedIds = [
+  "batuta-towel-bar",
+  "saco-towel-bar",
+  "hg822c",
+];
+for (const id of excludedHomepageFeaturedIds) {
+  invariant(
+    !actualHomepageFeaturedIds.includes(id),
+    `Excluded homepage featured product is configured: ${id}`,
+  );
+}
+invariant(
+  homepageFeaturedProductConfigs.find(
+    (config) => config.id === "batuta-paper-holder",
+  )?.displayName === "벨레어 휴지걸이",
+  "Homepage shared holder must use its approved homepage-only display name.",
+);
 const expectedCollectionImages = new Map([
   ["belair", "/images/products/belair/belair-towel-bar-satin.jpg"],
   ["saco", "/images/products/saco/saco-towel-bar-black.jpg"],

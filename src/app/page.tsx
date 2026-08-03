@@ -12,8 +12,10 @@ import { SupportSection } from "@/components/home/support-section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { categories, homepageCategoryIds } from "@/data/categories";
 import { collections } from "@/data/collections";
+import { homepageFeaturedProductConfigs } from "@/data/homepage-products";
 import { products } from "@/data/products";
 import { productBelongsToCollection } from "@/lib/catalog";
+import type { Product } from "@/types/product";
 
 const homepageCategoryRepresentativeProductIds: Readonly<
   Record<string, string>
@@ -57,9 +59,19 @@ export default function HomePage() {
   const concordProducts = products.filter((product) =>
     productBelongsToCollection(product, "concord"),
   );
-  const featuredProducts = products
-    .filter((product) => product.featured)
-    .slice(0, 8);
+  const featuredProducts = homepageFeaturedProductConfigs
+    .map(({ id, displayName }) => {
+      const product = products.find((item) => item.id === id);
+      if (!product) return undefined;
+
+      return displayName
+        ? {
+            ...product,
+            nameKo: displayName,
+          }
+        : product;
+    })
+    .filter((product): product is Product => product !== undefined);
 
   return (
     <>
