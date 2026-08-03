@@ -7,6 +7,7 @@ import Link from "next/link";
 import { CleanImageMask } from "@/components/catalog/clean-image-mask";
 import { ArrowRightIcon } from "@/components/icons";
 import { productCollectionNames } from "@/lib/catalog";
+import { isBrioBpProductImage } from "@/lib/product-image";
 import { resolveProductVariant } from "@/lib/product-variant";
 import type { Finish, Product } from "@/types/product";
 
@@ -52,7 +53,11 @@ export function ProductCard({ product, preferredFinish }: ProductCardProps) {
       >
         <Image
           alt={`${product.nameKo} ${selected.finish} 제품 이미지`}
-          className="object-contain p-1 transition-transform duration-500 ease-out group-hover:scale-[1.018] md:p-2"
+          className={`object-contain p-1 transition-transform duration-500 ease-out md:p-2 ${
+            isBrioBpProductImage(selected.image)
+              ? "scale-[2.05] group-hover:scale-[2.08]"
+              : "group-hover:scale-[1.018]"
+          }`}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           src={selected.image}

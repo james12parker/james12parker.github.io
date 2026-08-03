@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { CleanImageMask } from "@/components/catalog/clean-image-mask";
 import { isPreviewRelease } from "@/config/launch-data";
+import { isBrioBpProductImage } from "@/lib/product-image";
 import type { ProductVariant } from "@/types/product";
 
 type ProductGalleryProps = {
@@ -20,10 +21,16 @@ export function ProductGallery({ productName, variant }: ProductGalleryProps) {
 
   return (
     <div>
-      <div className="relative aspect-[4/3] border border-line bg-white">
+      <div
+        className={`relative aspect-[4/3] border border-line bg-white ${
+          isBrioBpProductImage(currentImage) ? "overflow-hidden" : ""
+        }`}
+      >
         <Image
           alt={`${productName} ${variant.finish} 제품 이미지`}
-          className="object-contain p-1 sm:p-2"
+          className={`object-contain p-1 sm:p-2 ${
+            isBrioBpProductImage(currentImage) ? "scale-[1.6]" : ""
+          }`}
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 56vw"
@@ -43,14 +50,16 @@ export function ProductGallery({ productName, variant }: ProductGalleryProps) {
               aria-label={`${productName} 이미지 ${index + 1} 보기`}
               className={`relative aspect-square border border-line bg-white ${
                 currentImage === image ? "ring-1 ring-ink" : ""
-              }`}
+              } ${isBrioBpProductImage(image) ? "overflow-hidden" : ""}`}
               key={image}
               onClick={() => setSelectedImage(image)}
               type="button"
             >
               <Image
                 alt=""
-                className="object-contain p-2"
+                className={`object-contain p-2 ${
+                  isBrioBpProductImage(image) ? "scale-[2.05]" : ""
+                }`}
                 fill
                 sizes="120px"
                 src={image}

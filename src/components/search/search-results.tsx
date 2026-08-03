@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { productCollectionNames } from "@/lib/catalog";
+import { isBrioBpProductImage } from "@/lib/product-image";
 import type { CatalogSearchResults } from "@/lib/catalog-search";
 
 export type SearchOption = { href: string; label: string };
@@ -110,12 +111,22 @@ export function SearchResults({
                   onMouseEnter={() => onActiveIndexChange(index)}
                   role="option"
                 >
-                  <span className="relative size-18 shrink-0 border border-line bg-white">
+                  <span
+                    className={`relative size-18 shrink-0 border border-line bg-white ${
+                      isBrioBpProductImage(variant.image)
+                        ? "overflow-hidden"
+                        : ""
+                    }`}
+                  >
                     <Image
                       alt={
                         product.nameKo + " " + variant.finish + " 제품 이미지"
                       }
-                      className="object-contain p-1"
+                      className={`object-contain p-1 ${
+                        isBrioBpProductImage(variant.image)
+                          ? "scale-[2.05]"
+                          : ""
+                      }`}
                       fill
                       sizes="72px"
                       src={variant.image}
