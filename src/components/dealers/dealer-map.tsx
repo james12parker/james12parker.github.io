@@ -216,6 +216,13 @@ function createDealerInfoContent(dealer: Dealer) {
   name.dataset.noTranslate = "";
   container.appendChild(name);
 
+  if (dealer.isExample) {
+    const exampleNotice = document.createElement("span");
+    exampleNotice.className = "mt-1 block text-xs font-semibold text-brand";
+    exampleNotice.textContent = "화면 구성 예시 · 공식 대리점 아님";
+    container.appendChild(exampleNotice);
+  }
+
   if (dealer.nameEn) {
     const englishName = document.createElement("span");
     englishName.className =
@@ -233,23 +240,26 @@ function createDealerInfoContent(dealer: Dealer) {
     .join(" ");
   container.appendChild(address);
 
-  const phone = document.createElement("p");
-  phone.className = "mt-2";
-  phone.textContent = dealer.phone;
-  phone.dataset.noTranslate = "";
-  container.appendChild(phone);
+  if (dealer.phone) {
+    const phone = document.createElement("p");
+    phone.className = "mt-2";
+    phone.textContent = dealer.phone;
+    phone.dataset.noTranslate = "";
+    container.appendChild(phone);
+  }
 
   const actions = document.createElement("div");
   actions.className =
     "mt-3 flex flex-wrap gap-3 border-t border-line pt-3 text-xs font-semibold";
-  actions.appendChild(
-    createLink("전화하기", `tel:${normalizeTelephone(dealer.phone)}`),
-  );
+  if (dealer.phone)
+    actions.appendChild(
+      createLink("전화하기", `tel:${normalizeTelephone(dealer.phone)}`),
+    );
   if (dealer.naverMapUrl)
     actions.appendChild(
       createLink("네이버 지도에서 보기", dealer.naverMapUrl, true),
     );
-  container.appendChild(actions);
+  if (actions.childElementCount > 0) container.appendChild(actions);
   return container;
 }
 

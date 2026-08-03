@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import type { Dealer } from "@/data/dealers";
+import { dealers, type Dealer } from "@/data/dealers";
 import {
   changeDealerProvince,
   EMPTY_DEALER_FILTERS,
@@ -64,6 +64,17 @@ const fixtures: Dealer[] = [
     sortOrder: 2,
   },
 ];
+
+test("public dealer visualization fixture is explicitly labeled", () => {
+  const example = dealers.find(
+    (dealer) => dealer.id === "seoul-station-display-example",
+  );
+
+  assert.ok(example);
+  assert.equal(example.isExample, true);
+  assert.equal(example.phone, undefined);
+  assert.equal(example.address, "서울특별시 용산구 한강대로 405");
+});
 
 test("returns all active dealers with no filters and excludes inactive dealers", () =>
   assert.deepEqual(

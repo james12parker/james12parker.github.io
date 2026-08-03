@@ -47,6 +47,9 @@ export function DealerFinder({ dealers }: { dealers: readonly Dealer[] }) {
     () => filterDealers(dealers, filters),
     [dealers, filters],
   );
+  const exampleResultCount = results.filter(
+    (dealer) => dealer.isExample,
+  ).length;
   const pagination = paginateDealers(results, page);
   const featured = useMemo(
     () =>
@@ -204,7 +207,11 @@ export function DealerFinder({ dealers }: { dealers: readonly Dealer[] }) {
           className="mt-8 text-sm font-medium"
           role="status"
         >
-          총 {results.length}개의 대리점이 있습니다.
+          {exampleResultCount === results.length && results.length > 0
+            ? `총 ${results.length}개의 예시 위치가 있습니다.`
+            : exampleResultCount > 0
+              ? `총 ${results.length}개의 위치가 있습니다. (예시 ${exampleResultCount}개 포함)`
+              : `총 ${results.length}개의 대리점이 있습니다.`}
         </p>
         <div className="mt-5 grid min-w-0 gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
           <div className="order-1 lg:sticky lg:top-28 lg:order-2">
@@ -327,8 +334,17 @@ function DealerCard({
       tabIndex={onSelect ? 0 : undefined}
     >
       <p className="eyebrow">
-        {dealer.type === "showroom" ? "HOYANG SHOWROOM" : "OFFICIAL DEALER"}
+        {dealer.isExample
+          ? "DISPLAY EXAMPLE"
+          : dealer.type === "showroom"
+            ? "HOYANG SHOWROOM"
+            : "OFFICIAL DEALER"}
       </p>
+      {dealer.isExample ? (
+        <p className="mt-3 text-xs font-semibold text-brand">
+          공식 대리점 정보가 아닌 화면 구성 예시입니다.
+        </p>
+      ) : null}
       {selected ? (
         <span className="mt-3 text-xs font-semibold">선택됨</span>
       ) : null}
@@ -352,15 +368,19 @@ function DealerCard({
           <dd className="min-w-0 break-words" data-no-translate>
             {fullAddress}
           </dd>
-          <dt className="text-muted">전화</dt>
-          <dd data-no-translate>
-            <a
-              className="hover:text-brand"
-              href={`tel:${normalizeTelephone(dealer.phone)}`}
-            >
-              {dealer.phone}
-            </a>
-          </dd>
+          {dealer.phone ? (
+            <>
+              <dt className="text-muted">전화</dt>
+              <dd data-no-translate>
+                <a
+                  className="hover:text-brand"
+                  href={`tel:${normalizeTelephone(dealer.phone)}`}
+                >
+                  {dealer.phone}
+                </a>
+              </dd>
+            </>
+          ) : null}
           {dealer.operatingHours ? (
             <>
               <dt className="text-muted">영업시간</dt>
@@ -369,21 +389,25 @@ function DealerCard({
           ) : null}
         </dl>
       </div>
-      <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 border-t border-line pt-5 text-sm font-semibold">
-        <a
-          className="inline-flex min-h-11 items-center gap-1.5"
-          href={`tel:${normalizeTelephone(dealer.phone)}`}
-        >
-          <PhoneIcon className="size-4" />
-          전화하기
-        </a>
-        {dealer.naverMapUrl ? (
-          <MapLink href={dealer.naverMapUrl} label="네이버 지도" />
-        ) : null}
-        {dealer.kakaoMapUrl ? (
-          <MapLink href={dealer.kakaoMapUrl} label="카카오맵" />
-        ) : null}
-      </div>
+      {dealer.phone || dealer.naverMapUrl || dealer.kakaoMapUrl ? (
+        <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 border-t border-line pt-5 text-sm font-semibold">
+          {dealer.phone ? (
+            <a
+              className="inline-flex min-h-11 items-center gap-1.5"
+              href={`tel:${normalizeTelephone(dealer.phone)}`}
+            >
+              <PhoneIcon className="size-4" />
+              전화하기
+            </a>
+          ) : null}
+          {dealer.naverMapUrl ? (
+            <MapLink href={dealer.naverMapUrl} label="네이버 지도" />
+          ) : null}
+          {dealer.kakaoMapUrl ? (
+            <MapLink href={dealer.kakaoMapUrl} label="카카오맵" />
+          ) : null}
+        </div>
+      ) : null}
     </article>
   );
 }
