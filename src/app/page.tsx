@@ -88,6 +88,11 @@ export default function HomePage() {
             return (
               <CategoryCard
                 category={category}
+                displayName={
+                  category.id === "bath-accessories"
+                    ? "옷걸이 및 슬리퍼 걸이"
+                    : undefined
+                }
                 image={representativeVariant?.image}
                 imageAlt={
                   representativeProduct
@@ -108,6 +113,7 @@ export default function HomePage() {
             action={{ label: "전체 컬렉션", href: "/collections" }}
             description="제품의 형태와 마감이 자연스럽게 이어지는 수건걸이 구성을 만나보세요."
             eyebrow="Coordinated towel bars"
+            eyebrowClassName="homepage-eyebrow"
             title="하나의 공간으로 이어지는 구성"
           />
           <div className="grid gap-6 md:grid-cols-3">
@@ -135,7 +141,9 @@ export default function HomePage() {
               ))}
             </div>
             <div>
-              <p className="eyebrow-section mb-5">Featured collection</p>
+              <p className="eyebrow-section homepage-eyebrow mb-5">
+                Featured collection
+              </p>
               <h2 className="text-4xl font-medium tracking-[-0.045em] md:text-5xl">
                 콩코드
               </h2>
@@ -167,6 +175,7 @@ export default function HomePage() {
           <SectionHeading
             action={{ label: "전체 제품", href: "/products" }}
             eyebrow="Featured products"
+            eyebrowClassName="homepage-eyebrow"
             title="주요 제품"
           />
           <ProductGrid products={featuredProducts} />
@@ -177,6 +186,7 @@ export default function HomePage() {
         <SectionHeading
           description="제품 사진과 실제 마감 샘플은 빛과 화면 환경에 따라 다르게 보일 수 있습니다."
           eyebrow="Finish guide"
+          eyebrowClassName="homepage-eyebrow"
           title="공간의 인상을 결정하는 마감"
         />
         <FinishGuide />
@@ -187,6 +197,7 @@ export default function HomePage() {
           <SectionHeading
             description="제품 확인부터 설치 전 자료까지 필요한 정보를 찾아보세요."
             eyebrow="Product support"
+            eyebrowClassName="homepage-eyebrow"
             title="제품을 더 잘 사용하기 위한 지원"
           />
           <SupportSection />

@@ -10,11 +10,13 @@ export function CategoryCard({
   index,
   image,
   imageAlt,
+  displayName,
 }: {
   category: Category;
   index: number;
   image?: string;
   imageAlt?: string;
+  displayName?: string;
 }) {
   return (
     <Link
@@ -41,7 +43,7 @@ export function CategoryCard({
       ) : null}
       <span className="mt-4 block">
         <strong className="block text-base font-medium tracking-[-0.025em] sm:text-lg">
-          {category.shortName}
+          {displayName ?? category.shortName}
         </strong>
         <span className="mt-2 hidden text-xs leading-5 text-muted sm:block">
           {category.description}

@@ -91,6 +91,30 @@ button:disabled,
 .bg-ink .eyebrow-section {
   color: var(--color-brand-soft);
 }
+.homepage-eyebrow,
+.homepage-hero-eyebrow {
+  color: #b3262e;
+  font-size: 1rem;
+}
+
+.homepage-hero-eyebrow > span {
+  white-space: nowrap;
+}
+
+.homepage-hero-eyebrow strong {
+  font-size: 1.125rem;
+}
+
+@media (min-width: 1024px) {
+  .homepage-eyebrow,
+  .homepage-hero-eyebrow {
+    font-size: 1.125rem;
+  }
+
+  .homepage-hero-eyebrow strong {
+    font-size: 1.25rem;
+  }
+}
 
 .button-primary,
 .button-secondary,
