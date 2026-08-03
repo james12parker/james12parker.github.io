@@ -53,11 +53,10 @@ async function main() {
           throw new Error(`homepage contains forbidden text: ${text}`);
       const contact = await fetchText("/contact/");
       for (const text of [
-        "문의 유형",
-        "컬렉션",
-        "제품",
-        "문의 내용",
-        "문의 보내기",
+        "제품과 납품에 대해 문의하세요.",
+        "문의 내용을 남겨주시면 확인 후 이메일로 답변드립니다.",
+        "Contact information",
+        "고객지원 안내 보기",
       ])
         if (!contact.includes(text))
           throw new Error(`contact missing: ${text}`);
