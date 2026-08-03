@@ -5,6 +5,11 @@ import { ArrowRightIcon, ExternalIcon } from "@/components/icons";
 import { isPlaceholderValue } from "@/config/launch-data";
 import { siteConfig } from "@/config/site";
 
+type FooterCompanyDetail = {
+  label: string;
+  value: string;
+  href?: string;
+};
 const footerLinks = [
   { label: "제품", href: "/products" },
   { label: "컬렉션", href: "/collections" },
@@ -16,11 +21,45 @@ const footerLinks = [
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
-  const companyDetails = [
-    { label: "회사명", value: siteConfig.business.companyName },
-    { label: "대표명", value: siteConfig.business.representative },
-    { label: "사업장 주소", value: siteConfig.address },
-    { label: "이메일", value: siteConfig.email },
+  const companyDetails: FooterCompanyDetail[] = [
+    {
+      label: "회사명",
+      value: siteConfig.business.companyName,
+    },
+    {
+      label: "대표자",
+      value: siteConfig.business.representative,
+    },
+    {
+      label: "사업자등록번호",
+      value: siteConfig.business.registrationNumber,
+    },
+    ...(siteConfig.business.mailOrderRegistrationRequired
+      ? [
+          {
+            label: "통신판매업신고번호",
+            value: siteConfig.business.mailOrderRegistrationNumber,
+          },
+        ]
+      : []),
+    {
+      label: "사업장 주소",
+      value: siteConfig.address,
+    },
+    {
+      label: "고객센터",
+      value: siteConfig.telephone,
+      href: `tel:${siteConfig.telephone.replace(/[^\d+]/g, "")}`,
+    },
+    {
+      label: "이메일",
+      value: siteConfig.email,
+      href: `mailto:${siteConfig.email}`,
+    },
+    {
+      label: "운영시간",
+      value: siteConfig.operatingHours,
+    },
   ].filter(({ value }) => !isPlaceholderValue(value));
 
   return (
@@ -89,15 +128,29 @@ export function SiteFooter() {
         </div>
 
         {companyDetails.length ? (
-          <div className="w-full text-left md:max-w-[24rem] md:justify-self-end">
+          <div className="w-full text-left md:max-w-[30rem] md:justify-self-end">
             <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand-soft">
               회사 정보
             </p>
-            <dl className="grid grid-cols-[4.5rem_1fr] gap-x-3 gap-y-2 text-xs leading-5">
-              {companyDetails.map(({ label, value }) => (
-                <div className="contents" key={label}>
-                  <dt className="text-white/55">{label}</dt>
-                  <dd className="text-white/80">{value}</dd>
+            <dl className="grid gap-x-4 gap-y-3 text-xs leading-5 sm:grid-cols-[7.75rem_minmax(0,1fr)] sm:gap-y-2.5">
+              {companyDetails.map((detail) => (
+                <div
+                  className="grid min-w-0 gap-0.5 sm:contents"
+                  key={detail.label}
+                >
+                  <dt className="text-white/55">{detail.label}</dt>
+                  <dd className="min-w-0 break-words text-white/80">
+                    {detail.href ? (
+                      <a
+                        className="transition-colors hover:text-brand-soft"
+                        href={detail.href}
+                      >
+                        {detail.value}
+                      </a>
+                    ) : (
+                      detail.value
+                    )}
+                  </dd>
                 </div>
               ))}
             </dl>
