@@ -112,8 +112,20 @@ const brioChrome = brioPaperHolder.variants.find(
 );
 invariant(
   brioChrome?.image ===
-    "/images/products/brio/brio-toilet-paper-holder-chrome.png",
-  "Brio chrome must use the new PNG image.",
+    "/images/products/brio/brio-toilet-paper-holder-chrome.jpg",
+  "Brio chrome must use the original 10.브리오휴지걸이(크롬).jpg image.",
+);
+
+const brioBpPaperHolder = byId.get("brio-bp-paper-holder");
+invariant(brioBpPaperHolder, "BrioBP paper holder must exist.");
+invariant(
+  brioBpPaperHolder.nameKo === "브리오BP 휴지걸이" &&
+    brioBpPaperHolder.slug === "brio-bp-toilet-paper-holder" &&
+    brioBpPaperHolder.variants.length === 1 &&
+    brioBpPaperHolder.variants[0].finish === "크롬" &&
+    brioBpPaperHolder.variants[0].image ===
+      "/images/products/brio/brio-bp-toilet-paper-holder-chrome.png",
+  "BrioBP must be a separate chrome product using the BP PNG image.",
 );
 
 const expectedCategoryNames = new Map([

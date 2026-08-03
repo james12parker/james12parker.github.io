@@ -193,7 +193,7 @@ export const sourceProducts: Product[] = [
     category: "towel-bars",
     folder: "brio",
     finishes: ["사틴", "크롬"],
-    relatedProductIds: ["brio-paper-holder"],
+    relatedProductIds: ["brio-paper-holder", "brio-bp-paper-holder"],
     catalogSortOrder: 50,
   }),
   namedProduct({
@@ -204,6 +204,16 @@ export const sourceProducts: Product[] = [
     category: "toilet-paper-holders",
     folder: "brio",
     finishes: ["사틴", "크롬"],
+    relatedProductIds: ["brio-towel-bar"],
+  }),
+  namedProduct({
+    id: "brio-bp-paper-holder",
+    slug: "brio-bp-toilet-paper-holder",
+    name: "브리오BP 휴지걸이",
+    collection: "brio",
+    category: "toilet-paper-holders",
+    folder: "brio",
+    finishes: ["크롬"],
     relatedProductIds: ["brio-towel-bar"],
   }),
   namedProduct({

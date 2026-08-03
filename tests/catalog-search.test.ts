@@ -140,7 +140,22 @@ test("corrected public models, categories, finishes, and Brio image are searchab
   );
   assert.equal(
     brio.variants.find((variant) => variant.finish === "크롬")?.image,
-    "/images/products/brio/brio-toilet-paper-holder-chrome.png",
+    "/images/products/brio/brio-toilet-paper-holder-chrome.jpg",
+  );
+
+  const brioBp = products.find(
+    (product) => product.id === "brio-bp-paper-holder",
+  );
+  assert.ok(brioBp);
+  assert.equal(brioBp.nameKo, "브리오BP 휴지걸이");
+  assert.equal(brioBp.slug, "brio-bp-toilet-paper-holder");
+  assert.deepEqual(
+    brioBp.variants.map((variant) => variant.finish),
+    ["크롬"],
+  );
+  assert.equal(
+    brioBp.variants[0].image,
+    "/images/products/brio/brio-bp-toilet-paper-holder-chrome.png",
   );
 });
 test("HG513 displays satin before chrome", () => {
