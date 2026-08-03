@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ProductDetails } from "@/components/catalog/product-details";
 import { RelatedProducts } from "@/components/catalog/related-products";
 import { getProductBySlug, getProductsByIds, products } from "@/data/products";
-import { collectionName } from "@/lib/catalog";
+import { productCollectionNames } from "@/lib/catalog";
 import { buildProductStructuredData } from "@/lib/structured-data";
 
 type ProductPageProps = {
@@ -12,7 +12,9 @@ type ProductPageProps = {
 };
 
 export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+  return products.flatMap((product) =>
+    [product.slug, ...(product.legacySlugs ?? [])].map((slug) => ({ slug })),
+  );
 }
 
 export async function generateMetadata({
@@ -22,9 +24,10 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
   if (!product) return {};
 
+  const collectionLabel = productCollectionNames(product).join(" / ");
   const description =
     product.shortDescription ??
-    `${collectionName(product.collection) ?? ""} ${product.nameKo} 제품 정보`;
+    `${collectionLabel} ${product.nameKo} 제품 정보`;
 
   return {
     title: product.nameKo,

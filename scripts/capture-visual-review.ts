@@ -289,12 +289,12 @@ async function captureRequestedCatalogRefresh(
 
   await visit(desktop, "/products?collection=belair");
   const belairPaperCard = desktop
-    .getByRole("link", { name: "벨레어 휴지걸이 상세 보기" })
+    .getByRole("link", { name: "바투타/벨레어 휴지걸이 상세 보기" })
     .first()
     .locator("xpath=ancestor::article");
   await screenshotElement(
     belairPaperCard,
-    "67-belair-paper-holder-satin-only-card.png",
+    "67-shared-paper-holder-satin-only-card.png",
     "desktop",
     "Belair paper holder satin-only product card",
   );
@@ -302,7 +302,7 @@ async function captureRequestedCatalogRefresh(
   await visit(desktop, "/products/belair-toilet-paper-holder?finish=크롬");
   await screenshot(
     desktop,
-    "68-belair-paper-holder-stale-chrome-fallback.png",
+    "68-shared-paper-holder-stale-chrome-fallback.png",
     "desktop",
     true,
     "Stale chrome URL safely falls back to satin",
@@ -506,7 +506,7 @@ async function captureCatalogUpdates(context: BrowserContext) {
   for (const [filename, text] of [
     ["24-hg822c-card-desktop.png", "HG822C 이단수건선반"],
     ["25-hg822s-card-desktop.png", "HG822S 이단수건선반"],
-    ["26-belair-paper-holder-satin-only.png", "벨레어 휴지걸이"],
+    ["26-shared-paper-holder-satin-only.png", "바투타/벨레어 휴지걸이"],
     ["27-brio-paper-holder-chrome.png", "브리오 휴지걸이"],
   ] as const) {
     const card = page.locator("article").filter({ hasText: text }).first();

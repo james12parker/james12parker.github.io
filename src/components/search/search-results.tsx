@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { collections as catalogCollections } from "@/data/collections";
+import { productCollectionNames } from "@/lib/catalog";
 import type { CatalogSearchResults } from "@/lib/catalog-search";
 
 export type SearchOption = { href: string; label: string };
@@ -96,9 +96,7 @@ export function SearchResults({
             {productResults.map(({ product, variant }) => {
               const index = optionIndex++;
               const collectionLabel =
-                catalogCollections.find(
-                  (collection) => collection.id === product.collection,
-                )?.nameKo ?? "HOYANG";
+                productCollectionNames(product).join(" / ") || "HOYANG";
               return (
                 <Link
                   aria-selected={activeIndex === index}

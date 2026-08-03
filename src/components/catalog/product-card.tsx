@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { CleanImageMask } from "@/components/catalog/clean-image-mask";
 import { ArrowRightIcon } from "@/components/icons";
-import { collectionName } from "@/lib/catalog";
+import { productCollectionNames } from "@/lib/catalog";
 import { resolveProductVariant } from "@/lib/product-variant";
 import type { Finish, Product } from "@/types/product";
 
@@ -66,7 +66,7 @@ export function ProductCard({ product, preferredFinish }: ProductCardProps) {
       </Link>
       <div className="pt-4">
         <p className="text-[10px] font-semibold tracking-[0.13em] text-muted uppercase">
-          {collectionName(product.collection)}
+          {productCollectionNames(product).join(" / ")}
         </p>
         <Link
           className="mt-1.5 flex items-start justify-between gap-3 text-[15px] font-medium tracking-[-0.02em] hover:text-muted md:text-base"

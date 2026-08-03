@@ -10,7 +10,7 @@ import { ProductGallery } from "@/components/catalog/product-gallery";
 import { SpecificationTable } from "@/components/catalog/specification-table";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { isPreviewRelease, launchData } from "@/config/launch-data";
-import { categoryName, collectionName } from "@/lib/catalog";
+import { categoryName, productCollectionNames } from "@/lib/catalog";
 import type { Product } from "@/types/product";
 
 export function ProductDetails({ product }: { product: Product }) {
@@ -48,7 +48,7 @@ export function ProductDetails({ product }: { product: Product }) {
     url.searchParams.set("finish", nextVariant.finish);
     window.history.replaceState(window.history.state, "", url);
   };
-  const collection = collectionName(product.collection);
+  const collectionNames = productCollectionNames(product);
   const inquiryHref = `/contact?topic=product&product=${encodeURIComponent(product.nameKo)}`;
   const listingStatusLabels = {
     active: "판매 중",
@@ -77,8 +77,8 @@ export function ProductDetails({ product }: { product: Product }) {
         />
 
         <div className="lg:sticky lg:top-32 lg:self-start">
-          {collection ? (
-            <p className="eyebrow mb-4">{collection} 컬렉션</p>
+          {collectionNames.length ? (
+            <p className="eyebrow mb-4">{collectionNames.join(" / ")} 컬렉션</p>
           ) : null}
           <h1 className="text-3xl leading-tight font-medium tracking-[-0.04em] md:text-4xl">
             {product.nameKo}

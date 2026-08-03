@@ -18,6 +18,7 @@ import {
 import { ProductGrid } from "@/components/catalog/product-grid";
 import { CloseIcon, FilterIcon, SearchIcon } from "@/components/icons";
 import { EmptyState } from "@/components/ui/empty-state";
+import { productBelongsToCollection } from "@/lib/catalog";
 import { searchCatalog } from "@/lib/catalog-search";
 import type { Category, Collection, Finish, Product } from "@/types/product";
 
@@ -130,7 +131,8 @@ export function CatalogClient({
       const categoryMatch =
         !values.category || product.category === values.category;
       const collectionMatch =
-        !values.collection || product.collection === values.collection;
+        !values.collection ||
+        productBelongsToCollection(product, values.collection);
       const finishMatch =
         !values.finish ||
         product.variants.some((variant) => variant.finish === values.finish);

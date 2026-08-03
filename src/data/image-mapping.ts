@@ -70,14 +70,14 @@ const namedCollectionImages: ProductImageMapping[] = [
     inferredProductName: "벨레어 휴지걸이",
     inferredModelNumber: "",
     inferredFinish: "사틴",
-    productId: "belair-paper-holder",
+    productId: "batuta-paper-holder",
     variantId: "belair/belair-toilet-paper-holder-satin",
     normalizedPath:
       "/images/products/belair/belair-toilet-paper-holder-satin.jpg",
     confidence: "confirmed-from-filename",
     validationNote:
       "파일명과 형상은 일치하나 바투타 사틴 휴지걸이 원본과 완전히 동일한 파일임.",
-    useInCatalog: true,
+    useInCatalog: false,
     reviewStatus: "needs-confirmation",
   },
   {
@@ -100,13 +100,13 @@ const namedCollectionImages: ProductImageMapping[] = [
     inferredProductName: "벨레어 휴지걸이",
     inferredModelNumber: "",
     inferredFinish: "크롬",
-    productId: "belair-paper-holder",
+    productId: "batuta-paper-holder",
     variantId: "belair/belair-toilet-paper-holder-chrome",
     normalizedPath:
       "/images/products/belair/belair-toilet-paper-holder-chrome.jpg",
     confidence: "confirmed-from-filename",
     validationNote: "컬렉션, 제품 종류, 마감이 파일명과 제품 형상에서 일치함.",
-    useInCatalog: true,
+    useInCatalog: false,
     reviewStatus: "filename-derived",
   },
   {

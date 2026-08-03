@@ -173,11 +173,11 @@
       "notes": ""
     },
     "duplicateBatutaBelairSatin": {
-      "status": "unresolved",
-      "confirmedBy": "",
-      "confirmationDate": "",
-      "evidenceReference": "",
-      "notes": ""
+      "status": "confirmed",
+      "confirmedBy": "project owner",
+      "confirmationDate": "2026-08-02",
+      "evidenceReference": "Catalog update request",
+      "notes": "바투타 및 벨레어 휴지걸이는 동일한 제품이며 하나의 제품으로 관리하고 두 컬렉션에 공통으로 노출한다."
     },
     "duplicateBrioConcordSatin": {
       "status": "unresolved",

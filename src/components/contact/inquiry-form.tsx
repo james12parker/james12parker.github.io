@@ -12,6 +12,7 @@ import {
   validateInquiry,
 } from "@/lib/inquiry-form";
 import { siteConfig } from "@/config/site";
+import { productBelongsToCollection } from "@/lib/catalog";
 import { inquiryTypes, type InquiryValues } from "@/types/inquiry";
 
 const endpoint = process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT;
@@ -59,7 +60,10 @@ export function InquiryForm() {
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const matchingProducts = useMemo(
-    () => catalogProducts.filter((p) => p.collection === values.collectionId),
+    () =>
+      catalogProducts.filter((product) =>
+        productBelongsToCollection(product, values.collectionId),
+      ),
     [values.collectionId],
   );
   const variants = validVariants(values.productId);

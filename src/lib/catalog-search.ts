@@ -1,3 +1,4 @@
+import { productCollectionIds } from "@/lib/catalog";
 import { resolveProductVariant } from "@/lib/product-variant";
 import type {
   Category,
@@ -63,9 +64,9 @@ export function searchCatalog(
 
   const productMatches = products.flatMap((product) => {
     const category = categoryById.get(product.category);
-    const collection = product.collection
-      ? collectionById.get(product.collection)
-      : undefined;
+    const productCollections = productCollectionIds(product)
+      .map((id) => collectionById.get(id))
+      .filter((collection): collection is Collection => Boolean(collection));
     const modelNumbers = product.variants.map((variant) => variant.modelNumber);
     const searchable = normalizeSearchText(
       [
@@ -75,8 +76,10 @@ export function searchCatalog(
         product.shortDescription,
         category?.name,
         category?.shortName,
-        collection?.nameKo,
-        collection?.nameEn,
+        ...productCollections.flatMap((collection) => [
+          collection.nameKo,
+          collection.nameEn,
+        ]),
         ...modelNumbers,
         ...product.variants.map((variant) => variant.finish),
       ]
@@ -116,9 +119,10 @@ export function searchCatalog(
     )
       score += 45;
     if (
-      collection &&
-      [collection.nameKo, collection.nameEn].some(
-        (name) => normalizeSearchText(name) === normalizedQuery,
+      productCollections.some((collection) =>
+        [collection.nameKo, collection.nameEn].some(
+          (name) => normalizeSearchText(name) === normalizedQuery,
+        ),
       )
     )
       score += 30;

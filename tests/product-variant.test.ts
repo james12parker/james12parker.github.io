@@ -4,12 +4,12 @@ import { renderToStaticMarkup } from "react-dom/server";
 import test from "node:test";
 
 import { ProductCard } from "@/components/catalog/product-card";
-import { products } from "@/data/products";
+import { getProductBySlug } from "@/data/products";
 import { resolveProductVariant } from "@/lib/product-variant";
 import type { Finish, Product } from "@/types/product";
 
 function productBySlug(slug: string) {
-  const product = products.find((item) => item.slug === slug);
+  const product = getProductBySlug(slug);
   assert.ok(product, `Missing test product: ${slug}`);
   return product;
 }
@@ -59,7 +59,7 @@ test("multi-finish collection products resolve every supported preferred finish"
   }
 });
 
-test("벨레어 휴지걸이 exposes only satin and stale chrome falls back safely", () => {
+test("shared 바투타/벨레어 휴지걸이 exposes only satin and stale chrome falls back safely", () => {
   const product = productBySlug("belair-toilet-paper-holder");
 
   assert.equal(product.variants.length, 1);

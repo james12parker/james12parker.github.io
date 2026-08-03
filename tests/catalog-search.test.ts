@@ -3,7 +3,12 @@ import test from "node:test";
 
 import { categories } from "@/data/categories";
 import { collections } from "@/data/collections";
-import { finishes, products } from "@/data/products";
+import { finishes, getProductBySlug, products } from "@/data/products";
+import {
+  productBelongsToCollection,
+  productCollectionNames,
+} from "@/lib/catalog";
+import { getPublicRouteDefinitions } from "@/lib/public-routes";
 import {
   compactSearchText,
   normalizeSearchText,
@@ -34,7 +39,7 @@ test("finds exact and partial model numbers with or without hyphens", () => {
 
 test("searches Korean and English collection names", () => {
   assert.ok(ids("벨레어").includes("belair-towel-bar"));
-  assert.ok(ids("Belair").includes("belair-paper-holder"));
+  assert.ok(ids("Belair").includes("batuta-paper-holder"));
   assert.ok(ids("바투타").includes("batuta-towel-bar"));
   assert.ok(ids("battuta").includes("batuta-paper-holder"));
   assert.equal(result("벨레어").collections[0]?.id, "belair");
@@ -60,5 +65,60 @@ test("finish-specific queries resolve the synchronized product variant", () => {
   assert.ok(satinTowelBars.products.length > 0);
   assert.ok(
     satinTowelBars.products.every(({ variant }) => variant.finish === "사틴"),
+  );
+});
+test("shared Batuta and Belair holder is searchable through both collections", () => {
+  for (const query of [
+    "바투타 휴지걸이",
+    "벨레어 휴지걸이",
+    "Batuta",
+    "Belair",
+    "바투타/벨레어 휴지걸이",
+  ]) {
+    assert.ok(ids(query).includes("batuta-paper-holder"));
+  }
+
+  const sharedResults = ids("휴지걸이").filter(
+    (id) => id === "batuta-paper-holder",
+  );
+  assert.equal(sharedResults.length, 1);
+});
+
+test("shared holder belongs to both collections and replaces the duplicate", () => {
+  const sharedProduct = products.find(
+    (product) => product.id === "batuta-paper-holder",
+  );
+  assert.ok(sharedProduct);
+  assert.equal(productBelongsToCollection(sharedProduct, "batuta"), true);
+  assert.equal(productBelongsToCollection(sharedProduct, "belair"), true);
+  assert.equal(
+    products.some((product) => product.id === "belair-paper-holder"),
+    false,
+  );
+});
+test("shared holder uses one record, one canonical route, and one legacy alias", () => {
+  for (const collectionId of ["batuta", "belair"]) {
+    const matches = products.filter((product) =>
+      productBelongsToCollection(product, collectionId),
+    );
+    assert.equal(
+      matches.filter((product) => product.id === "batuta-paper-holder").length,
+      1,
+    );
+  }
+
+  const canonical = getProductBySlug("batuta-toilet-paper-holder");
+  const legacy = getProductBySlug("belair-toilet-paper-holder");
+  assert.ok(canonical);
+  assert.equal(legacy?.id, canonical.id);
+  assert.deepEqual(productCollectionNames(canonical), ["바투타", "벨레어"]);
+
+  const productRoutes = getPublicRouteDefinitions()
+    .filter((route) => route.kind === "product")
+    .map((route) => route.path);
+  assert.ok(productRoutes.includes("/products/batuta-toilet-paper-holder"));
+  assert.equal(
+    productRoutes.includes("/products/belair-toilet-paper-holder"),
+    false,
   );
 });

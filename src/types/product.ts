@@ -35,6 +35,8 @@ export type Product = {
   nameEn?: string;
   catalogSortOrder: number;
   collection?: string;
+  collectionIds?: string[];
+  legacySlugs?: string[];
   category: string;
   shortDescription?: string;
   description?: string;

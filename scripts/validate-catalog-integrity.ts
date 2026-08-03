@@ -1,6 +1,7 @@
 import { categories } from "../src/data/categories";
 import { collections } from "../src/data/collections";
 import { products } from "../src/data/products";
+import { productBelongsToCollection } from "../src/lib/catalog";
 
 function invariant(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -84,12 +85,18 @@ invariant(
   "Requested towel-bar catalog order is not preserved.",
 );
 
-const belairPaperHolder = byId.get("belair-paper-holder");
-invariant(belairPaperHolder, "Belair paper holder must exist.");
+const sharedPaperHolder = byId.get("batuta-paper-holder");
 invariant(
-  belairPaperHolder.variants.length === 1 &&
-    belairPaperHolder.variants[0].finish === "사틴",
-  "Belair paper holder must only expose satin.",
+  sharedPaperHolder,
+  "Shared Batuta and Belair paper holder must exist.",
+);
+invariant(
+  sharedPaperHolder.nameKo === "바투타/벨레어 휴지걸이" &&
+    sharedPaperHolder.variants.length === 1 &&
+    sharedPaperHolder.variants[0].finish === "사틴" &&
+    productBelongsToCollection(sharedPaperHolder, "batuta") &&
+    productBelongsToCollection(sharedPaperHolder, "belair"),
+  "Shared paper holder must expose one satin variant in both collections.",
 );
 
 const brioPaperHolder = byId.get("brio-paper-holder");

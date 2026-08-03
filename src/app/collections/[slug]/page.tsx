@@ -10,6 +10,7 @@ import { isPreviewRelease } from "@/config/launch-data";
 import { categories } from "@/data/categories";
 import { collections, getCollection } from "@/data/collections";
 import { products } from "@/data/products";
+import { productBelongsToCollection } from "@/lib/catalog";
 
 type CollectionPageProps = {
   params: Promise<{ slug: string }>;
@@ -45,8 +46,8 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   const collection = getCollection(slug);
   if (!collection) notFound();
 
-  const collectionProducts = products.filter(
-    (product) => product.collection === collection.id,
+  const collectionProducts = products.filter((product) =>
+    productBelongsToCollection(product, collection.id),
   );
   const relatedCategories = categories.filter((category) =>
     collectionProducts.some((product) => product.category === category.id),

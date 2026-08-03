@@ -49,6 +49,8 @@ type NamedProductInput = {
   slug: string;
   name: string;
   collection: string;
+  collectionIds?: string[];
+  legacySlugs?: string[];
   category: string;
   folder: string;
   finishes: Finish[];
@@ -62,6 +64,8 @@ function namedProduct({
   slug,
   name,
   collection,
+  collectionIds,
+  legacySlugs,
   category,
   folder,
   finishes,
@@ -75,6 +79,8 @@ function namedProduct({
     nameKo: name,
     catalogSortOrder,
     collection,
+    collectionIds,
+    legacySlugs,
     category,
     shortDescription: `${name}의 마감 옵션을 확인해 보세요.`,
     features: [],
@@ -155,12 +161,14 @@ export const sourceProducts: Product[] = [
   namedProduct({
     id: "batuta-paper-holder",
     slug: "batuta-toilet-paper-holder",
-    name: "바투타 휴지걸이",
+    legacySlugs: ["belair-toilet-paper-holder"],
+    name: "바투타/벨레어 휴지걸이",
     collection: "batuta",
+    collectionIds: ["batuta", "belair"],
     category: "toilet-paper-holders",
     folder: "batuta",
     finishes: ["사틴"],
-    relatedProductIds: ["batuta-towel-bar"],
+    relatedProductIds: ["batuta-towel-bar", "belair-towel-bar"],
   }),
   namedProduct({
     id: "belair-towel-bar",
@@ -170,19 +178,9 @@ export const sourceProducts: Product[] = [
     category: "towel-bars",
     folder: "belair",
     finishes: ["사틴"],
-    relatedProductIds: ["belair-paper-holder"],
+    relatedProductIds: ["batuta-paper-holder"],
     catalogSortOrder: 20,
     featured: true,
-  }),
-  namedProduct({
-    id: "belair-paper-holder",
-    slug: "belair-toilet-paper-holder",
-    name: "벨레어 휴지걸이",
-    collection: "belair",
-    category: "toilet-paper-holders",
-    folder: "belair",
-    finishes: ["사틴"],
-    relatedProductIds: ["belair-towel-bar"],
   }),
   namedProduct({
     id: "brio-towel-bar",
@@ -413,7 +411,9 @@ export const products = applyCatalogOverrides(sourceProducts)
 export const finishes: Finish[] = ["사틴", "크롬", "블랙", "무광"];
 
 export function getProductBySlug(slug: string) {
-  return products.find((product) => product.slug === slug);
+  return products.find(
+    (product) => product.slug === slug || product.legacySlugs?.includes(slug),
+  );
 }
 
 export function getProductsByIds(ids: string[]) {
