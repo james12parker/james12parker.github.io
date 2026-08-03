@@ -102,10 +102,77 @@ invariant(
 const brioPaperHolder = byId.get("brio-paper-holder");
 invariant(brioPaperHolder, "Brio paper holder must exist.");
 invariant(
-  brioPaperHolder.variants[0].finish === "크롬",
-  "Brio paper holder must display chrome by default.",
+  brioPaperHolder.variants[0].finish === "사틴",
+  "Brio paper holder must display satin by default.",
 );
 
+const brioChrome = brioPaperHolder.variants.find(
+  (variant) => variant.finish === "크롬",
+);
+invariant(
+  brioChrome?.image ===
+    "/images/products/brio/brio-toilet-paper-holder-chrome.png",
+  "Brio chrome must use the new PNG image.",
+);
+
+const expectedCategoryNames = new Map([
+  ["bath-accessories", "옷걸이 및 슬리퍼 걸이"],
+  ["shower-accessories", "슬라이드바"],
+  ["cleaning", "청소솔"],
+]);
+for (const [categoryId, expectedName] of expectedCategoryNames) {
+  const category = categories.find((candidate) => candidate.id === categoryId);
+  invariant(
+    category?.name === expectedName && category.shortName === expectedName,
+    `${categoryId} must display ${expectedName}.`,
+  );
+}
+
+const expectedProductFinishes = new Map([
+  ["hg120", ["크롬"]],
+  ["hg240", ["크롬"]],
+  ["hg513", ["크롬", "사틴"]],
+  ["hg999", ["크롬"]],
+]);
+for (const [productId, expectedFinishes] of expectedProductFinishes) {
+  invariant(
+    JSON.stringify(
+      byId.get(productId)?.variants.map((variant) => variant.finish),
+    ) === JSON.stringify(expectedFinishes),
+    `${productId} finishes do not match the confirmed catalog data.`,
+  );
+}
+
+const hg240 = byId.get("hg240");
+const hg820 = byId.get("hg820");
+const hg05 = byId.get("hg05");
+invariant(
+  hg240?.nameKo === "HG240 폰&트레이 매립휴지걸이",
+  "HG240 name mismatch.",
+);
+invariant(
+  hg820?.nameKo === "HG820C 이단수건선반" &&
+    hg820.variants[0]?.modelNumber === "HG820C",
+  "HG820 public model must be HG820C.",
+);
+invariant(
+  hg05?.nameKo === "HG05S 옷걸이" && hg05.variants[0]?.modelNumber === "HG05S",
+  "HG05 public model must be HG05S.",
+);
+
+const expectedFeatured = new Map([
+  ["hg110s", true],
+  ["hg112s", true],
+  ["hg240", false],
+  ["hg822c", false],
+  ["hg822s", false],
+]);
+for (const [productId, expected] of expectedFeatured) {
+  invariant(
+    Boolean(byId.get(productId)?.featured) === expected,
+    `${productId} featured state mismatch.`,
+  );
+}
 const expectedCollectionImages = new Map([
   ["belair", "/images/products/belair/belair-towel-bar-satin.jpg"],
   ["saco", "/images/products/saco/saco-towel-bar-black.jpg"],

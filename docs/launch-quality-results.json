@@ -79,7 +79,7 @@
             "overDeliveryRatio": 1.5416666666666667
           },
           {
-            "alt": "HG05 옷걸이 사틴 제품 이미지",
+            "alt": "HG05S 옷걸이 사틴 제품 이미지",
             "naturalWidth": 111,
             "naturalHeight": 112,
             "renderedWidth": 112,
@@ -424,7 +424,7 @@
             "overDeliveryRatio": 2.069066515495087
           },
           {
-            "alt": "HG05 옷걸이 사틴 제품 이미지",
+            "alt": "HG05S 옷걸이 사틴 제품 이미지",
             "naturalWidth": 359,
             "naturalHeight": 361,
             "renderedWidth": 252,
@@ -519,12 +519,12 @@
             "naturalHeight": 900,
             "renderedWidth": 252,
             "renderedHeight": 252,
-            "source": "http://127.0.0.1:44497/images/products/hg/hg513-cleaning-brush-finish-pending.svg",
+            "source": "http://127.0.0.1:44497/images/products/hg/hg513-cleaning-brush-chrome.png",
             "isVector": true,
             "overDeliveryRatio": null
           },
           {
-            "alt": "HG820 이단수건선반 크롬 제품 이미지",
+            "alt": "HG820C 이단수건선반 크롬 제품 이미지",
             "naturalWidth": 359,
             "naturalHeight": 233,
             "renderedWidth": 252,

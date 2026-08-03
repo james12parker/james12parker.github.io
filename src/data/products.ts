@@ -97,6 +97,7 @@ function namedProduct({
 
 type HgProductInput = {
   model: string;
+  displayModel?: string;
   slug: string;
   name: string;
   category: string;
@@ -110,6 +111,7 @@ type HgProductInput = {
 
 function hgProduct({
   model,
+  displayModel,
   slug,
   name,
   category,
@@ -120,7 +122,8 @@ function hgProduct({
   variantModels,
   imageBase,
 }: HgProductInput): Product {
-  const productName = `${model} ${name}`;
+  const publicModel = displayModel ?? model;
+  const productName = `${publicModel} ${name}`;
   return {
     id: model.toLowerCase().replaceAll("-", ""),
     slug,
@@ -133,7 +136,7 @@ function hgProduct({
     variants: finishes.map((finish) =>
       variant({
         finish,
-        modelNumber: variantModels?.[finish] ?? model,
+        modelNumber: variantModels?.[finish] ?? publicModel,
         imageBase: `hg/${imageBase ?? slug}`,
       }),
     ),
@@ -200,7 +203,7 @@ export const sourceProducts: Product[] = [
     collection: "brio",
     category: "toilet-paper-holders",
     folder: "brio",
-    finishes: ["크롬", "사틴"],
+    finishes: ["사틴", "크롬"],
     relatedProductIds: ["brio-towel-bar"],
   }),
   namedProduct({
@@ -259,6 +262,7 @@ export const sourceProducts: Product[] = [
   }),
   hgProduct({
     model: "HG05",
+    displayModel: "HG05S",
     slug: "hg05-robe-hook",
     name: "옷걸이",
     category: "bath-accessories",
@@ -305,6 +309,7 @@ export const sourceProducts: Product[] = [
     category: "recessed-holders",
     finishes: ["사틴"],
     relatedProductIds: ["hg1101", "hg110c"],
+    featured: true,
   }),
   hgProduct({
     model: "HG112C",
@@ -321,23 +326,23 @@ export const sourceProducts: Product[] = [
     category: "recessed-holders",
     finishes: ["사틴"],
     relatedProductIds: ["hg112c", "hg240"],
+    featured: true,
   }),
   hgProduct({
     model: "HG120",
     slug: "hg120-single-paper-holder",
     name: "일단휴지걸이",
     category: "toilet-paper-holders",
-    finishes: ["미확인"],
+    finishes: ["크롬"],
     relatedProductIds: ["hg240"],
   }),
   hgProduct({
     model: "HG240",
     slug: "hg240-phone-tray-recessed-holder",
-    name: "폰트레이 매립휴지걸이",
+    name: "폰&트레이 매립휴지걸이",
     category: "recessed-holders",
-    finishes: ["미확인"],
+    finishes: ["크롬"],
     relatedProductIds: ["hg112c", "hg112s"],
-    featured: true,
   }),
   hgProduct({
     model: "HG392MS",
@@ -352,11 +357,12 @@ export const sourceProducts: Product[] = [
     slug: "hg513-cleaning-brush",
     name: "청소솔",
     category: "cleaning",
-    finishes: ["미확인", "사틴"],
+    finishes: ["크롬", "사틴"],
     relatedProductIds: [],
   }),
   hgProduct({
     model: "HG820",
+    displayModel: "HG820C",
     slug: "hg820-double-towel-shelf",
     name: "이단수건선반",
     category: "towel-bars",
@@ -373,7 +379,6 @@ export const sourceProducts: Product[] = [
     relatedProductIds: ["hg822s", "hg820"],
     catalogSortOrder: 60,
     imageBase: "hg822-double-towel-shelf",
-    featured: true,
   }),
   hgProduct({
     model: "HG822S",
@@ -384,14 +389,13 @@ export const sourceProducts: Product[] = [
     relatedProductIds: ["hg822c", "hg820"],
     catalogSortOrder: 70,
     imageBase: "hg822-double-towel-shelf",
-    featured: true,
   }),
   hgProduct({
     model: "HG999",
     slug: "hg999-shaving-mirror",
     name: "면도경",
     category: "mirrors",
-    finishes: ["미확인"],
+    finishes: ["크롬"],
     relatedProductIds: ["hg9992"],
   }),
   hgProduct({

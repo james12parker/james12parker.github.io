@@ -89,11 +89,6 @@ export default function HomePage() {
             return (
               <CategoryCard
                 category={category}
-                displayName={
-                  category.id === "bath-accessories"
-                    ? "옷걸이 및 슬리퍼 걸이"
-                    : undefined
-                }
                 image={representativeVariant?.image}
                 imageAlt={
                   representativeProduct

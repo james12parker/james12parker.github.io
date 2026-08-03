@@ -122,3 +122,23 @@ test("shared holder uses one record, one canonical route, and one legacy alias",
     false,
   );
 });
+test("corrected public models, categories, finishes, and Brio image are searchable", () => {
+  assert.equal(ids("HG820C")[0], "hg820");
+  assert.equal(ids("HG05S")[0], "hg05");
+  assert.ok(ids("HG05").includes("hg05"));
+  assert.ok(ids("슬라이드바").includes("hg01ms"));
+  assert.ok(ids("청소솔").includes("hg513"));
+  assert.ok(ids("HG120 크롬").includes("hg120"));
+  assert.ok(ids("HG999 크롬").includes("hg999"));
+
+  const brio = products.find((product) => product.id === "brio-paper-holder");
+  assert.ok(brio);
+  assert.deepEqual(
+    brio.variants.map((variant) => variant.finish),
+    ["사틴", "크롬"],
+  );
+  assert.equal(
+    brio.variants.find((variant) => variant.finish === "크롬")?.image,
+    "/images/products/brio/brio-toilet-paper-holder-chrome.png",
+  );
+});
