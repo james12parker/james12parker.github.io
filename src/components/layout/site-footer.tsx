@@ -67,7 +67,7 @@ export function SiteFooter() {
   ].filter(({ value }) => !isPlaceholderValue(value));
 
   return (
-    <footer className="border-t border-ink bg-ink text-white">
+    <footer className="border-t border-line bg-stone text-ink">
       <div className="page-shell grid items-start gap-10 py-12 md:grid-cols-2 md:gap-x-16 md:gap-y-12 md:py-14 lg:grid-cols-[minmax(0,1.45fr)_minmax(10rem,0.55fr)_minmax(21rem,0.8fr)] lg:gap-12">
         <div className="md:col-span-2 lg:col-span-1">
           <Link
@@ -77,13 +77,13 @@ export function SiteFooter() {
           >
             <Image
               alt={siteConfig.logoAlt}
-              className="h-10 w-auto"
-              height={64}
-              src="/images/brand/hoyang25-logo.svg"
-              width={230}
+              className="h-auto w-28 md:w-32"
+              height={462}
+              src={siteConfig.logoPath}
+              width={693}
             />
           </Link>
-          <p className="mt-4 max-w-[21rem] text-sm leading-6 text-white/65 lg:max-w-none">
+          <p className="mt-4 max-w-[21rem] text-sm leading-6 text-muted lg:max-w-none">
             {siteConfig.companyDescription}
           </p>
           {siteConfig.instagramUrl || siteConfig.naverBlogUrl ? (
@@ -113,18 +113,18 @@ export function SiteFooter() {
         </div>
 
         <div className="w-full max-w-48">
-          <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand-soft">
+          <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand">
             바로가기
           </p>
-          <ul className="border-t border-white/15 text-sm">
+          <ul className="border-t border-line text-sm">
             {footerLinks.map((link) => (
               <li key={link.href}>
                 <Link
-                  className="group flex items-center justify-between border-b border-white/15 py-2.5 text-white/80 transition-colors hover:text-white"
+                  className="group flex items-center justify-between border-b border-line py-2.5 text-ink/80 transition-colors hover:text-brand"
                   href={link.href}
                 >
                   <span>{link.label}</span>
-                  <ArrowRightIcon className="size-3.5 text-white/35 transition-[color,transform] group-hover:translate-x-0.5 group-hover:text-brand-soft" />
+                  <ArrowRightIcon className="size-3.5 text-muted transition-[color,transform] group-hover:translate-x-0.5 group-hover:text-brand" />
                 </Link>
               </li>
             ))}
@@ -133,7 +133,7 @@ export function SiteFooter() {
 
         {companyDetails.length ? (
           <div className="w-full text-left md:max-w-[30rem] md:justify-self-end">
-            <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand-soft">
+            <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand">
               회사 정보
             </p>
             <dl className="grid gap-x-4 gap-y-3 text-xs leading-5 sm:grid-cols-[7.75rem_minmax(0,1fr)] sm:gap-y-2.5">
@@ -142,11 +142,11 @@ export function SiteFooter() {
                   className="grid min-w-0 gap-0.5 sm:contents"
                   key={detail.label}
                 >
-                  <dt className="text-white/55">{detail.label}</dt>
-                  <dd className="min-w-0 break-words text-white/80">
+                  <dt className="text-muted">{detail.label}</dt>
+                  <dd className="min-w-0 break-words text-ink/80">
                     {detail.href ? (
                       <a
-                        className="transition-colors hover:text-brand-soft"
+                        className="transition-colors hover:text-brand"
                         href={detail.href}
                       >
                         {detail.value}
@@ -161,7 +161,7 @@ export function SiteFooter() {
           </div>
         ) : null}
       </div>
-      <div className="border-t border-white/20">
+      <div className="border-t border-ink bg-ink text-white">
         <div className="page-shell flex flex-col gap-3 py-4 text-[11px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {currentYear} {siteConfig.brandNameKo}. All rights reserved.
