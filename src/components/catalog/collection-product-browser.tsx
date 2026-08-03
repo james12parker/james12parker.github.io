@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { ProductGrid } from "@/components/catalog/product-grid";
 import { finishes } from "@/data/products";
+import { sortProductsFeaturedFirst } from "@/lib/product-sort";
 import type { Finish, Product } from "@/types/product";
 
 export function CollectionProductBrowser({
@@ -22,6 +23,7 @@ export function CollectionProductBrowser({
         product.variants.some((variant) => variant.finish === finish),
       )
     : products;
+  const displayedProducts = sortProductsFeaturedFirst(filtered);
 
   return (
     <div>
@@ -58,7 +60,7 @@ export function CollectionProductBrowser({
           ))}
         </div>
       </div>
-      <ProductGrid products={filtered} />
+      <ProductGrid products={displayedProducts} />
     </div>
   );
 }

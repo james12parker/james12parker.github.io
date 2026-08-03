@@ -15,6 +15,7 @@ import {
   normalizeSearchText,
   searchCatalog,
 } from "@/lib/catalog-search";
+import { sortProductsFeaturedFirst } from "@/lib/product-sort";
 
 function result(query: string) {
   return searchCatalog(query, products, categories, collections, finishes);
@@ -198,4 +199,71 @@ test("only homepage featured products have Featured badges", () => {
   for (const product of products) {
     assert.equal(product.featured, configuredIds.has(product.id));
   }
+});
+test("separates towel bars from towel shelves", () => {
+  const towelBars = products.filter(
+    (product) => product.category === "towel-bars",
+  );
+  const towelShelves = products.filter(
+    (product) => product.category === "towel-shelves",
+  );
+
+  assert.ok(towelBars.some((product) => product.id === "belair-towel-bar"));
+  assert.ok(
+    towelBars.every(
+      (product) => !["hg820", "hg822c", "hg822s"].includes(product.id),
+    ),
+  );
+  assert.deepEqual(
+    towelBars.map((product) => product.id),
+    [
+      "batuta-towel-bar",
+      "belair-towel-bar",
+      "saco-towel-bar",
+      "concord-towel-bar",
+      "brio-towel-bar",
+    ],
+  );
+  assert.deepEqual(
+    towelShelves.map((product) => product.id),
+    ["hg822c", "hg822s", "hg820"],
+  );
+  assert.ok(ids("수건걸이").includes("belair-towel-bar"));
+  assert.ok(ids("수건선반").includes("hg822s"));
+});
+
+test("sorts Featured products first while preserving group order", () => {
+  const towelBars = products.filter(
+    (product) => product.category === "towel-bars",
+  );
+  const sorted = sortProductsFeaturedFirst(towelBars);
+
+  assert.deepEqual(
+    sorted.map((product) => product.id),
+    [
+      "belair-towel-bar",
+      "concord-towel-bar",
+      "batuta-towel-bar",
+      "saco-towel-bar",
+      "brio-towel-bar",
+    ],
+  );
+  assert.deepEqual(
+    towelBars.map((product) => product.id),
+    [
+      "batuta-towel-bar",
+      "belair-towel-bar",
+      "saco-towel-bar",
+      "concord-towel-bar",
+      "brio-towel-bar",
+    ],
+  );
+
+  const towelShelves = sortProductsFeaturedFirst(
+    products.filter((product) => product.category === "towel-shelves"),
+  );
+  assert.deepEqual(
+    towelShelves.map((product) => product.id),
+    ["hg822s", "hg822c", "hg820"],
+  );
 });

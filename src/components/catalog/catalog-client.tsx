@@ -20,6 +20,7 @@ import { CloseIcon, FilterIcon, SearchIcon } from "@/components/icons";
 import { EmptyState } from "@/components/ui/empty-state";
 import { productBelongsToCollection } from "@/lib/catalog";
 import { searchCatalog } from "@/lib/catalog-search";
+import { sortProductsFeaturedFirst } from "@/lib/product-sort";
 import type { Category, Collection, Finish, Product } from "@/types/product";
 
 type CatalogClientProps = {
@@ -54,7 +55,7 @@ export function CatalogClient({
   );
   const [values, setOptimisticValues] = useOptimistic(urlValues);
   const [, startFilterTransition] = useTransition();
-  const sort = (searchParams.get("sort") as SortKey | null) ?? "catalog";
+  const sort = (searchParams.get("sort") as SortKey | null) ?? "featured";
   const query = searchParams.get("q") ?? "";
   const activeFilterCount = Object.values(values).filter(Boolean).length;
 
@@ -139,16 +140,25 @@ export function CatalogClient({
       return categoryMatch && collectionMatch && finishMatch;
     });
 
-    if (sort === "catalog") return filtered;
+    if (sort === "featured") {
+      return sortProductsFeaturedFirst(filtered);
+    }
+
+    if (sort === "catalog") {
+      return filtered;
+    }
 
     return [...filtered].sort((a, b) => {
-      if (sort === "name") return a.nameKo.localeCompare(b.nameKo, "ko");
-      if (sort === "model") {
-        const aModel = a.variants[0].modelNumber || a.nameKo;
-        const bModel = b.variants[0].modelNumber || b.nameKo;
-        return aModel.localeCompare(bModel, "ko", { numeric: true });
+      if (sort === "name") {
+        return a.nameKo.localeCompare(b.nameKo, "ko");
       }
-      return Number(b.featured) - Number(a.featured);
+
+      const aModel = a.variants[0].modelNumber || a.nameKo;
+      const bModel = b.variants[0].modelNumber || b.nameKo;
+
+      return aModel.localeCompare(bModel, "ko", {
+        numeric: true,
+      });
     });
   }, [
     products,

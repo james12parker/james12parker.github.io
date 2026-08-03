@@ -75,8 +75,8 @@ export const english: Record<string, string> = {
   "컬렉션 보기": "View collection",
   "컬렉션 소개 문구는 최종 편집 검토가 필요합니다.":
     "Collection copy is pending final editorial review.",
-  "수건걸이 및 수건선반": "Towel bars and shelves",
   수건걸이: "Towel bars",
+  수건선반: "Towel shelves",
   휴지걸이: "Toilet paper holders",
   "매립형 휴지걸이": "Recessed holders",
   "선반 및 수납": "Shelves and storage",

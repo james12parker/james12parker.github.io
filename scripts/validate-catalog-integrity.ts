@@ -3,6 +3,7 @@ import { collections } from "../src/data/collections";
 import { homepageFeaturedProductConfigs } from "../src/data/homepage-products";
 import { products } from "../src/data/products";
 import { productBelongsToCollection } from "../src/lib/catalog";
+import { sortProductsFeaturedFirst } from "../src/lib/product-sort";
 
 function invariant(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -67,23 +68,45 @@ invariant(
   "HG822C and HG822S must use distinct finish images.",
 );
 
-const expectedTowelBarOrder = [
+const expectedTowelBarIds = [
   "batuta-towel-bar",
   "belair-towel-bar",
   "saco-towel-bar",
   "concord-towel-bar",
   "brio-towel-bar",
-  "hg822c",
-  "hg822s",
-  "hg820",
 ];
-const towelBarOrder = products
+const towelBarIds = products
   .filter((product) => product.category === "towel-bars")
   .map((product) => product.id);
 invariant(
-  towelBarOrder.length === expectedTowelBarOrder.length &&
-    towelBarOrder.every((id, index) => id === expectedTowelBarOrder[index]),
-  "Requested towel-bar catalog order is not preserved.",
+  JSON.stringify(towelBarIds) === JSON.stringify(expectedTowelBarIds),
+  "The towel-bars category contains incorrect products.",
+);
+
+const expectedTowelShelfIds = ["hg822c", "hg822s", "hg820"];
+const towelShelfIds = products
+  .filter((product) => product.category === "towel-shelves")
+  .map((product) => product.id);
+invariant(
+  JSON.stringify(towelShelfIds) === JSON.stringify(expectedTowelShelfIds),
+  "The towel-shelves category contains incorrect products.",
+);
+
+const featuredFirstTowelBars = sortProductsFeaturedFirst(
+  products.filter((product) => product.category === "towel-bars"),
+);
+invariant(
+  featuredFirstTowelBars[0]?.id === "belair-towel-bar" &&
+    featuredFirstTowelBars[1]?.id === "concord-towel-bar",
+  "Featured towel bars must begin with Belair and Concord.",
+);
+
+const featuredFirstTowelShelves = sortProductsFeaturedFirst(
+  products.filter((product) => product.category === "towel-shelves"),
+);
+invariant(
+  featuredFirstTowelShelves[0]?.id === "hg822s",
+  "HG822S must be the first towel shelf because it is Featured.",
 );
 
 const sharedPaperHolder = byId.get("batuta-paper-holder");
@@ -129,6 +152,8 @@ invariant(
 );
 
 const expectedCategoryNames = new Map([
+  ["towel-bars", "수건걸이"],
+  ["towel-shelves", "수건선반"],
   ["bath-accessories", "옷걸이 및 슬리퍼 걸이"],
   ["shower-accessories", "슬라이드바"],
   ["cleaning", "청소솔"],

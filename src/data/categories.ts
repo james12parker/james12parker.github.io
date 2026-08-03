@@ -4,9 +4,16 @@ export const categories: Category[] = [
   {
     id: "towel-bars",
     slug: "towel-bars",
-    name: "수건걸이 및 수건선반",
+    name: "수건걸이",
     shortName: "수건걸이",
-    description: "수건걸이와 수건선반 제품을 모아 볼 수 있는 카테고리입니다.",
+    description: "수건걸이 제품을 컬렉션과 마감별로 확인할 수 있습니다.",
+  },
+  {
+    id: "towel-shelves",
+    slug: "towel-shelves",
+    name: "수건선반",
+    shortName: "수건선반",
+    description: "이단 수건선반 제품을 모델과 마감별로 확인할 수 있습니다.",
   },
   {
     id: "toilet-paper-holders",
@@ -61,6 +68,7 @@ export const categories: Category[] = [
 
 export const homepageCategoryIds = [
   "towel-bars",
+  "towel-shelves",
   "toilet-paper-holders",
   "recessed-holders",
   "shelves-storage",

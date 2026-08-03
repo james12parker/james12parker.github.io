@@ -21,6 +21,7 @@ const homepageCategoryRepresentativeProductIds: Readonly<
   Record<string, string>
 > = {
   "towel-bars": "belair-towel-bar",
+  "towel-shelves": "hg822s",
   "recessed-holders": "hg112s",
   mirrors: "hg9992",
 };
@@ -28,6 +29,7 @@ const homepageCategoryRepresentativeProductIds: Readonly<
 const homepageCategoryRepresentativeFinishes: Readonly<Record<string, string>> =
   {
     "towel-bars": "사틴",
+    "towel-shelves": "사틴",
     "recessed-holders": "사틴",
     mirrors: "사틴",
   };
