@@ -25,7 +25,7 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-ink bg-ink text-white">
-      <div className="page-shell grid items-start gap-10 py-12 md:grid-cols-2 md:gap-x-16 md:gap-y-12 md:py-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(10rem,0.55fr)_minmax(21rem,0.9fr)] lg:gap-12">
+      <div className="page-shell grid items-start gap-10 py-12 md:grid-cols-2 md:gap-x-16 md:gap-y-12 md:py-14 lg:grid-cols-[minmax(0,1.45fr)_minmax(10rem,0.55fr)_minmax(21rem,0.8fr)] lg:gap-12">
         <div className="md:col-span-2 lg:col-span-1">
           <Link
             aria-label={`${siteConfig.brandNameKo} 홈`}
@@ -40,7 +40,7 @@ export function SiteFooter() {
               width={230}
             />
           </Link>
-          <p className="mt-4 max-w-[21rem] text-sm leading-6 text-white/65">
+          <p className="mt-4 max-w-[21rem] text-sm leading-6 text-white/65 lg:max-w-none">
             {siteConfig.companyDescription}
           </p>
           {siteConfig.instagramUrl || siteConfig.naverBlogUrl ? (
@@ -89,7 +89,7 @@ export function SiteFooter() {
         </div>
 
         {companyDetails.length ? (
-          <div className="w-full md:max-w-[24rem] md:justify-self-end">
+          <div className="w-full text-left md:max-w-[24rem] md:justify-self-end">
             <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand-soft">
               회사 정보
             </p>
