@@ -91,7 +91,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     normalizedPath: "/images/products/belair/belair-towel-bar-chrome.jpg",
     confidence: "confirmed-from-filename",
     validationNote: "컬렉션, 제품 종류, 마감이 파일명과 제품 형상에서 일치함.",
-    useInCatalog: true,
+    useInCatalog: false,
     reviewStatus: "filename-derived",
   },
   {

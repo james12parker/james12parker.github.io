@@ -47,6 +47,7 @@ type AuditRow = {
 type ImportCounts = {
   mapped: number;
   skipped: number;
+  inactive: number;
   ambiguous: number;
   missing: number;
   unmapped: number;
@@ -72,6 +73,7 @@ async function main() {
   const counts: ImportCounts = {
     mapped: 0,
     skipped: 0,
+    inactive: 0,
     ambiguous: 0,
     missing: 0,
     unmapped: 0,
@@ -104,6 +106,12 @@ async function main() {
     }
 
     if (mapping.confidence === "ambiguous") counts.ambiguous += 1;
+    if (!mapping.useInCatalog) {
+      counts.inactive += 1;
+      auditRows.push(makeAuditRow(filename, metadata, fileStats.size, mapping));
+      continue;
+    }
+
     const destinationPath = resolve(
       publicDirectory,
       mapping.normalizedPath.replace(/^\//, ""),
@@ -398,6 +406,7 @@ async function writeAuditReports(
 - 발견한 원본 이미지: ${rows.length}개
 - 새로 복사한 이미지: ${counts.mapped}개
 - 동일하여 건너뛴 이미지: ${counts.skipped}개
+- 비활성 매핑으로 복사하지 않은 이미지: ${counts.inactive}개
 - confirmed-from-filename: ${confidenceCounts["confirmed-from-filename"]}개
 - probable: ${confidenceCounts.probable}개
 - ambiguous: ${confidenceCounts.ambiguous}개
@@ -456,6 +465,7 @@ function printSummary(
 ) {
   console.log(`mapped: ${counts.mapped}`);
   console.log(`skipped: ${counts.skipped}`);
+  console.log(`inactive: ${counts.inactive}`);
   console.log(`ambiguous: ${counts.ambiguous}`);
   console.log(`unmapped: ${counts.unmapped}`);
   console.log(`missing: ${counts.missing}`);
