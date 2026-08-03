@@ -183,6 +183,9 @@ export function MobileNavigation() {
             <Link className="mobile-main-link" href="/about" onClick={close}>
               브랜드
             </Link>
+            <Link className="mobile-main-link" href="/dealers" onClick={close}>
+              대리점
+            </Link>
             <Link className="mobile-main-link" href="/support" onClick={close}>
               고객지원
             </Link>

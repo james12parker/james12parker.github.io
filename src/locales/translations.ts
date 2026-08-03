@@ -11,6 +11,37 @@ export const english: Record<string, string> = {
   "전체 컬렉션": "All collections",
   마감: "Finish",
   브랜드: "Brand",
+  대리점: "Dealers",
+  "공식 대리점": "Official dealers",
+  "대리점 찾기": "Find a dealer",
+  "가까운 HOYANG 공식 대리점에서 제품을 직접 확인하고 상담받아보세요.":
+    "See products in person and get advice at a nearby official HOYANG dealer.",
+  "가까운 공식 대리점에서 제품을 확인하고 상담받아보세요.":
+    "See products and get advice at a nearby official dealer.",
+  "매장별 전시 제품과 영업시간은 다를 수 있으므로 방문 전 해당 대리점에 확인해 주세요.":
+    "Display products and opening hours vary by location. Please check with the dealer before visiting.",
+  "시·도": "Province",
+  "전체 시·도": "All provinces",
+  "시·군·구": "District",
+  "전체 시·군·구": "All districts",
+  "대리점 검색": "Search dealers",
+  "대리점명 또는 주소를 입력하세요": "Enter a dealer name or address",
+  검색: "Search",
+  초기화: "Reset",
+  "선택한 조건에 맞는 대리점이 없습니다.":
+    "No dealers match the selected criteria.",
+  "대리점 검색 결과 페이지": "Dealer search result pages",
+  "이전 페이지": "Previous page",
+  "다음 페이지": "Next page",
+  이전: "Previous",
+  다음: "Next",
+  주소: "Address",
+  전화: "Phone",
+  영업시간: "Hours",
+  전화하기: "Call",
+  "네이버 지도": "Naver Map",
+  카카오맵: "Kakao Map",
+  "HOYANG 쇼룸": "HOYANG showrooms",
   고객지원: "Support",
   문의: "Contact",
   "제품 문의": "Product inquiry",
@@ -276,6 +307,8 @@ export function translateText(value: string) {
   if (model) return `Model ${model[1]}`;
   const count = value.match(/^등록 제품 (\d+)개$/);
   if (count) return `${count[1]} products`;
+  const dealerCount = value.match(/^총 (\d+)개의 대리점이 있습니다\.$/);
+  if (dealerCount) return `${dealerCount[1]} dealers found.`;
   const totalCount = value.match(/^총 (\d+)개 제품$/);
   if (totalCount) return `${totalCount[1]} products`;
   const viewCount = value.match(/^(\d+)개 제품 보기$/);

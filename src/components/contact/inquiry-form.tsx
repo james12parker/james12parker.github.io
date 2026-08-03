@@ -328,7 +328,7 @@ export function InquiryForm() {
         )}
         {!formEnabled && (
           <p className="text-muted">
-            현재 온라인 문의 접수를 이용할 수 없습니다.
+            죄송합니다. 현재 온라인 문의 접수를 이용할 수 없습니다.
           </p>
         )}
       </div>

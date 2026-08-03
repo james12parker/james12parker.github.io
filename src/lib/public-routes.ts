@@ -15,6 +15,7 @@ export function getPublicRouteDefinitions(): PublicRouteDefinition[] {
     { path: "/products", kind: "static", indexable: true },
     { path: "/collections", kind: "static", indexable: true },
     { path: "/about", kind: "static", indexable: true },
+    { path: "/dealers", kind: "static", indexable: true },
     { path: "/support", kind: "static", indexable: true },
     { path: "/contact", kind: "static", indexable: true },
     {

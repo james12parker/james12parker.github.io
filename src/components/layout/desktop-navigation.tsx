@@ -268,6 +268,12 @@ export function DesktopNavigation() {
       </Link>
       <Link
         className="px-3 py-7 text-sm font-medium hover:text-muted"
+        href="/dealers"
+      >
+        대리점
+      </Link>
+      <Link
+        className="px-3 py-7 text-sm font-medium hover:text-muted"
         href="/support"
       >
         고객지원

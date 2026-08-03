@@ -17,6 +17,12 @@ const supportItems = [
   },
   {
     number: "03",
+    title: "대리점 찾기",
+    description: "가까운 공식 대리점에서 제품을 확인하고 상담받아보세요.",
+    href: "/dealers",
+  },
+  {
+    number: "04",
     title: "제품 문의",
     description: "제품 선택과 납품에 필요한 내용을 문의해 주세요.",
     href: "/contact",
@@ -25,12 +31,12 @@ const supportItems = [
 
 export function SupportSection() {
   return (
-    <div className="grid border-t border-line md:grid-cols-3">
+    <div className="grid border-t border-line md:grid-cols-2 lg:grid-cols-4">
       {supportItems.map((item, index) => (
         <Link
           className={`group flex min-h-64 flex-col justify-between py-7 transition-colors hover:bg-stone md:px-7 ${
-            index > 0 ? "border-t border-line md:border-t-0 md:border-l" : ""
-          }`}
+            index > 0 ? "border-t border-line md:border-l" : ""
+          } ${index === 2 ? "md:border-l-0 lg:border-l" : ""} ${index < 2 ? "md:border-t-0" : "lg:border-t-0"}`}
           href={item.href}
           key={item.number}
         >

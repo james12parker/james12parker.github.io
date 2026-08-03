@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { ExternalIcon } from "@/components/icons";
+import { ArrowRightIcon, ExternalIcon } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 
 const footerLinks = [
   { label: "제품", href: "/products" },
   { label: "컬렉션", href: "/collections" },
   { label: "브랜드", href: "/about" },
+  { label: "대리점", href: "/dealers" },
   { label: "고객지원", href: "/support" },
   { label: "문의", href: "/contact" },
 ];
@@ -17,8 +18,8 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-ink bg-ink text-white">
-      <div className="page-shell grid items-start gap-10 py-12 md:grid-cols-[1.3fr_0.7fr_0.9fr] md:gap-10 md:py-14 lg:gap-12">
-        <div>
+      <div className="page-shell grid items-start gap-10 py-12 md:grid-cols-2 md:gap-x-16 md:gap-y-12 md:py-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(10rem,0.55fr)_minmax(21rem,0.9fr)] lg:gap-12">
+        <div className="md:col-span-2 lg:col-span-1">
           <Link
             aria-label={`${siteConfig.brandNameKo} 홈`}
             className="inline-flex items-center"
@@ -61,25 +62,26 @@ export function SiteFooter() {
           ) : null}
         </div>
 
-        <div>
+        <div className="w-full max-w-48">
           <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand-soft">
             바로가기
           </p>
-          <ul className="space-y-1 text-sm">
+          <ul className="border-t border-white/15 text-sm">
             {footerLinks.map((link) => (
               <li key={link.href}>
                 <Link
-                  className="block py-1.5 text-white/85 transition-colors hover:text-brand-soft"
+                  className="group flex items-center justify-between border-b border-white/15 py-2.5 text-white/80 transition-colors hover:text-white"
                   href={link.href}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <ArrowRightIcon className="size-3.5 text-white/35 transition-[color,transform] group-hover:translate-x-0.5 group-hover:text-brand-soft" />
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        <div>
+        <div className="w-full md:max-w-[24rem] md:justify-self-end">
           <p className="mb-4 text-xs font-semibold tracking-[0.12em] text-brand-soft">
             회사 정보
           </p>
