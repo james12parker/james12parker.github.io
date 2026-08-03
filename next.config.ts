@@ -44,11 +44,11 @@ const contentSecurityPolicy = [
   "object-src 'none'",
   "frame-ancestors 'none'",
   `form-action 'self'${inquiryOrigin ? ` ${inquiryOrigin}` : ""}`,
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://map.pstatic.net https://ssl.pstatic.net https://simg.pstatic.net",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
-  `script-src 'self' 'unsafe-inline'${isProductionRelease ? "" : " 'unsafe-eval'"}`,
-  `connect-src 'self'${inquiryOrigin ? ` ${inquiryOrigin}` : ""}${isProductionRelease ? "" : " ws: wss:"}`,
+  `script-src 'self' 'unsafe-inline' https://oapi.map.naver.com${isProductionRelease ? "" : " 'unsafe-eval'"}`,
+  `connect-src 'self' https://oapi.map.naver.com https://map.pstatic.net${inquiryOrigin ? ` ${inquiryOrigin}` : ""}${isProductionRelease ? "" : " ws: wss:"}`,
   ...(isProductionRelease ? ["upgrade-insecure-requests"] : []),
 ].join("; ");
 

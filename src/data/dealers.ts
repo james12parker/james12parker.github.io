@@ -9,6 +9,8 @@ export type Dealer = {
   address: string;
   addressDetail?: string;
   phone: string;
+  latitude: number;
+  longitude: number;
   type: DealerType;
   operatingHours?: string;
   naverMapUrl?: string;

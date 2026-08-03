@@ -57,6 +57,7 @@ jobs:
           NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
           NEXT_PUBLIC_BUILD_SHA: ${{ github.sha }}
           NEXT_PUBLIC_INQUIRY_ENDPOINT: ${{ vars.NEXT_PUBLIC_INQUIRY_ENDPOINT }}
+          NEXT_PUBLIC_NAVER_MAP_CLIENT_ID: ${{ vars.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID }}
         run: npm run build
 
       - name: Upload GitHub Pages artifact
