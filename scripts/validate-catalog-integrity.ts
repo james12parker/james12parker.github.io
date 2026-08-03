@@ -136,7 +136,7 @@ const brioChrome = brioPaperHolder.variants.find(
 invariant(
   brioChrome?.image ===
     "/images/products/brio/brio-toilet-paper-holder-chrome.jpg",
-  "Brio chrome must use the original 10.브리오휴지걸이(크롬).jpg image.",
+  "Brio chrome must use the original 브리오/4.브리오휴지걸이(크롬).jpg image.",
 );
 
 const brioBpPaperHolder = byId.get("brio-bp-paper-holder");

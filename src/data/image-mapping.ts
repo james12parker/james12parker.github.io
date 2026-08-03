@@ -20,7 +20,7 @@ export type ProductImageMapping = {
 
 const namedCollectionImages: ProductImageMapping[] = [
   {
-    originalFilename: "1.바투타수건걸이(사틴).jpg",
+    originalFilename: "바투타/1.바투타수건걸이(사틴).jpg",
     collection: "바투타",
     inferredProductName: "바투타 수건걸이",
     inferredModelNumber: "",
@@ -35,7 +35,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "2.바투타휴지걸이(사틴).jpg",
+    originalFilename: "바투타/2.바투타휴지걸이(사틴).jpg",
     collection: "바투타",
     inferredProductName: "바투타 휴지걸이",
     inferredModelNumber: "",
@@ -51,7 +51,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "needs-confirmation",
   },
   {
-    originalFilename: "3.벨레어수건걸이(사틴).jpg",
+    originalFilename: "벨레어/1.벨레어수건걸이(사틴).jpg",
     collection: "벨레어",
     inferredProductName: "벨레어 수건걸이",
     inferredModelNumber: "",
@@ -65,7 +65,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "4.벨레어휴지걸이(사틴).jpg",
+    originalFilename: "벨레어/2.벨레어휴지걸이(사틴).jpg",
     collection: "벨레어",
     inferredProductName: "벨레어 휴지걸이",
     inferredModelNumber: "",
@@ -81,7 +81,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "needs-confirmation",
   },
   {
-    originalFilename: "5.벨레어수건걸이(크롬).jpg",
+    originalFilename: "벨레어/3.벨레어수건걸이(크롬).jpg",
     collection: "벨레어",
     inferredProductName: "벨레어 수건걸이",
     inferredModelNumber: "",
@@ -95,7 +95,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "6.벨레어휴지걸이(크롬).jpg",
+    originalFilename: "벨레어/4.벨레어휴지걸이(크롬).jpg",
     collection: "벨레어",
     inferredProductName: "벨레어 휴지걸이",
     inferredModelNumber: "",
@@ -110,7 +110,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "7.브리오수건걸이(사틴).jpg",
+    originalFilename: "브리오/1.브리오수건걸이(사틴).jpg",
     collection: "브리오",
     inferredProductName: "브리오 수건걸이",
     inferredModelNumber: "",
@@ -124,7 +124,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "8.브리오휴지걸이(사틴).jpg",
+    originalFilename: "브리오/2.브리오휴지걸이(사틴).jpg",
     collection: "브리오",
     inferredProductName: "브리오 휴지걸이",
     inferredModelNumber: "",
@@ -139,7 +139,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "needs-confirmation",
   },
   {
-    originalFilename: "9.브리오수건걸이(크롬).jpg",
+    originalFilename: "브리오/3.브리오수건걸이(크롬).jpg",
     collection: "브리오",
     inferredProductName: "브리오 수건걸이",
     inferredModelNumber: "",
@@ -153,7 +153,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "10.브리오휴지걸이(크롬).jpg",
+    originalFilename: "브리오/4.브리오휴지걸이(크롬).jpg",
     collection: "브리오",
     inferredProductName: "브리오 휴지걸이",
     inferredModelNumber: "",
@@ -168,7 +168,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "BP 브리오휴지걸이(크롬).png",
+    originalFilename: "브리오/5.브리오BP휴지걸이(크롬).png",
     collection: "브리오",
     inferredProductName: "브리오BP 휴지걸이",
     inferredModelNumber: "",
@@ -184,7 +184,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "11.사코수건걸이(블랙).jpg",
+    originalFilename: "사코/1.사코수건걸이(블랙).jpg",
     collection: "사코",
     inferredProductName: "사코 수건걸이",
     inferredModelNumber: "",
@@ -198,7 +198,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "12.사코휴지걸이(블랙).jpg",
+    originalFilename: "사코/2.사코휴지걸이(블랙).jpg",
     collection: "사코",
     inferredProductName: "사코 휴지걸이",
     inferredModelNumber: "",
@@ -212,7 +212,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "13.사코수건걸이(크롬).jpg",
+    originalFilename: "사코/3.사코수건걸이(크롬).jpg",
     collection: "사코",
     inferredProductName: "사코 수건걸이",
     inferredModelNumber: "",
@@ -226,7 +226,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "14.사코휴지걸이(크롬).jpg",
+    originalFilename: "사코/4.사코휴지걸이(크롬).jpg",
     collection: "사코",
     inferredProductName: "사코 휴지걸이",
     inferredModelNumber: "",
@@ -240,7 +240,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "15.콩코드수건걸이(사틴).jpg",
+    originalFilename: "콩코드/1.콩코드수건걸이(사틴).jpg",
     collection: "콩코드",
     inferredProductName: "콩코드 수건걸이",
     inferredModelNumber: "",
@@ -254,7 +254,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "16.콩코드휴지걸이(사틴).jpg",
+    originalFilename: "콩코드/2.콩코드휴지걸이(사틴).jpg",
     collection: "콩코드",
     inferredProductName: "콩코드 휴지걸이",
     inferredModelNumber: "",
@@ -270,7 +270,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "needs-confirmation",
   },
   {
-    originalFilename: "17.콩코드수건걸이(크롬).jpg",
+    originalFilename: "콩코드/3.콩코드수건걸이(크롬).jpg",
     collection: "콩코드",
     inferredProductName: "콩코드 수건걸이",
     inferredModelNumber: "",
@@ -284,7 +284,7 @@ const namedCollectionImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "18.콩코드휴지걸이(크롬).jpg",
+    originalFilename: "콩코드/4.콩코드휴지걸이(크롬).jpg",
     collection: "콩코드",
     inferredProductName: "콩코드 휴지걸이",
     inferredModelNumber: "",
@@ -303,7 +303,7 @@ const namedCollectionImages: ProductImageMapping[] = [
 
 const hgImages: ProductImageMapping[] = [
   {
-    originalFilename: "HG01MS 슬라이드바(무광).png",
+    originalFilename: "HG/HG01MS 슬라이드바(무광).png",
     collection: "HG 시리즈",
     inferredProductName: "슬라이드바",
     inferredModelNumber: "HG01MS",
@@ -318,7 +318,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG05 옷걸이(사틴).jpg",
+    originalFilename: "HG/HG05 옷걸이(사틴).jpg",
     collection: "HG 시리즈",
     inferredProductName: "옷걸이",
     inferredModelNumber: "HG05",
@@ -333,7 +333,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG55S 슬리퍼걸이(사틴).jpg",
+    originalFilename: "HG/HG55S 슬리퍼걸이(사틴).jpg",
     collection: "HG 시리즈",
     inferredProductName: "슬리퍼걸이",
     inferredModelNumber: "HG55S",
@@ -348,7 +348,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG100MS 코너선반(무광).jpg",
+    originalFilename: "HG/HG100MS 코너선반(무광).jpg",
     collection: "HG 시리즈",
     inferredProductName: "코너선반",
     inferredModelNumber: "HG100MS",
@@ -363,7 +363,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG110-1 매립휴지걸이(크롬).jpg",
+    originalFilename: "HG/HG110-1 매립휴지걸이(크롬).jpg",
     collection: "HG 시리즈",
     inferredProductName: "매립휴지걸이",
     inferredModelNumber: "HG110-1",
@@ -378,7 +378,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG110C 매립휴지걸이(크롬).png",
+    originalFilename: "HG/HG110C 매립휴지걸이(크롬).png",
     collection: "HG 시리즈",
     inferredProductName: "매립휴지걸이",
     inferredModelNumber: "HG110C",
@@ -393,7 +393,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG110S 매립휴지걸이(사틴).png",
+    originalFilename: "HG/HG110S 매립휴지걸이(사틴).png",
     collection: "HG 시리즈",
     inferredProductName: "매립휴지걸이",
     inferredModelNumber: "HG110S",
@@ -408,7 +408,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG112C 트레이겸용매립휴지(크롬).jpg",
+    originalFilename: "HG/HG112C 트레이겸용매립휴지(크롬).jpg",
     collection: "HG 시리즈",
     inferredProductName: "트레이 겸용 매립휴지걸이",
     inferredModelNumber: "HG112C",
@@ -424,7 +424,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG112S 트레이겸용매립휴지(사틴).png",
+    originalFilename: "HG/HG112S 트레이겸용매립휴지(사틴).png",
     collection: "HG 시리즈",
     inferredProductName: "트레이 겸용 매립휴지걸이",
     inferredModelNumber: "HG112S",
@@ -439,7 +439,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG120 일단휴지걸이.jpg",
+    originalFilename: "HG/HG120 일단휴지걸이.jpg",
     collection: "HG 시리즈",
     inferredProductName: "일단휴지걸이",
     inferredModelNumber: "HG120",
@@ -454,7 +454,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "HG240 폰트레이매립휴지걸이.jpg",
+    originalFilename: "HG/HG240 폰트레이매립휴지걸이.jpg",
     collection: "HG 시리즈",
     inferredProductName: "폰&트레이 매립휴지걸이",
     inferredModelNumber: "HG240",
@@ -469,7 +469,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "HG392MS 고급형선반(무광).png",
+    originalFilename: "HG/HG392MS 고급형선반(무광).png",
     collection: "HG 시리즈",
     inferredProductName: "고급형선반",
     inferredModelNumber: "HG392MS",
@@ -484,7 +484,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG513 청소솔.png",
+    originalFilename: "HG/HG513 청소솔.png",
     collection: "HG 시리즈",
     inferredProductName: "청소솔",
     inferredModelNumber: "HG513",
@@ -499,7 +499,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "HG513 청소솔(사틴).png",
+    originalFilename: "HG/HG513 청소솔(사틴).png",
     collection: "HG 시리즈",
     inferredProductName: "청소솔",
     inferredModelNumber: "HG513",
@@ -513,7 +513,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG820 이단수건선반(크롬).jpg",
+    originalFilename: "HG/HG820 이단수건선반(크롬).jpg",
     collection: "HG 시리즈",
     inferredProductName: "이단수건선반",
     inferredModelNumber: "HG820",
@@ -528,7 +528,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG822C 이단수건선반(크롬).jpg",
+    originalFilename: "HG/HG822C 이단수건선반(크롬).jpg",
     collection: "HG 시리즈",
     inferredProductName: "이단수건선반",
     inferredModelNumber: "HG822C",
@@ -542,7 +542,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG822S 이단수건선반(사틴).jpg",
+    originalFilename: "HG/HG822S 이단수건선반(사틴).jpg",
     collection: "HG 시리즈",
     inferredProductName: "이단수건선반",
     inferredModelNumber: "HG822S",
@@ -556,7 +556,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "filename-derived",
   },
   {
-    originalFilename: "HG999 면도경.jpg",
+    originalFilename: "HG/HG999 면도경.jpg",
     collection: "HG 시리즈",
     inferredProductName: "면도경",
     inferredModelNumber: "HG999",
@@ -570,7 +570,7 @@ const hgImages: ProductImageMapping[] = [
     reviewStatus: "verified",
   },
   {
-    originalFilename: "HG999-2 면도경(사틴).jpg",
+    originalFilename: "HG/HG999-2 면도경(사틴).jpg",
     collection: "HG 시리즈",
     inferredProductName: "면도경",
     inferredModelNumber: "HG999-2",

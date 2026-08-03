@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title id="title">HOYANG</title>
-  <circle cx="32" cy="32" r="32" fill="#302f3b"/>
-  <path fill="#fff" d="M7 14h8v13h10V14h8v36h-8V35H15v15H7z"/>
-  <path fill="#fff" fill-rule="evenodd" d="M47 13c9.4 0 16 7.8 16 19s-6.6 19-16 19-16-7.8-16-19 6.6-19 16-19Zm0 8c-4.7 0-8 4.5-8 11s3.3 11 8 11 8-4.5 8-11-3.3-11-8-11Z"/>
-</svg>

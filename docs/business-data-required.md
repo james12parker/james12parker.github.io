@@ -26,7 +26,7 @@ npm run validate:launch
 | 로고                       | `logoPath`, 현재 미사용 SVG 자산        | SVG 또는 충분한 해상도의 투명 PNG와 사용 지침  | 예        |
 | 이미지 내 HOYANG 표식 관계 | HG 제품 이미지                          | 브랜드 소유·유통 관계 및 이미지 사용 권한 확인 | 예        |
 
-`브랜드명`, `BRAND NAME`, `logo-placeholder.svg`는 사업 데이터가 필요한
+`브랜드명`, `BRAND NAME`은 사업 데이터가 필요한
 의도적 설정 플레이스홀더다.
 
 ## 2. Company and legal information

@@ -111,6 +111,7 @@ export function CatalogClient({
     params.delete("category");
     params.delete("collection");
     params.delete("finish");
+    params.delete("q");
     const query = params.toString();
     startFilterTransition(() => {
       setOptimisticValues({ category: "", collection: "", finish: "" });

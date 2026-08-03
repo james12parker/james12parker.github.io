@@ -56,10 +56,13 @@ async function main() {
   validateManifestCollisions();
   await mkdir(docsDirectory, { recursive: true });
 
-  const sourceFiles = (await readdir(sourceDirectory))
+  const sourceFiles = (await readdir(sourceDirectory, { recursive: true }))
+    .map((filename) => filename.replaceAll("\\", "/"))
     .filter((filename) => imageExtensions.has(extname(filename).toLowerCase()))
     .sort(new Intl.Collator("ko", { numeric: true }).compare);
-  const sourceFileSet = new Set(sourceFiles);
+  const sourceFileSet = new Set(
+    sourceFiles.map((filename) => filename.normalize("NFC")),
+  );
   const mappingByFilename = new Map(
     productImageMapping.map((mapping) => [
       mapping.originalFilename.normalize("NFC"),
@@ -127,7 +130,7 @@ async function main() {
   }
 
   for (const mapping of productImageMapping) {
-    if (!sourceFileSet.has(mapping.originalFilename)) {
+    if (!sourceFileSet.has(mapping.originalFilename.normalize("NFC"))) {
       counts.missing += 1;
       errors.push(`원본 누락: ${mapping.originalFilename}`);
     }
